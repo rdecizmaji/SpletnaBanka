@@ -3,10 +3,15 @@ package entitete;
 import java.io.Serializable;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class BancnaKartica implements Serializable{
 	/**
 	 * 
@@ -71,6 +76,7 @@ public class BancnaKartica implements Serializable{
 		this.datumObracuna = datumObracuna;
 	}
 
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public TransakcijskiRacun getIdTr() {
 		return idTr;
 	}
@@ -79,10 +85,11 @@ public class BancnaKartica implements Serializable{
 		this.idTr = idTr;
 	}
 
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public TipKartice getIdTk() {
 		return idTk;
 	}
-
+	
 	public void setIdTk(TipKartice idTk) {
 		this.idTk = idTk;
 	}

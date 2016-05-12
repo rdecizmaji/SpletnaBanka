@@ -1,12 +1,24 @@
 package entitete;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+@Entity
 public class TipKartice implements Serializable{
 	private int id;
 	private String nazivTipa;
 	private boolean kreditna;
 	private boolean debetna;
+	private List<BancnaKartica> kartice=new ArrayList<BancnaKartica>();
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -31,4 +43,12 @@ public class TipKartice implements Serializable{
 	public void setDebetna(boolean debetna) {
 		this.debetna = debetna;
 	}
+	public List<BancnaKartica> getKartice() {
+		return kartice;
+	}
+	@OneToMany
+	public void setKartice(List<BancnaKartica> kartice) {
+		this.kartice = kartice;
+	}
+	
 }
