@@ -1,5 +1,6 @@
 package entitete;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
@@ -7,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class TransakcijskiRacun {
+public class TransakcijskiRacun implements Serializable{
 	private int id;
 	private String stevilkaTRR;
 	private Calendar datumOdprja;

@@ -1,6 +1,8 @@
 package entitete;
 
-public class TipKartice {
+import java.io.Serializable;
+
+public class TipKartice implements Serializable{
 	private int id;
 	private String nazivTipa;
 	private boolean kreditna;
@@ -29,6 +31,4 @@ public class TipKartice {
 	public void setDebetna(boolean debetna) {
 		this.debetna = debetna;
 	}
-	
-	
 }

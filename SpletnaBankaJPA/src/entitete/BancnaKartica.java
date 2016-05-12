@@ -1,8 +1,9 @@
 package entitete;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class BancnaKartica {
+public class BancnaKartica implements Serializable{
 	private int id;
 	private int stKartice;
 	private int pinKoda;

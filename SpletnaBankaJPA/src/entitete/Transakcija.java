@@ -1,9 +1,10 @@
 package entitete;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-public class Transakcija {
+public class Transakcija implements Serializable{
 	private int id;
 	private String naziv;
 	private BigDecimal znesek;

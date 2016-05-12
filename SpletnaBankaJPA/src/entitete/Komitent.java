@@ -1,8 +1,9 @@
 package entitete;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Komitent {
+public class Komitent implements Serializable{
 	private int idKomitent;
 	private String ime;
 	private String priimek;
