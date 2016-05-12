@@ -7,7 +7,7 @@ public class Komitent {
 	private String ime;
 	private String priimek;
 	private String naslov;
-	private String pošta;
+	private String posta;
 	private String email;
 	private Calendar datum;
 	private String uporabniskoIme;
@@ -36,11 +36,11 @@ public class Komitent {
 	public void setNaslov(String naslov) {
 		this.naslov = naslov;
 	}
-	public String getPošta() {
-		return pošta;
+	public String getPosta() {
+		return posta;
 	}
-	public void setPošta(String pošta) {
-		this.pošta = pošta;
+	public void setPosta(String posta) {
+		this.posta = posta;
 	}
 	public String getEmail() {
 		return email;
