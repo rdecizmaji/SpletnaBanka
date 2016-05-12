@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 @Entity
 public class TipKartice implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nazivTipa;
 	private boolean kreditna;
@@ -43,10 +47,10 @@ public class TipKartice implements Serializable{
 	public void setDebetna(boolean debetna) {
 		this.debetna = debetna;
 	}
+	@OneToMany
 	public List<BancnaKartica> getKartice() {
 		return kartice;
 	}
-	@OneToMany
 	public void setKartice(List<BancnaKartica> kartice) {
 		this.kartice = kartice;
 	}
