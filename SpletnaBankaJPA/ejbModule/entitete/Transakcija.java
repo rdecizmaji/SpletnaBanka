@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Transakcija implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String naziv;
 	private BigDecimal znesek;
