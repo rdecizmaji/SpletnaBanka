@@ -18,63 +18,12 @@ xmlns:f="http://java.sun.com/jsf/core">
  <ui:composition template="resources/template.xhtml">
  <ui:define name="content">
 <h1 class="display-1 hidden-xs-down">
-           Armaturna Plošča
+           Podrobno
             </h1>
 <div class="row" style="margin-bottom:5px;">
-
-
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span>200</span>
-                                    Opravljenih Transakcij
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span>2</span>
-                                    Nova sporočila
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
-                                <div class="sm-st-info">
-                                    <span>100,320</span>
-                                    Stanje na računu
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
-                                <div class="sm-st-info">
-                                   <span><h:outputText value="34"></h:outputText></span>
-                                    Vseh e-računov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="row">
-
-                        <div class="col-md-8">
-                            <div class="panel">
-                              <div class="panel-heading">
-                                  Graf transakcij
-                            </div>
-                            <div class="panel-body">
-                          </div>
-                            </div>
-                            </div>
-                            </div>
                   <div class="row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="panel">
                               <div class="panel-heading">
                                   Stanje računov
@@ -130,27 +79,14 @@ xmlns:f="http://java.sun.com/jsf/core">
                       </table>
                   </div>
               </div>
-          </div><!--end col-6 -->
-            <div class="col-lg-4">
-                         <div class="panel">
-                              <div class="panel-heading">
-                                  Vpis 
+          </div>
+                      <div class="col-lg-4">
+                         <h:form>
+                                      <h:commandButton class="btn btn-info" value="Uredi komitenta" action="urediKomitenta"></h:commandButton>
+                                  </h:form>
                               </div>
-                              <div class="panel-body">
-                                  <form role="form">
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1">Email naslov</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleInputPassword1">Geslo</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                                      </div>
-                                      <h:commandButton class="btn btn-info" value="Vpisi se"></h:commandButton>
-                                  </form>
-                              </div>
-                          </div>
-                          </div>
+          </div>
+          
                           </div>                       
 	</ui:define>
  </ui:composition>

@@ -4,28 +4,25 @@
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:p="http://primefaces.org/ui">
     <ui:composition>
+    <h:form>
         <ul class="nav nav-sidebar">
-        <li class="time" id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="asas" />
+        <li id="cas">
+                      <h1 class="animated fadeInLeft"><h:outputText value="13:45" />
                        </h1>
-                      <p class="animated fadeInRight">Sreda, 11. Maj 2016</p>
+                      <p class="animated fadeInRight">Sreda, 18. Maj 2016</p>
                     </li>
-            <li class="active"><a href="#">Armaturna ploščca</a></li>
-            <li><a href="#">Pregled profila</a></li>
-            <li><a href="#">Analiza</a></li>
-            <li><a href="#">Izvoz podatkov</a></li>
+            <li><h:commandLink value="Armaturna plošča" action="banka"></h:commandLink></li>
+            
+            <li class="active"><h:commandLink value="Registracija komitenta" action="dodajKomitenta"></h:commandLink></li>
+            <li><h:commandLink value="Lista komitentov" action="podrobno"></h:commandLink></li>
         </ul>
+        
         <ul class="nav nav-sidebar">
-            <li><a href="">Izdaj račun</a></li>
-            <li><a href="">Prejeti računi</a></li>
-            <li><a href="">Dvig</a></li>
-            <li><a href="">Polog</a></li>
-            <li><a href="">Pregled transakcij</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li><a href="">Sporočila</a></li>
-            <li><a href="">Nastavitve</a></li>
-        </ul>        
+             <li><h:commandLink value="Sporočila" action="podrobno"></h:commandLink></li>
+             <li><h:commandLink value="Nastavitve" action="podrobno"></h:commandLink></li>
+        </ul>   
+        </h:form>     
     </ui:composition>
 </html>
+
  

@@ -18,11 +18,9 @@ xmlns:f="http://java.sun.com/jsf/core">
  <ui:composition template="resources/template.xhtml">
  <ui:define name="content">
 <h1 class="display-1 hidden-xs-down">
-           Armaturna Plošča
+           Pregled komitenta
             </h1>
 <div class="row" style="margin-bottom:5px;">
-
-
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
@@ -37,7 +35,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                                 <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
                                 <div class="sm-st-info">
                                     <span>2</span>
-                                    Nova sporočila
+                                    Nova sporo�ila
                                 </div>
                             </div>
                         </div>
@@ -46,7 +44,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                                 <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
                                 <div class="sm-st-info">
                                     <span>100,320</span>
-                                    Stanje na računu
+                                    Stanje na ra�unu
                                 </div>
                             </div>
                         </div>
@@ -55,7 +53,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                                 <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
                                 <div class="sm-st-info">
                                    <span><h:outputText value="34"></h:outputText></span>
-                                    Vseh e-računov
+                                    Vseh e-ra�unov
                                 </div>
                             </div>
                         </div>
@@ -77,7 +75,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                         <div class="col-md-8">
                             <div class="panel">
                               <div class="panel-heading">
-                                  Stanje računov
+                                  Stanje ra�unov
                             </div>
                             <div class="panel-body table-responsive">
                                 <table class="table table-hover">
@@ -96,35 +94,35 @@ xmlns:f="http://java.sun.com/jsf/core">
                               <tbody>
                                 <tr>
                                   <td>1</td>
-                                  <td>Gradnja hiše</td>
-                                  <td>Jože Macuh</td>
+                                  <td>Gradnja hi�e</td>
+                                  <td>Jo�e Macuh</td>
                                   <td>10/10/2014</td>
-                                  <td><span class="label label-danger">ni plačano</span></td>
-                                  <td><span class="badge badge-info">500€</span></td>
+                                  <td><span class="label label-danger">ni pla�ano</span></td>
+                                  <td><span class="badge badge-info">500�</span></td>
                               </tr>
                               <tr>
                                   <td>2</td>
-                                  <td>Prevoz živali</td>
+                                  <td>Prevoz �ivali</td>
                                   <td>Branko Kranjec</td>
                                   <td>01/11/2014</td>
-                                  <td><span class="label label-success">plačano</span></td>
-                                  <td><span class="badge badge-success">35€</span></td>
+                                  <td><span class="label label-success">pla�ano</span></td>
+                                  <td><span class="badge badge-success">35�</span></td>
                               </tr>
                               <tr>
                                   <td>3</td>
                                   <td>Popravilo avta</td>
                                   <td>Karl Bedek</td>
                                   <td>10/10/2014</td>
-                                  <td><span class="label label-danger">ni plačano</span></td>
-                                  <td><span class="badge badge-info">300€</span></td>
+                                  <td><span class="label label-danger">ni pla�ano</span></td>
+                                  <td><span class="badge badge-info">300�</span></td>
                               </tr>
                               <tr>
                                   <td>4</td>
-                                  <td>Čiščenje oblačil</td>
+                                  <td>�i��enje obla�il</td>
                                   <td>Breda Novak</td>
                                   <td>01/11/2014</td>
-                                  <td><span class="label label-success">plačano</span></td>
-                                  <td><span class="badge badge-success">15€</span></td>
+                                  <td><span class="label label-success">pla�ano</span></td>
+                                  <td><span class="badge badge-success">15�</span></td>
                               </tr>
                           </tbody>
                       </table>
@@ -132,22 +130,9 @@ xmlns:f="http://java.sun.com/jsf/core">
               </div>
           </div><!--end col-6 -->
             <div class="col-lg-4">
-                         <div class="panel">
-                              <div class="panel-heading">
-                                  Vpis 
-                              </div>
-                              <div class="panel-body">
-                                  <form role="form">
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1">Email naslov</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleInputPassword1">Geslo</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                                      </div>
-                                      <h:commandButton class="btn btn-info" value="Vpisi se"></h:commandButton>
-                                  </form>
+                         <h:form>
+                                      <h:commandButton class="btn btn-info" value="Uredi komitenta" action="urediKomitenta"></h:commandButton>
+                                  </h:form>
                               </div>
                           </div>
                           </div>
