@@ -12,12 +12,12 @@ import entitete.TransakcijskiRacun;
 
 @Stateless
 public class KomitentEJB implements IKomitent{
-	
 @PersistenceContext
 EntityManager manager;
 	
 	@Override
 	public void shrani(Komitent k) {
+		
 		Komitent kom = manager.find(Komitent.class, k.getId());
 		if (kom != null) {
 			kom.setIme(k.getIme());
@@ -37,6 +37,7 @@ EntityManager manager;
 				tr.add(t);
 				k.setTransakcijskiRacuni(tr);
 				//kreiraj geslo
+				
 			    manager.persist(k);
 			}
 	}
