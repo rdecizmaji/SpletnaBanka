@@ -61,20 +61,8 @@ xmlns:f="http://java.sun.com/jsf/core">
                                           <label>Pošta: </label>
                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.posta}" required="true"></h:inputText>
                                       </div>
-<!-- <!--                                       <div class="form-group"> --> -->
-<!-- <!--                                           <label>Država: </label> --> -->
-<!-- <!--                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.}" required="true"></h:inputText> --> -->
-<!-- <!--                                       </div> --> -->
-<!--                                       <div class="form-group"> -->
-<!--                                           <label>Davčna številka: </label> -->
-<!--                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.}" required="true"></h:inputText> -->
-<!--                                       </div> -->
-<!--                                       <div class="form-group"> -->
-<!--                                           <label>EMŠO: </label> -->
-<!--                                           <h:inputText class="form-control" value="" required="true"></h:inputText> -->
-<!--                                       </div> -->
                                       <div class="vpisGumb">
-                                      <h:commandButton class="btn btn-info" value="Vpis komitenta"  action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+                                      <h:commandButton class="btn btn-info" value="Vpis komitenta"  actionListener="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
                                   </div>
                               </div>
                           </div>

@@ -14,11 +14,12 @@ import entitete.Komitent;
 public class UpravljanjeKomitenta {
 	
 	@EJB
-	IKomitent kom = new KomitentEJB();
+	IKomitent kom;
 	
 	private Komitent komitent=new Komitent(); 
 	
 	public void registrirajKomitenta(){
+		System.out.println(komitent);
 		kom.shrani(komitent);
 		komitent=new Komitent();
 	}
