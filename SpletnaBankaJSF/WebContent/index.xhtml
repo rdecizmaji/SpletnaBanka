@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+
+ <h:outputStylesheet library="css" name="bootstrap.min1.css"/>
+ <h:outputStylesheet library="css" name="bootstrap.css"/> 
+ <h:outputStylesheet library="css" name="custom-style.css"/>
+ <h:outputStylesheet library="css" name="stylish-portfolio.css"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dash</title>
+</head>
+<h:body>
+ <ui:composition template="resources/templatefullpage.xhtml">
+ <ui:define name="fullpage">
+   <div id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>NMB BANKA</h1>
+            <h3>Praktikum II</h3>
+            <br/>  
+            <h:form>
+            <h:commandLink class="btn btn-dark btn-lg" value="Vpiši se" action="prijava"></h:commandLink>
+            </h:form>
+        </div>
+    </div>
+    <!-- About -->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Projekt NMB BANKA je bila ustvarjena pri predmetu Praktikum II</h2>
+                    <p class="lead">Razvijalci projekta upamo, da boste dobili pozitivno uporabniško izkušnjo.</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <div id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>VMESNIKI</h2>
+                    <hr class="small"/>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>WSDL Storitve</strong>
+                                </h4>
+                                <p>Vključili smo tudi WSDL storitve.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>JPA</strong>
+                                </h4>
+                                <p>Vmesniki so zgrajeni s pomočjo JPA tehnologij.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>REST</strong>
+                                </h4>
+                                <p>Aplikacija deluje v REST načinu.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>MySQL</strong>
+                                </h4>
+                                <p>Baza je v MySQL.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+ </ui:define>
+ </ui:composition>
+ </h:body>
+ </html>

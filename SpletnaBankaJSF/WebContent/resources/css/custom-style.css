@@ -3,6 +3,9 @@
  */
  
 /* Move down content because we have a fixed navbar that is 50px tall */
+html {
+    height: 100%;
+}
 body {
   padding-top: 50px;
 }
@@ -183,5 +186,12 @@ text-transform: uppercase;
 }
 #cas {
 	padding-left:15px;
+}
+#navbarheader {
+	background-color:rgba(70, 70, 70, 0.46);
+	border: none;
+}
+.prijavnaforma {
+	width:100%;
 }
  
