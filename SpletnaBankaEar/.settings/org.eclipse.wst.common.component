@@ -5,7 +5,8 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SpletnaBankaJPA.jar" deploy-path="/lib" handle="module:/resource/SpletnaBankaJPA/SpletnaBankaJPA">
+        <dependent-module archiveName="SpletnaBankaJPA.jar" deploy-path="/" handle="module:/resource/SpletnaBankaJPA/SpletnaBankaJPA">
+            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
