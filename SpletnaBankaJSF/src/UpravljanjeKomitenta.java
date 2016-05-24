@@ -1,4 +1,7 @@
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,11 +20,22 @@ public class UpravljanjeKomitenta {
 	IKomitent kom;
 	
 	private Komitent komitent=new Komitent(); 
-	
+	private Date datumR;
+
 	public void registrirajKomitenta(){
-		System.out.println(komitent);
+		System.out.println("NOOOTTTTT!");
+		
+		//pretvorba iz Date v Calendar
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(datumR);
+		komitent.setDatum(cal);
+		
+		//klicana metoda za vnos
 		kom.shrani(komitent);
+		
+		//ustvari nova insatnca
 		komitent=new Komitent();
+		datumR=null;
 	}
 
 	public Komitent getKomitent() {
@@ -30,6 +44,14 @@ public class UpravljanjeKomitenta {
 
 	public void setKomitent(Komitent komitent) {
 		this.komitent = komitent;
+	}
+
+	public Date getDatumR() {
+		return datumR;
+	}
+
+	public void setDatumR(Date datumR) {
+		this.datumR = datumR;
 	}
 	
 }

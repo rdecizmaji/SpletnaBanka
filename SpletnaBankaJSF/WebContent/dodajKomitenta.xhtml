@@ -30,23 +30,38 @@ xmlns:f="http://java.sun.com/jsf/core">
                               <div class="panel-body">
                                   <div class="form-group">
                                           <label>Ime:</label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.ime}" required="true"></h:inputText>
+                                          <h:inputText id="ime" class="form-control" value="#{upravljanjeKomitenta.komitent.ime}" required="true" requiredMessage="Prosim vnesite ime." validatorMessage="Neustrezena oblika imena.">
+                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+                                          </h:inputText>
+                                     	 <h:message for="ime" />
                                       </div>
                                       <div class="form-group">
                                           <label>Priimek:</label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.priimek}" required="true"></h:inputText>
+                                          <h:inputText id="priimek" class="form-control" value="#{upravljanjeKomitenta.komitent.priimek}" required="true" requiredMessage="Prosim vnesite priimek." validatorMessage="Neustrezena oblika priimka.">
+                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+                                          </h:inputText>
+                                     	<h:message for="priimek" />
                                       </div>
                                       <div class="form-group">
                                           <label>Email:</label>
-                                          <h:inputText type="email" class="form-control" value="#{upravljanjeKomitenta.komitent.email}" equired="true"></h:inputText>
+                                          <h:inputText id="email" type="email" class="form-control" value="#{upravljanjeKomitenta.komitent.email}" required="true" requiredMessage="Prosim vnesite email." validatorMessage="Neustrezena oblika naslova">
+											<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+										  </h:inputText>
+										  <h:message for="email" />
                                       </div>
                                        <div class="form-group">
                                           <label>Datum rojstva:</label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.datum}" required="true"></h:inputText>
+                                          <h:inputText id="datum" class="form-control" value="#{upravljanjeKomitenta.datumR}" required="true" requiredMessage="Prosim vnesite datum rojstva." validatorMessage="Neustrezena oblika datuma."> 
+                                          	<f:convertDateTime pattern="dd.MM.yyyy"/>
+                                          </h:inputText>
+                                      	<h:message for="datum" />
                                       </div>
                                       <div class="form-group">
                                           <label>Naslov: </label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.naslov}" required="true"></h:inputText>
+                                          <h:inputText id="naslov" class="form-control" value="#{upravljanjeKomitenta.komitent.naslov}" required="true" requiredMessage="Prosim vnesite naslov." validatorMessage="Neustrezena oblika naslova.">
+                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z0-9-\s]*$" />
+                                          </h:inputText>
+                                          <h:message for="naslov" />
                                       </div>
                                       </div>
                                       </div>
@@ -59,10 +74,13 @@ xmlns:f="http://java.sun.com/jsf/core">
                                       <div class="panel-body">
                                       <div class="form-group">
                                           <label>Pošta: </label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.komitent.posta}" required="true"></h:inputText>
+                                          <h:inputText id="posta" class="form-control" value="#{upravljanjeKomitenta.komitent.posta}" required="true" requiredMessage="Prosim vnesite pošto." validatorMessage="Neustrezena oblika pošte.">
+                                          	<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z0-9-\s]*$" />
+                                          </h:inputText>
+                                           <h:message for="posta" />
                                       </div>
                                       <div class="vpisGumb">
-                                      <h:commandButton class="btn btn-info" value="Vpis komitenta"  actionListener="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+                                      <h:commandButton class="btn btn-info" value="Vpis komitenta"  id="submit" action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
                                   </div>
                               </div>
                           </div>

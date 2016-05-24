@@ -24,6 +24,7 @@ public class Komitent implements Serializable{
 	private String posta;
 	private String email;
 	private Calendar datum;
+	private Calendar datumVnosa;
 	private String uporabniskoIme;
 	private String geslo;
 	private List<TransakcijskiRacun> transakcijskiRacuni = new ArrayList<TransakcijskiRacun>();
@@ -84,6 +85,14 @@ public class Komitent implements Serializable{
 
 	public void setDatum(Calendar datum) {
 		this.datum = datum;
+	}
+	
+	public Calendar getDatumVnosa() {
+		return datumVnosa;
+	}
+
+	public void setDatumVnosa(Calendar datumVnosa) {
+		this.datumVnosa = datumVnosa;
 	}
 
 	public String getUporabniskoIme() {
