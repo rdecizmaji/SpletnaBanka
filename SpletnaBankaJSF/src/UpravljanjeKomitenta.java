@@ -1,5 +1,6 @@
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import ejb.IKomitent;
 import ejb.ITransakcijskiRacun;
 import ejb.KomitentEJB;
+
 import entitete.Komitent;
 
 @ManagedBean(name = "upravljanjeKomitenta")
@@ -19,11 +21,11 @@ public class UpravljanjeKomitenta {
 	@EJB
 	IKomitent kom;
 	
-	private Komitent komitent=new Komitent(); 
+	private Komitent komitent=new Komitent();
+	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
 
 	public void registrirajKomitenta(){
-		System.out.println("NOOOTTTTT!");
 		
 		//pretvorba iz Date v Calendar
 		Calendar cal = Calendar.getInstance();
@@ -43,6 +45,7 @@ public class UpravljanjeKomitenta {
 		return "pregledTransakcijskihRacunov";
 	}
 
+
 	public Komitent getKomitent() {
 		return komitent;
 	}
@@ -58,5 +61,15 @@ public class UpravljanjeKomitenta {
 	public void setDatumR(Date datumR) {
 		this.datumR = datumR;
 	}
+	public List<Komitent> getKomitenti() {
+		komitenti=kom.vrniVse();
+		return komitenti;
+	}
+	public String pretvori(Calendar c){
+		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		String preoblikovan = oblika.format(c.getTime());
+		return preoblikovan;
+	}
+	
 	
 }

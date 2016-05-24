@@ -25,60 +25,30 @@ xmlns:f="http://java.sun.com/jsf/core">
                         <div class="col-md-12">
                             <div class="panel">
                             <div class="panel-body table-responsive">
-                                <table class="table table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>TRR</th>
-                                      <th>Ime</th>
-                                      <th>Priimek</th>
-                                      <th>Stanje</th>
-                                      <th>Rojstvo</th>
-                                      <th>Podrobno</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Luka</td>
-                                  <td>Horvat</td>
-                                  <td>Deaktiviran</td>
-                                  <td>10.01.1995</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                              <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Florijan</td>
-                                  <td>Klezin</td>
-                                  <td>Deaktiviran</td>
-                                  <td>10.01.1995</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                              <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Denis</td>
-                                  <td>Vodišek</td>
-                                  <td>Deaktiviran</td>
-                                  <td>10.01.1995</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                              <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Špela</td>
-                                  <td>Pečnik</td>
-                                  <td>Deaktiviran</td>
-                                  <td>10.01.1995</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                          </tbody>
-                      </table>
+				               <h:dataTable class="table table-hover" value="#{upravljanjeKomitenta.komitenti}"  var="k">
+								   <h:column>
+								      <f:facet name="header">Ime</f:facet>
+								      <h:outputText value="#{k.ime}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Priimek</f:facet>
+								      <h:outputText value="#{k.priimek}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Davčna številka</f:facet>
+								      <h:outputText value="#{k.davcnaSt}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Datum rojstva</f:facet>
+								      <h:outputText value="#{upravljanjeKomitenta.pretvori(k.datum)}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Podrobno</f:facet>
+								      <h:form>
+			                              <h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/>
+			                          </h:form>  
+								   </h:column>
+							   </h:dataTable>
                   </div>
               </div>
           </div>
