@@ -22,11 +22,16 @@ public class Komitent implements Serializable{
 	private String priimek;
 	private String naslov;
 	private String posta;
+	private int postnaSt;
+	private String drzava;
+	private int emso;
+	private int davcnaSt;
 	private String email;
 	private Calendar datum;
 	private Calendar datumVnosa;
 	private String uporabniskoIme;
 	private String geslo;
+	private boolean izbrisan;
 	private List<TransakcijskiRacun> transakcijskiRacuni = new ArrayList<TransakcijskiRacun>();
 
 	@Id
@@ -120,4 +125,52 @@ public class Komitent implements Serializable{
 		this.transakcijskiRacuni = transakcijskiRacuni;
 	}
 
+	public String getDrzava() {
+		return drzava;
+	}
+
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
+	}
+
+	public int getEmso() {
+		return emso;
+	}
+
+	public void setEmso(int emso) {
+		this.emso = emso;
+	}
+
+	public int getDavcnaSt() {
+		return davcnaSt;
+	}
+
+	public void setDavcnaSt(int davcnaSt) {
+		this.davcnaSt = davcnaSt;
+	}
+
+	public int getIdKomitent() {
+		return idKomitent;
+	}
+
+	public void setIdKomitent(int idKomitent) {
+		this.idKomitent = idKomitent;
+	}
+
+	public int getPostnaSt() {
+		return postnaSt;
+	}
+
+	public void setPostnaSt(int postnaSt) {
+		this.postnaSt = postnaSt;
+	}
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
+	
 }
