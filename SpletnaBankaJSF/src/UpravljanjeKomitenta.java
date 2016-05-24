@@ -9,13 +9,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ejb.IKomitent;
+import ejb.ITransakcijskiRacun;
 import ejb.KomitentEJB;
 import entitete.Komitent;
 
 @ManagedBean(name = "upravljanjeKomitenta")
 @SessionScoped
 public class UpravljanjeKomitenta {
-	
 	@EJB
 	IKomitent kom;
 	
@@ -36,6 +36,11 @@ public class UpravljanjeKomitenta {
 		//ustvari nova insatnca
 		komitent=new Komitent();
 		datumR=null;
+	}
+	
+	public String dodajTRR(){
+		
+		return "pregledTransakcijskihRacunov";
 	}
 
 	public Komitent getKomitent() {
