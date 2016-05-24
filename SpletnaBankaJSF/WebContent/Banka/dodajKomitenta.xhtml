@@ -15,7 +15,7 @@ xmlns:f="http://java.sun.com/jsf/core">
 <title>Dash</title>
 </head>
 <h:body>
- <ui:composition template="resources/template.xhtml">
+ <ui:composition template="/resources/template.xhtml">
  <ui:define name="content">
    <h:form>
 <h1 class="display-1 hidden-xs-down">
@@ -108,7 +108,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                                            <h:message for="emso" />
                                       </div>
                                       <div class="vpisGumb">
-                                      <h:commandButton class="btn btn-info" value="Vpis komitenta"  id="submit" action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+                                      <h:commandButton class="btn" value="Vpis komitenta"  id="submit" action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
                                   </div>
                               </div>
                           </div>
