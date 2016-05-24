@@ -17,19 +17,19 @@ xmlns:p="http://primefaces.org/ui">
         </ul>
         
         <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Odpri nov transakcijski račun" action="sporocila"></h:commandLink></li>
-             <li><h:commandLink value="Odprti transakcijski računi" action="nastavitve"></h:commandLink></li>
-             <li><h:commandLink value="Dvigni / položi" action="nastavitve"></h:commandLink></li>
-             <li><h:commandLink value="Transakcije" action="nastavitve"></h:commandLink></li>
+             <li><h:commandLink value="Odpri nov transakcijski račun" action="/Banka/dodajTransakcijskiRacun"></h:commandLink></li>
+             <li><h:commandLink value="Odprti transakcijski računi" action="/Banka/pregledTransakcijskihRacunov"></h:commandLink></li>
+             <li><h:commandLink value="Dvigni / položi" action="/Banka/dvigPolog"></h:commandLink></li>
+             <li><h:commandLink value="Transakcije" action="/Banka/transakcije"></h:commandLink></li>
         </ul>  
         <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Dodaj novo kartico" action="sporocila"></h:commandLink></li>
-             <li><h:commandLink value="Pregled kartic" action="nastavitve"></h:commandLink></li>
+             <li><h:commandLink value="Dodaj novo kartico" action="/Banka/novaKartica"></h:commandLink></li>
+             <li><h:commandLink value="Pregled kartic" action="/Banka/vseKartice"></h:commandLink></li>
         </ul>  
        <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Plačaj račun" action="sporocila"></h:commandLink></li>
-             <li><h:commandLink value="Prejeti računi" action="nastavitve"></h:commandLink></li>
-             <li><h:commandLink value="Pregled računov" action="nastavitve"></h:commandLink></li>    
+             <li><h:commandLink value="Plačaj račun"></h:commandLink></li>
+             <li><h:commandLink value="Prejeti računi"></h:commandLink></li>
+             <li><h:commandLink value="Pregled računov" action="/Banka/pregledRacunov"></h:commandLink></li>    
         </ul>
          <ul class="nav nav-sidebar">
              <li><h:commandLink value="Nastavitve" action="nastavitve"></h:commandLink></li>    
