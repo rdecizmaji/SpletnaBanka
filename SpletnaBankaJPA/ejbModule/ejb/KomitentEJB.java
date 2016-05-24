@@ -9,10 +9,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import dodatniRazredi.TrrGenerator;
 import entitete.BancnaKartica;
 import entitete.Komitent;
+import entitete.Racun;
 import entitete.TipKartice;
 import entitete.TransakcijskiRacun;
 
@@ -46,6 +48,8 @@ IBancnaKartica banKar;
 			kom.setTransakcijskiRacuni(k.getTransakcijskiRacuni());
 			manager.merge(kom);
 			} else {
+				
+				k.setIzbrisan(false);
 				//datum vnosa komitenta
 				Calendar danasnjiDat = Calendar.getInstance();
 				k.setDatumVnosa(danasnjiDat);
@@ -60,7 +64,7 @@ IBancnaKartica banKar;
 				List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
 				TransakcijskiRacun t=new TransakcijskiRacun();
 				TrrGenerator tg=new TrrGenerator();
-				String trr=tg.generirajIBAN("Slovenija");
+				String trr=tg.generirajIBAN(k.getDrzava());
 				t.setStevilkaTRR(trr);
 				t.setZaprt(false);
 				BigDecimal bd=new BigDecimal(0);
@@ -121,7 +125,8 @@ IBancnaKartica banKar;
 	public void izbrisi(Komitent k) {
 		Komitent komitent=manager.find(Komitent.class, k.getId());
 		if(komitent!=null){
-			manager.remove(komitent);
+			komitent.setIzbrisan(true);
+			manager.merge(komitent);
 		}
 	}
 
@@ -129,6 +134,13 @@ IBancnaKartica banKar;
 	public Komitent najdi(Komitent k) {
 		Komitent komitent=manager.find(Komitent.class, k.getId());
 		return komitent;
+	}
+	@Override
+	public List<Komitent> vrniVse() {
+		List<Komitent> list=new ArrayList<Komitent>();
+		Query query = manager.createQuery("SELECT k FROM Komitent k");
+		list = (ArrayList<Komitent>)query.getResultList();
+		return list;
 	}
 
 }

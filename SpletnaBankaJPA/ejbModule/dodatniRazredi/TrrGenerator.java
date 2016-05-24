@@ -7,9 +7,8 @@ public class TrrGenerator {
 
 		//Generira st. drzave
 		switch (drzava) {
-		case "Slovenija":
-			iban = "SI56";
-			break;
+		case "Slovenija": iban = "SI56"; break;
+		default: iban = "SI56"; break;
 		}
 
 		//Generira st. trr.
