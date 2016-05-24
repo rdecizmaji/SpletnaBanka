@@ -4,6 +4,7 @@
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:p="http://primefaces.org/ui">
     <ui:composition>
+    
     <h:form>
         <ul class="nav nav-sidebar">
         <li id="cas">
@@ -13,15 +14,15 @@ xmlns:p="http://primefaces.org/ui">
                     </li>
             <li><h:commandLink value="Armaturna plošča" action="banka"></h:commandLink></li>
             
-            <li class="active"><h:commandLink value="Registracija komitenta" action="dodajKomitenta"></h:commandLink></li>
-            <li><h:commandLink value="Lista komitentov" action="podrobno"></h:commandLink></li>
+            <li><h:commandLink value="Registracija komitenta" action="/Banka/dodajKomitenta"></h:commandLink></li>
+            <li><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov.xhtml"></h:commandLink></li>
         </ul>
         
         <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Sporočila" action="podrobno"></h:commandLink></li>
-             <li><h:commandLink value="Nastavitve" action="podrobno"></h:commandLink></li>
+             <li><h:commandLink value="Sporočila" action="sporocila"></h:commandLink></li>
+             <li><h:commandLink value="Nastavitve" action="nastavitve"></h:commandLink></li>
         </ul>   
-        </h:form>     
+        </h:form>    
     </ui:composition>
 </html>
 
