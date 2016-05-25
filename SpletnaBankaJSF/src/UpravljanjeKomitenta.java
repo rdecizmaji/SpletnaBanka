@@ -46,6 +46,11 @@ public class UpravljanjeKomitenta {
 		return "pregledTransakcijskihRacunov";
 	}
 	
+	public String dodajKartico(){
+		
+		return "vseKartice";
+	}
+	
 	public String urediKomitenta (){
 		return "banka";
 	}
