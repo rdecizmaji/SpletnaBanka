@@ -44,6 +44,10 @@ public class UpravljanjeKomitenta {
 		
 		return "pregledTransakcijskihRacunov";
 	}
+	
+	public String urediKomitenta (){
+		return "banka";
+	}
 
 
 	public Komitent getKomitent() {
