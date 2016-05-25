@@ -1,122 +1,153 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:p="http://primefaces.org/ui"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 
- <h:outputStylesheet library="css" name="bootstrap.min1.css"/>
- <h:outputStylesheet library="css" name="bootstrap.css"/> 
-  <h:outputStylesheet library="css" name="custom-style.css"/>
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
 <head>
-<meta http-equiv="Content-Type" content="text/html"/>
+<meta http-equiv="Content-Type" content="text/html" />
 
 <title>Dash</title>
 </head>
 <h:body>
- <ui:composition template="/resources/template.xhtml">
- <ui:define name="content">
-   <h:form>
-<h1 class="display-1 hidden-xs-down">
-           Dodaj komitenta
-            </h1>
-<div class="row" style="margin-bottom:5px;">
-            <div class="col-lg-6">
-                         <div class="panel">
-                              <div class="panel-heading">
-                        
-                              </div>
-                              <div class="panel-body">
-                                  <div class="form-group">
-                                          <label>Ime:</label>
-                                          <h:inputText id="ime" class="form-control" value="#{upravljanjeKomitenta.komitent.ime}" required="true" requiredMessage="Prosim vnesite ime." validatorMessage="Neustrezena oblika imena.">
-                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
-                                          </h:inputText>
-                                     	 <h:message for="ime" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Priimek:</label>
-                                          <h:inputText id="priimek" class="form-control" value="#{upravljanjeKomitenta.komitent.priimek}" required="true" requiredMessage="Prosim vnesite priimek." validatorMessage="Neustrezena oblika priimka.">
-                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
-                                          </h:inputText>
-                                     	<h:message for="priimek" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Email:</label>
-                                          <h:inputText id="email" type="email" class="form-control" value="#{upravljanjeKomitenta.komitent.email}" required="true" requiredMessage="Prosim vnesite email." validatorMessage="Neustrezena oblika naslova">
-											<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-										  </h:inputText>
-										  <h:message for="email" />
-                                      </div>
-                                       <div class="form-group">
-                                          <label>Datum rojstva:</label>
-                                          <h:inputText id="datum" class="form-control" value="#{upravljanjeKomitenta.datumR}" required="true" requiredMessage="Prosim vnesite datum rojstva." validatorMessage="Neustrezena oblika datuma."> 
-                                          	<f:convertDateTime pattern="dd.MM.yyyy"/>
-                                          </h:inputText>
-                                      	<h:message for="datum" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Naslov: </label>
-                                          <h:inputText id="naslov" class="form-control" value="#{upravljanjeKomitenta.komitent.naslov}" required="true" requiredMessage="Prosim vnesite naslov." validatorMessage="Neustrezena oblika naslova.">
-                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z0-9-\s]*$" />
-                                          </h:inputText>
-                                          <h:message for="naslov" />
-                                      </div>
-                                      </div>
-                                      </div>
-                                      </div>
-                                      <div class="col-lg-6">
-                                      <div class="panel">
-                              <div class="panel-heading">
-                              
-                              </div>
-                                      <div class="panel-body">
-                                      <div class="form-group">
-                                          <label>Pošta: </label>
-                                          <h:inputText id="posta" class="form-control" value="#{upravljanjeKomitenta.komitent.posta}" required="true" requiredMessage="Prosim vnesite pošto." validatorMessage="Neustrezena oblika pošte.">
-                                          	<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
-                                          </h:inputText>
-                                           <h:message for="posta" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Poštna številka: </label>
-                                          <h:inputText id="postnaSt" class="form-control" value="#{upravljanjeKomitenta.komitent.postnaSt}" required="true" requiredMessage="Prosim vnesite poštno številko." validatorMessage="Neustrezena oblika poštne številke.">
-                                          	<f:convertNumber integerOnly="true" type="number" />
-                                          </h:inputText>
-                                           <h:message for="postnaSt" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Država: </label>
-                                          <h:inputText id="drzava" class="form-control" value="#{upravljanjeKomitenta.komitent.drzava}" required="true" requiredMessage="Prosim vnesite državo." validatorMessage="Neustrezena oblika države.">
-                                          		<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
-                                          </h:inputText>
-                                           <h:message for="drzava" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Davčna številka: </label>
-                                          <h:inputText id="davcna" class="form-control" value="#{upravljanjeKomitenta.komitent.davcnaSt}" required="true" requiredMessage="Prosim vnesite davčno številko." validatorMessage="Neustrezena oblika davčne številke.">
-                                          	<f:convertNumber integerOnly="true" type="number" />
-                                          </h:inputText>
-                                           <h:message for="davcna" />
-                                      </div>
-                                      <div class="form-group">
-                                          <label>EMŠO: </label>
-                                          <h:inputText id="emso" class="form-control" value="#{upravljanjeKomitenta.komitent.emso}" required="true" requiredMessage="Prosim vnesite EMŠO." validatorMessage="Neustrezena oblika EMŠO-ja.">
-                                         	<f:convertNumber integerOnly="true" type="number" />
-                                          </h:inputText>
-                                           <h:message for="emso" />
-                                      </div>
-                                      <div class="vpisGumb">
-                                      <h:commandButton class="btn" value="Vpis komitenta"  id="submit" action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
-                                  </div>
-                              </div>
-                          </div>
-                          </div>
-</div>
-                          </h:form>  
-
-	</ui:define>
- </ui:composition>
+	<ui:composition template="/resources/template.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Dodaj komitenta</h1>
+				<div class="row" style="margin-bottom: 5px;">
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Ime:</label>
+									<h:inputText id="ime" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.ime}" required="true"
+										requiredMessage="Prosim vnesite ime."
+										validatorMessage="Neustrezena oblika imena.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="ime" />
+								</div>
+								<div class="form-group">
+									<label>Priimek:</label>
+									<h:inputText id="priimek" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.priimek}"
+										required="true" requiredMessage="Prosim vnesite priimek."
+										validatorMessage="Neustrezena oblika priimka.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="priimek" />
+								</div>
+								<div class="form-group">
+									<label>Email:</label>
+									<h:inputText id="email" type="email" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.email}" required="true"
+										requiredMessage="Prosim vnesite email."
+										validatorMessage="Neustrezena oblika naslova">
+										<f:validateRegex
+											pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									</h:inputText>
+									<h:message for="email" />
+								</div>
+								<div class="form-group">
+									<label>Datum rojstva:</label>
+									<h:inputText id="datum" class="form-control"
+										value="#{upravljanjeKomitenta.datumR}" required="true"
+										requiredMessage="Prosim vnesite datum rojstva."
+										validatorMessage="Neustrezena oblika datuma.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:inputText>
+									<h:message for="datum" />
+								</div>
+								<div class="form-group">
+									<label>Naslov: </label>
+									<h:inputText id="naslov" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naslov}"
+										required="true" requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z0-9-\s]*$" />
+									</h:inputText>
+									<h:message for="naslov" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Pošta: </label>
+									<h:inputText id="posta" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.posta}" required="true"
+										requiredMessage="Prosim vnesite pošto."
+										validatorMessage="Neustrezena oblika pošte.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="posta" />
+								</div>
+								<div class="form-group">
+									<label>Poštna številka: </label>
+									<h:inputText id="postnaSt" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.postnaSt}"
+										required="true"
+										requiredMessage="Prosim vnesite poštno številko."
+										validatorMessage="Neustrezena oblika poštne številke.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="postnaSt" />
+								</div>
+								<div class="form-group">
+									<label>Država: </label>
+									<h:inputText id="drzava" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.drzava}"
+										required="true" requiredMessage="Prosim vnesite državo."
+										validatorMessage="Neustrezena oblika države.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="drzava" />
+								</div>
+								<div class="form-group">
+									<label>Davčna številka: </label>
+									<h:inputText id="davcna" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.davcnaSt}"
+										required="true"
+										requiredMessage="Prosim vnesite davčno številko."
+										validatorMessage="Neustrezena oblika davčne številke.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="davcna" />
+								</div>
+								<div class="form-group">
+									<label>EMŠO: </label>
+									<h:inputText id="emso" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.emso}" required="true"
+										requiredMessage="Prosim vnesite EMŠO."
+										validatorMessage="Neustrezena oblika EMŠO-ja.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="emso" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="vpisGumb">
+								<h:commandButton class="btn" value="Vpis komitenta" id="submit"
+									action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
