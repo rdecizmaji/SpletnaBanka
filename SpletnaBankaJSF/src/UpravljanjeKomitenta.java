@@ -25,6 +25,11 @@ public class UpravljanjeKomitenta {
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
 	private Komitent izbrani;
+	
+	public String komitentPodrobno(Komitent k){
+		izbrani=k;
+		return "pregledKomitenta";
+	}
 
 	public String registrirajKomitenta(){
 		

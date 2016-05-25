@@ -8,9 +8,9 @@ xmlns:p="http://primefaces.org/ui">
     <h:form>
         <ul class="nav nav-sidebar">
         <li id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="Joško Kranjec" />
+                      <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbrani.ime}" />
+                      <h:outputText value=" #{upravljanjeKomitenta.izbrani.priimek}" />
                        </h1>
-                      <p class="animated fadeInRight">SI56 4222 4332 0911</p>
                     </li>
             <li><h:commandLink value="Pregled komitenta" action="/Banka/pregledKomitenta"></h:commandLink></li>
             <li><h:commandLink value="Uredi komitenta" action="/Banka/urediKomitenta"></h:commandLink></li>
