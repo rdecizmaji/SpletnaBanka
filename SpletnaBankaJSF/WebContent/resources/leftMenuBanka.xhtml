@@ -8,9 +8,9 @@ xmlns:p="http://primefaces.org/ui">
     <h:form>
         <ul class="nav nav-sidebar">
         <li id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbrani.ime}" />
-                      <h:outputText value=" #{upravljanjeKomitenta.izbrani.priimek}" />
+                      <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbrani.ime}" /><h:outputText value=" #{upravljanjeKomitenta.izbrani.priimek}" />
                        </h1>
+                       <h:outputText value=" #{upravljanjeKomitenta.izbrani.davcnaSt}" />
                     </li>
             <li><h:commandLink value="Pregled komitenta" action="/Banka/pregledKomitenta"></h:commandLink></li>
             <li><h:commandLink value="Uredi komitenta" action="/Banka/urediKomitenta"></h:commandLink></li>
@@ -27,7 +27,7 @@ xmlns:p="http://primefaces.org/ui">
              <li><h:commandLink value="Pregled kartic" action="/Banka/vseKartice"></h:commandLink></li>
         </ul>  
        <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Ustvari eRačun" action="/Banka/ustvariRacun"></h:commandLink></li>
+             <li><h:commandLink value="Ustvari eRačun" action="/Banka/ustvariERacun"></h:commandLink></li>
              <li><h:commandLink value="Pregled eRačunov" action="/Banka/pregledRacunov"></h:commandLink></li>    
         </ul>
          <ul class="nav nav-sidebar">

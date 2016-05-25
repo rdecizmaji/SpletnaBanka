@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Dodaj racun</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Dodaj račun</h1>
+				<div class="row" style="margin-bottom: 5px;">
+				
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">Izdajatelj</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Naziv: </label>
+									<h:inputText value="#{upravljanjeKomitenta.izbrani.ime} #{upravljanjeKomitenta.izbrani.priimek} " disabled="true" />
+								</div>
+								<div class="form-group">
+									<label>Nalov: </label>
+									<h:inputText value="#{upravljanjeKomitenta.izbrani.naslov} " disabled="true"/>
+								</div>
+								<div class="form-group">
+									<label>Poštna številka in kraj: </label>
+									<h:inputText value="#{upravljanjeKomitenta.izbrani.postnaSt} #{upravljanjeKomitenta.izbrani.posta} " disabled="true" />
+								</div>
+								<div class="form-group">
+									<label>Davčna številka: </label>
+									<h:inputText value="#{upravljanjeKomitenta.izbrani.davcnaSt} " disabled="true"/>
+								</div>
+								<div class="form-group">
+									<label>IBAN: </label>
+									<h:selectOneMenu value="">
+   											<f:selectItems value="#{upravljanjeKomitenta.vrniTRR()}" var="t" itemLabel="#{t.stevilkaTRR}" itemValue="#{t.stevilkaTRR}"/>
+   									</h:selectOneMenu>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">
+							Prejemnik
+							</div>
+							
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Naziv: </label>
+									<h:inputText id="naziv" class="form-control"
+										value="" required="true"
+										requiredMessage="Prosim vnesite naziv."
+										validatorMessage="Neustrezena oblika naziva.">
+									</h:inputText>
+									<h:message for="naziv" />
+								</div>
+								<div class="form-group">
+									<label>Naslov: </label>
+									<h:inputText id="naslov" class="form-control"
+										value=""
+										required="true"
+										requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova.">
+									</h:inputText>
+									<h:message for="naslov" />
+								</div>
+								<div class="form-group">
+									<label>Poštna številka in kraj: </label>
+									<h:inputText id="posta" class="form-control"
+										value=""
+										required="true" requiredMessage="Prosim vnesite poštno številko in kraj."
+										validatorMessage="Neustrezena oblika pošte.">
+									</h:inputText>
+									<h:message for="posta" />
+								</div>
+								<div class="form-group">
+									<label>Davčna številka: </label>
+									<h:inputText id="davcna" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.davcnaSt}"
+										required="true"
+										requiredMessage="Prosim vnesite davčno številko."
+										validatorMessage="Neustrezena oblika davčne številke.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="davcna" />
+								</div>
+								<div class="form-group">
+									<label>IBAN: </label>
+									<h:inputText id="iban" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.emso}" required="true"
+										requiredMessage="Prosim vnesite IBAN."
+										validatorMessage="Neustrezena oblika IBAN-a.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="iban" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="vpisGumb">
+								<h:commandButton class="btn" value="Naprej" id="submit"
+									action="#{upravljanjeKomitenta.vrniTRR()}"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

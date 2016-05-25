@@ -14,6 +14,7 @@ import ejb.ITransakcijskiRacun;
 import ejb.KomitentEJB;
 
 import entitete.Komitent;
+import entitete.TransakcijskiRacun;
 
 @ManagedBean(name = "upravljanjeKomitenta")
 @SessionScoped
@@ -99,5 +100,9 @@ public class UpravljanjeKomitenta {
 		izbrani=k;
 		return "/Banka/pregledKomitenta";
 	}
-	
+	public List<TransakcijskiRacun> vrniTRR(){
+		List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
+		tr=kom.vrniTRRje(izbrani);
+		return tr;
+	}
 }
