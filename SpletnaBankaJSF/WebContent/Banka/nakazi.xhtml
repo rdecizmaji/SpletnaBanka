@@ -18,11 +18,170 @@
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<h1 class="display-1 hidden-xs-down">Nakazilo</h1>
+				<h1 class="display-1 hidden-xs-down">Univerzitetni Plačilni
+					Nalog</h1>
 				<div class="row" style="margin-bottom: 5px;">
-					<div class="col-lg-12">VSEBINA GRE TUKAJ!</div>
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">Plačnik</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label><span id="obvezno">*</span>IBAN:</label>
+									<h:inputText id="iban" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.ime}" required="true"
+										requiredMessage="Prosim vnesite vašo številko transakcijskega računa."
+										validatorMessage="Neustrezena oblika transakcijskega računa.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="iban" />
+								</div>
+								<div class="form-group">
+									<label>Referenca:</label>
+									<h:inputText id="referenca" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.priimek}"
+										required="false"
+										requiredMessage="Prosim vnesite vašo referenco."
+										validatorMessage="Neustrezena oblika reference.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="referenca" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naziv:</label>
+									<h:inputText id="naziv" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naziv}" required="true"
+										requiredMessage="Prosim vnesite naziv."
+										validatorMessage="Neustrezena oblika naziva." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="naziv" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naslov:</label>
+									<h:inputText id="naslov" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naslov}"
+										required="true" requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="naslov" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Kraj:</label>
+									<h:inputText id="kraj" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naziv}" required="true"
+										requiredMessage="Prosim vnesite kraj."
+										validatorMessage="Neustrezena oblika kraja." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="kraj" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Država: </label>
+									<h:inputText id="drzava" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.drzava}"
+										required="true" requiredMessage="Prosim vnesite državo."
+										validatorMessage="Neustrezena oblika države." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="drzava" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Koda namena:</label>
+									<h:selectOneMenu class="form-control" value="">
+										<f:selectItem itemValue="MSVC - Večnamesnke storitve"
+											itemLabel="MSVC - Večnamesnke storitve" />
+										<f:selectItem itemValue="OTHR - Drugo"
+											itemLabel="OTHR - Drugo" />
+										<f:selectItem itemValue="REBT - Vračilo rabata"
+											itemLabel="REBT - Vračilo rabata" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">Prejemnik</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label><span id="obvezno">*</span>EUR:</label>
+									<h:inputText id="eur" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.posta}" required="true"
+										requiredMessage="Prosim vnesite vrednost."
+										validatorMessage="Neustrezena oblika denarja.">
+										<f:validateRegex pattern="^[0-9]*$" />
+									</h:inputText>
+									<h:message for="eur" />
+								</div>
+								<div class="form-group">
+									<label>Referenca:</label>
+									<h:inputText id="referencaP" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.priimek}"
+										required="false"
+										requiredMessage="Prosim vnesite vašo referenco."
+										validatorMessage="Neustrezena oblika reference.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="referencaP" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naziv:</label>
+									<h:inputText id="nazivP" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naziv}" required="true"
+										requiredMessage="Prosim vnesite naziv."
+										validatorMessage="Neustrezena oblika naziva.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="nazivP" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naslov:</label>
+									<h:inputText id="naslovP" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naslov}"
+										required="true" requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="naslovP" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Kraj:</label>
+									<h:inputText id="krajP" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.naziv}" required="true"
+										requiredMessage="Prosim vnesite kraj."
+										validatorMessage="Neustrezena oblika kraja.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="krajP" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Država: </label>
+									<h:inputText id="drzavaP" class="form-control"
+										value="#{upravljanjeKomitenta.komitent.drzava}"
+										required="true" requiredMessage="Prosim vnesite državo."
+										validatorMessage="Neustrezena oblika države.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="drzavaP" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="vpisGumb">
+									<h:commandButton class="btn" value="Vpis komitenta" id="submit"
+										action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+								</div>
+
+
+
+							</div>
+						</div>
+					</div>
 				</div>
 			</h:form>
+
 		</ui:define>
 	</ui:composition>
 </h:body>
