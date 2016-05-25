@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html" />
 
-<title>Dash</title>
+<title>Dodaj novo Kartico</title>
 </head>
 <h:body>
 	<ui:composition template="/resources/templateBanka.xhtml">
@@ -20,7 +20,40 @@
 			<h:form>
 				<h1 class="display-1 hidden-xs-down">Dodaj novo kartico</h1>
 				<div class="row" style="margin-bottom: 5px;">
-					<div class="col-lg-12">VSEBINA GRE TUKAJ!</div>
+					<div class="col-lg-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Kartica:</label>
+									<h:selectOneMenu class="form-control" value="">
+										<f:selectItem itemValue="Cream Latte"
+											itemLabel="Coffee3 - Cream Latte" />
+										<f:selectItem itemValue="Extreme Mocha"
+											itemLabel="Coffee3 - Extreme Mocha" />
+										<f:selectItem itemValue="Buena Vista"
+											itemLabel="Coffee3 - Buena Vista" />
+									</h:selectOneMenu>
+								</div>
+
+								<div class="form-group">
+									<label>Datum zapadlosti:</label>
+									<h:selectOneMenu class="form-control" value="">
+										<f:selectItem itemValue="Cream Latte" itemLabel="Jan" />
+										<f:selectItem itemValue="Extreme Mocha" itemLabel="Feb" />
+										<f:selectItem itemValue="Buena Vista" itemLabel="Mar" />
+									</h:selectOneMenu>
+									<h:selectOneMenu class="form-control" value="">
+										<f:selectItem itemValue="Cream Latte" itemLabel="2005" />
+										<f:selectItem itemValue="Extreme Mocha" itemLabel="2006" />
+										<f:selectItem itemValue="Buena Vista" itemLabel="2007" />
+									</h:selectOneMenu>
+								</div>
+								
+								<h:commandButton class="btn" value="Dodaj kartico"  id="submit" action="#{upravljanjeKomitenta.dodajKartico()}"></h:commandButton>
+							</div>
+						</div>
+					</div>
 				</div>
 			</h:form>
 		</ui:define>

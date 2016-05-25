@@ -11,67 +11,47 @@ xmlns:f="http://java.sun.com/jsf/core">
   <h:outputStylesheet library="css" name="custom-style.css"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html"/>
-
-<title>Dash</title>
+<title>Izpis Kartic</title>
 </head>
 <h:body>
- <ui:composition template="/resources/template.xhtml">
- <ui:define name="content">
-<h1 class="display-1 hidden-xs-down">
-           Kartice
-            </h1>
-<div class="row" style="margin-bottom:5px;">
-                  <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel">
-                            <div class="panel-body table-responsive">
-                                <table class="table table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>TRR</th>
-                                      <th>Vrsta</th>
-                                      <th>Stanje</th>
-                                      <th>Status</th>
-                                      <th>Podrobno</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Debitna</td>
-                                  <td>1.201€</td>
-                                  <td>Aktivna</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                              <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Debitna</td>
-                                  <td>1.201€</td>
-                                  <td>Aktivna</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                              <tr>
-                                  <td>SI56 4020 0563 2112 3419</td>
-                                  <td>Debitna</td>
-                                  <td>1.201€</td>
-                                  <td>Aktivna</td>
-                                  <h:form>
-                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
-                                  </h:form>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-          </div>
-          
-                          </div>                       
-	</ui:define>
- </ui:composition>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Pregled vseh kartic</h1>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-body table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Kartica</th>
+											<th>Vrsta</th>
+											<th>Aktivna</th>
+											<th>Datum zapadlosti</th>
+											<th>Podrobno</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Visa</td>
+											<td>Kreditna</td>
+											<td>DA</td>
+											<td>Januar 2016</td>
+											<h:form>
+												<td><h:commandButton class="btn" value="Podrobno"
+														action="/Banka/pregledKomitenta" /></td>
+											</h:form>
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
