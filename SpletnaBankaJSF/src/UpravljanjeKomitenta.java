@@ -26,7 +26,7 @@ public class UpravljanjeKomitenta {
 	private Date datumR;
 	private Komitent izbrani;
 
-	public void registrirajKomitenta(){
+	public String registrirajKomitenta(){
 		
 		//pretvorba iz Date v Calendar
 		Calendar cal = Calendar.getInstance();
@@ -39,6 +39,8 @@ public class UpravljanjeKomitenta {
 		//ustvari nova insatnca
 		komitent=new Komitent();
 		datumR=null;
+		
+		return "listaKomitentov";
 	}
 	
 	public String dodajTRR(){
