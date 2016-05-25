@@ -1,29 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
 
-<h:outputStylesheet library="css" name="bootstrap.min1.css" />
-<h:outputStylesheet library="css" name="bootstrap.css" />
-<h:outputStylesheet library="css" name="custom-style.css" />
+ <h:outputStylesheet library="css" name="bootstrap.min1.css"/>
+ <h:outputStylesheet library="css" name="bootstrap.css"/> 
+  <h:outputStylesheet library="css" name="custom-style.css"/>
 <head>
-<meta http-equiv="Content-Type" content="text/html" />
+<meta http-equiv="Content-Type" content="text/html"/>
 
 <title>Dash</title>
 </head>
 <h:body>
-	<ui:composition template="/resources/templateBanka.xhtml">
-		<ui:define name="content">
-			<h:form>
-				<h1 class="display-1 hidden-xs-down">Vse izdane kartice</h1>
-				<div class="row" style="margin-bottom: 5px;">
-					<div class="col-lg-12">VSEBINA GRE TUKAJ!</div>
-				</div>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+ <ui:composition template="/resources/template.xhtml">
+ <ui:define name="content">
+<h1 class="display-1 hidden-xs-down">
+           Kartice
+            </h1>
+<div class="row" style="margin-bottom:5px;">
+                  <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                            <div class="panel-body table-responsive">
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>TRR</th>
+                                      <th>Vrsta</th>
+                                      <th>Stanje</th>
+                                      <th>Status</th>
+                                      <th>Podrobno</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>SI56 4020 0563 2112 3419</td>
+                                  <td>Debitna</td>
+                                  <td>1.201€</td>
+                                  <td>Aktivna</td>
+                                  <h:form>
+                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
+                                  </h:form>
+                              </tr>
+                              <tr>
+                                  <td>SI56 4020 0563 2112 3419</td>
+                                  <td>Debitna</td>
+                                  <td>1.201€</td>
+                                  <td>Aktivna</td>
+                                  <h:form>
+                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
+                                  </h:form>
+                              </tr>
+                              <tr>
+                                  <td>SI56 4020 0563 2112 3419</td>
+                                  <td>Debitna</td>
+                                  <td>1.201€</td>
+                                  <td>Aktivna</td>
+                                  <h:form>
+                                  <td><h:commandButton class="btn" value="Podrobno" action="/Banka/pregledKomitenta"/></td>
+                                  </h:form>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          </div>
+          
+                          </div>                       
+	</ui:define>
+ </ui:composition>
 </h:body>
 </html>
