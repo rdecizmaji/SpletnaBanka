@@ -197,4 +197,7 @@ text-transform: uppercase;
 .vpisGumb {
 	float:right;
 }
- 
+#obvezno {
+	color: rgba(255, 0, 0, 0.84);
+    font-size: 18px;
+}

@@ -19,8 +19,21 @@
 		<ui:define name="content">
 			<h:form>
 				<h1 class="display-1 hidden-xs-down">Pregled vseh transakcijskih računov</h1>
+				
 					 <div class="row">
                         <div class="col-md-12">
+                        <h:form>
+				<div class="row" style="margin-bottom:5px;">
+					<div class="col-md-12">
+						<br/><br/>
+            			<h:commandButton style="float:right;" class="btn" value="Dodaj transakcijski račun"  id="submit" action="#{upravljanjeKomitenta.dodajTRR()}"></h:commandButton>
+            		</div>
+				</div>
+			</h:form>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-12">
                             <div class="panel">
                             <div class="panel-body table-responsive">
                                 <table class="table table-hover">
@@ -28,6 +41,7 @@
                                     <tr>
                                       <th>TRR</th>
                                       <th>Stanje</th>
+                                      <th>Status</th>
                                       <th>Podrobno</th>
                                   </tr>
                               </thead>
