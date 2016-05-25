@@ -24,6 +24,7 @@ public class UpravljanjeKomitenta {
 	private Komitent komitent=new Komitent();
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
+	private Komitent izbrani;
 
 	public void registrirajKomitenta(){
 		
@@ -74,6 +75,17 @@ public class UpravljanjeKomitenta {
 		String preoblikovan = oblika.format(c.getTime());
 		return preoblikovan;
 	}
-	
+
+	public Komitent getIzbrani() {
+		return izbrani;
+	}
+
+	public void setIzbrani(Komitent izbrani) {
+		this.izbrani = izbrani;
+	}
+	public String izbraniK(Komitent k) {
+		izbrani=k;
+		return "/Banka/pregledKomitenta";
+	}
 	
 }
