@@ -9,11 +9,14 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import ejb.IBancnaKartica;
 import ejb.IKomitent;
+import ejb.ITipKartice;
 import ejb.ITransakcijskiRacun;
 import ejb.KomitentEJB;
-
+import entitete.BancnaKartica;
 import entitete.Komitent;
+import entitete.TipKartice;
 import entitete.TransakcijskiRacun;
 
 @ManagedBean(name = "upravljanjeKomitenta")
@@ -21,12 +24,14 @@ import entitete.TransakcijskiRacun;
 public class UpravljanjeKomitenta {
 	@EJB
 	IKomitent kom;
+	@EJB
+	ITipKartice tipkar;
 	
 	private Komitent komitent=new Komitent();
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
 	private Komitent izbrani;
-	
+	private TipKartice tipkartice;
 	
 	
 	//UPRAVLJANJE KOMITENTA 
@@ -61,8 +66,12 @@ public class UpravljanjeKomitenta {
 	}
 	
 	public String dodajKartico(){
-		
+		BancnaKartica novakartica= new BancnaKartica();
 		return "vseKartice";
+	}
+	
+	public List<TipKartice> vrniTipeKartic(){
+		return tipkar.vrniVse();
 	}
 	
 	public String urediKomitenta (){
@@ -76,7 +85,13 @@ public class UpravljanjeKomitenta {
 		tr=kom.vrniTRRje(izbrani);
 		return tr;
 	}
-
+	
+	//OSTALE FUNKCIJE 
+		public String pretvori(Calendar c){
+			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+			String preoblikovan = oblika.format(c.getTime());
+			return preoblikovan;
+		}
 	
 	//GETTI SETTI
 	
@@ -111,13 +126,13 @@ public class UpravljanjeKomitenta {
 		izbrani=k;
 		return "/Banka/pregledKomitenta";
 	}
-	
-	
-	//OSTALE FUNKCIJE 
-	public String pretvori(Calendar c){
-		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-		String preoblikovan = oblika.format(c.getTime());
-		return preoblikovan;
+
+	public TipKartice getTipkartice() {
+		return tipkartice;
+	}
+
+	public void setTipkartice(TipKartice tipkartice) {
+		this.tipkartice = tipkartice;
 	}
 	
 }

@@ -26,27 +26,8 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label>Kartica:</label>
-									<h:selectOneMenu class="form-control" value="">
-										<f:selectItem itemValue="Cream Latte"
-											itemLabel="Coffee3 - Cream Latte" />
-										<f:selectItem itemValue="Extreme Mocha"
-											itemLabel="Coffee3 - Extreme Mocha" />
-										<f:selectItem itemValue="Buena Vista"
-											itemLabel="Coffee3 - Buena Vista" />
-									</h:selectOneMenu>
-								</div>
-
-								<div class="form-group">
-									<label>Datum zapadlosti:</label>
-									<h:selectOneMenu class="form-control" value="">
-										<f:selectItem itemValue="Cream Latte" itemLabel="Jan" />
-										<f:selectItem itemValue="Extreme Mocha" itemLabel="Feb" />
-										<f:selectItem itemValue="Buena Vista" itemLabel="Mar" />
-									</h:selectOneMenu>
-									<h:selectOneMenu class="form-control" value="">
-										<f:selectItem itemValue="Cream Latte" itemLabel="2005" />
-										<f:selectItem itemValue="Extreme Mocha" itemLabel="2006" />
-										<f:selectItem itemValue="Buena Vista" itemLabel="2007" />
+									<h:selectOneMenu class="form-control" value="#{upravljanjeKomitenta.tipkartice}">
+										    <f:selectItems value="#{upravljanjeKomitenta.vrniTipeKartic()}" />
 									</h:selectOneMenu>
 								</div>
 								
