@@ -27,6 +27,10 @@ public class UpravljanjeKomitenta {
 	private Date datumR;
 	private Komitent izbrani;
 	
+	
+	
+	//UPRAVLJANJE KOMITENTA 
+	
 	public String komitentPodrobno(Komitent k){
 		izbrani=k;
 		return "pregledKomitenta";
@@ -49,6 +53,8 @@ public class UpravljanjeKomitenta {
 		return "listaKomitentov";
 	}
 	
+	//TRRJI IN KARTICE
+	
 	public String dodajTRR(){
 		
 		return "pregledTransakcijskihRacunov";
@@ -64,8 +70,16 @@ public class UpravljanjeKomitenta {
 		kom.shrani(izbrani);
 		return "banka";
 	}
+	
+	public List<TransakcijskiRacun> vrniTRR(){
+		List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
+		tr=kom.vrniTRRje(izbrani);
+		return tr;
+	}
 
-
+	
+	//GETTI SETTI
+	
 	public Komitent getKomitent() {
 		return komitent;
 	}
@@ -85,11 +99,6 @@ public class UpravljanjeKomitenta {
 		komitenti=kom.vrniVse();
 		return komitenti;
 	}
-	public String pretvori(Calendar c){
-		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-		String preoblikovan = oblika.format(c.getTime());
-		return preoblikovan;
-	}
 
 	public Komitent getIzbrani() {
 		return izbrani;
@@ -102,9 +111,13 @@ public class UpravljanjeKomitenta {
 		izbrani=k;
 		return "/Banka/pregledKomitenta";
 	}
-	public List<TransakcijskiRacun> vrniTRR(){
-		List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
-		tr=kom.vrniTRRje(izbrani);
-		return tr;
+	
+	
+	//OSTALE FUNKCIJE 
+	public String pretvori(Calendar c){
+		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		String preoblikovan = oblika.format(c.getTime());
+		return preoblikovan;
 	}
+	
 }
