@@ -10,7 +10,7 @@ xmlns:p="http://primefaces.org/ui">
         <li id="cas">
                       <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbrani.ime}" /><h:outputText value=" #{upravljanjeKomitenta.izbrani.priimek}" />
                        </h1>
-                       <h:outputText value=" #{upravljanjeKomitenta.izbrani.davcnaSt}" />
+                       Davčna: <h:outputText value=" #{upravljanjeKomitenta.izbrani.davcnaSt}" />
                     </li>
             <li><h:commandLink value="Pregled komitenta" action="/Banka/pregledKomitenta"></h:commandLink></li>
             <li><h:commandLink value="Uredi komitenta" action="/Banka/urediKomitenta"></h:commandLink></li>
