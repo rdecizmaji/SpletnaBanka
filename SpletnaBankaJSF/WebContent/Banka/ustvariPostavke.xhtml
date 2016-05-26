@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Dodaj postavke</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Dodaj račun</h1>
+				<div class="row" style="margin-bottom: 5px;">
+				
+							<div class="panel">
+							<h:commandButton class="btn" value="Dodaj postavko"></h:commandButton>
+							<div class="panel-body table-responsive">
+				               	<table class="order-table"> 
+							  	  <thead> 
+									<tr> 
+									<th scope="col">Vsota storitev/blaga</th> 
+									<th scope="col">Količina</th> 
+									<th scope="col">Enota mere</th> 
+									<th scope="col">Cena na enoto bez DDV (€)</th> 
+									<th scope="col">Popust (%)</th> 
+									<th scope="col">Znesek popusta (€)</th> 
+									<th scope="col">DDV (%)</th> 
+									<th scope="col">Vrednost z DDV (€)</th> 
+									</tr> 
+								  </thead> 
+								  
+								  <tbody> 
+									<tr class="order-table-odd-row"> 
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite storitev." validatorMessage="Neustrezena oblika storitve."/></td> 
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite količino." validatorMessage="Neustrezena oblika količine."/></td> 
+										<td><h:selectOneMenu value="">
+														            <f:selectItem itemValue="Mesec" itemLabel="Mesec" />
+														            <f:selectItem itemValue="Kos" itemLabel="Kos" />			
+											</h:selectOneMenu>	</td> 
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite ceno na enoto." validatorMessage="Neustrezena oblika cene na enoto."/></td> 
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite popust." validatorMessage="Neustrezena oblika popusta."/></td>
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite znesek popusta." validatorMessage="Neustrezena oblika zneska popusta."/></td>
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite DDV." validatorMessage="Neustrezena oblika DDV-ja."/></td>
+										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite vrednost z DDV." validatorMessage="Neustrezena oblika vrednosti z DDV-jem."/></td>
+									</tr> 
+								  </tbody> 
+								 </table> 
+								 <br/>
+								 <br/>
+								 <br/>
+								 <table>
+									 <tbody> 
+										<tr class="order-table-odd-row" style="margin-left:50px;"> 
+											<td>Skupen znesek brez DDV</td> 
+											<td><h:inputText value="200" disabled="true"/></td> 
+										</tr>
+										<tr>	
+											<td>Vsota zneskov popustov</td> 
+											<td><h:inputText value="400" disabled="true"/></td> 
+										</tr> 
+										<tr>	
+											<td>Osnova za DDV (22%)</td> 
+											<td><h:inputText value="22" disabled="true"/></td> 
+										</tr> 
+										<tr>	
+											<td>Obračun 22% DDV</td> 
+											<td><h:inputText value="100" disabled="true"/></td> 
+										</tr>
+										<tr>	
+											<td>Vsota zneskov DDV</td> 
+											<td><h:inputText value="200" disabled="true"/></td> 
+										</tr>
+										<tr>	
+											<td><bold>SKUPAJ za plačilo</bold></td> 
+											<td><bold><h:inputText value="500" disabled="true"/></bold></td> 
+										</tr>    
+									  </tbody> 
+								 </table> 
+                 		 </div>
+					</div>
+				<div class="row">
+						<div class="col-md-12">
+							<div class="vpisGumb">
+								<h:commandButton class="btn" value="Shrani" id="submit"
+									action="/Banka/banka"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
