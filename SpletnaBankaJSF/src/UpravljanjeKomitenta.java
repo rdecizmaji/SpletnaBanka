@@ -32,6 +32,7 @@ public class UpravljanjeKomitenta {
 	private Date datumR;
 	private Komitent izbrani;
 	private TipKartice tipkartice;
+	private Komitent prejemnik=new Komitent();
 	
 	
 	//UPRAVLJANJE KOMITENTA 
@@ -134,5 +135,25 @@ public class UpravljanjeKomitenta {
 	public void setTipkartice(TipKartice tipkartice) {
 		this.tipkartice = tipkartice;
 	}
-	
+
+	public Komitent getPrejemnik() {
+		return prejemnik;
+	}
+
+	public void setPrejemnik(Komitent prejemnik) {
+		this.prejemnik = prejemnik;
+	}
+	   public List<Komitent> dopolni(String query) {
+	        List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
+	        List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
+	         
+	        for (int i = 0; i < vsiKomitenti.size(); i++) {
+	            Komitent kom = vsiKomitenti.get(i);
+	            if(kom.getIme().toLowerCase().startsWith(query)) {
+	                izbraniKomitenti.add(kom);
+	            }
+	        }
+	         
+	        return izbraniKomitenti;
+	    }
 }
