@@ -54,5 +54,19 @@ public class TipKartice implements Serializable{
 	public void setKartice(List<BancnaKartica> kartice) {
 		this.kartice = kartice;
 	}
+	@Override
+	public String toString() {
+		String vrsta="";
+		if (kreditna==true){
+			vrsta="kreditna";
+		}
+		if (debetna==true){
+			vrsta="debetna";
+		}
+		
+		return nazivTipa +": "+ vrsta;
+	}
+	
+	
 	
 }

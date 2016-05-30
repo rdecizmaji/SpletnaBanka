@@ -15,7 +15,6 @@ public class BancnaKarticaEJB implements IBancnaKartica{
 	@Override
 	public void shrani(BancnaKartica bk) {
 		manager.persist(bk);
-		
 	}
 
 }
