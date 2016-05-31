@@ -79,5 +79,11 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		bancneKartice = (ArrayList<BancnaKartica>) query.getResultList();
 		return bancneKartice;
 	}
+
+	@Override
+	public TransakcijskiRacun najdi(int id) {
+		trr = em.find(TransakcijskiRacun.class , id);
+		return trr;
+	}
 	
 }

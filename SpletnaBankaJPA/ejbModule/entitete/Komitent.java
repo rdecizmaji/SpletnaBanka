@@ -24,7 +24,7 @@ public class Komitent implements Serializable{
 	private String posta;
 	private int postnaSt;
 	private String drzava;
-	private int emso;
+	private long emso;
 	private int davcnaSt;
 	private String email;
 	private Calendar datum;
@@ -133,11 +133,11 @@ public class Komitent implements Serializable{
 		this.drzava = drzava;
 	}
 
-	public int getEmso() {
+	public long getEmso() {
 		return emso;
 	}
 
-	public void setEmso(int emso) {
+	public void setEmso(long emso) {
 		this.emso = emso;
 	}
 
@@ -172,5 +172,8 @@ public class Komitent implements Serializable{
 	public void setIzbrisan(boolean izbrisan) {
 		this.izbrisan = izbrisan;
 	}
-	
+	public String zdruzi(String ime, String priimek){
+		
+		return ime +" "+priimek;
+	}
 }

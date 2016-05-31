@@ -22,65 +22,94 @@
 				<div class="row" style="margin-bottom: 5px;">
 				
 							<div class="panel">
-							<h:commandButton class="btn" value="Dodaj postavko"></h:commandButton>
+							<h:commandButton class="btn" action="#{upravljanjeERacuna.dodajVrstico()}" value="Dodaj postavko"></h:commandButton>
 							<div class="panel-body table-responsive">
-				               	<table class="order-table"> 
-							  	  <thead> 
-									<tr> 
-									<th scope="col">Vsota storitev/blaga</th> 
-									<th scope="col">Količina</th> 
-									<th scope="col">Enota mere</th> 
-									<th scope="col">Cena na enoto bez DDV (€)</th> 
-									<th scope="col">Popust (%)</th> 
-									<th scope="col">Znesek popusta (€)</th> 
-									<th scope="col">DDV (%)</th> 
-									<th scope="col">Vrednost z DDV (€)</th> 
-									</tr> 
-								  </thead> 
-								  
-								  <tbody> 
-									<tr class="order-table-odd-row"> 
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite storitev." validatorMessage="Neustrezena oblika storitve."/></td> 
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite količino." validatorMessage="Neustrezena oblika količine."/></td> 
-										<td><h:selectOneMenu value="">
+
+					    		 <h:dataTable value="#{upravljanjeERacuna.postavke}" var="p"> 
+					
+					    			<h:column>
+					    				<f:facet name="header">Vsota storitev/blaga</f:facet>
+					    				<h:inputText id="storitev" value="#{p.storitev}" required="true" requiredMessage="Prosim vnesite storitev." validatorMessage="Neustrezena oblika storitve."/>
+					    			<h:message for="storitev" />
+					    			</h:column>
+					    			<h:column>
+					    				<f:facet name="header">Količina</f:facet>
+					    				<h:inputText  id="kolicina" value="#{p.kolicina}" required="true" requiredMessage="Prosim vnesite količino." validatorMessage="Neustrezena oblika količine.">
+					    				</h:inputText>
+					    				<h:message for="kolicina" />
+					    			</h:column>
+					    			
+					    			<h:column>
+					    				<f:facet name="header">Enota mere</f:facet>
+					    				<h:selectOneMenu id="enota" value="#{p.enota_mere}">
 														            <f:selectItem itemValue="Mesec" itemLabel="Mesec" />
 														            <f:selectItem itemValue="Kos" itemLabel="Kos" />			
-											</h:selectOneMenu>	</td> 
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite ceno na enoto." validatorMessage="Neustrezena oblika cene na enoto."/></td> 
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite popust." validatorMessage="Neustrezena oblika popusta."/></td>
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite znesek popusta." validatorMessage="Neustrezena oblika zneska popusta."/></td>
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite DDV." validatorMessage="Neustrezena oblika DDV-ja."/></td>
-										<td><h:inputText value="" required="true" requiredMessage="Prosim vnesite vrednost z DDV." validatorMessage="Neustrezena oblika vrednosti z DDV-jem."/></td>
-									</tr> 
-								  </tbody> 
-								 </table> 
+										</h:selectOneMenu>
+										<h:message for="enota" />
+					    			</h:column>
+					    			
+					    			<h:column>
+					    				<f:facet name="header">Cena na enoto bez DDV (€) </f:facet>
+					    				<h:inputText id="cena" value="#{p.cena_na_enoto}" required="true" requiredMessage="Prosim vnesite ceno na enoto." validatorMessage="Neustrezena oblika cene na enoto.">
+					    				</h:inputText>
+					    				<h:message for="cena" />
+					    			</h:column>
+					    			<h:column>
+					    				<f:facet name="header">Popust (%) </f:facet>
+					    				<h:inputText id="popust" value="#{p.popust}" required="true" requiredMessage="Prosim vnesite popust." validatorMessage="Neustrezena oblika popusta.">
+					    				</h:inputText>
+					    				<h:message for="popust" />
+					    			</h:column>
+					    			<h:column>
+					    				<f:facet name="header">Znesek popusta (€) </f:facet>
+					    				<h:inputText id="zPopust" value="#{p.znesek_popusta}" required="true" requiredMessage="Prosim vnesite znesek popusta." validatorMessage="Neustrezena oblika zneska popusta.">
+					    				</h:inputText>
+					    				<h:message for="zPopust" />
+					    			</h:column>
+					    			<h:column>
+					    				<f:facet name="header">DDV (%) </f:facet>
+					    				<h:inputText id="ddv" value="#{p.ddv}" required="true" requiredMessage="Prosim vnesite DDV." validatorMessage="Neustrezena oblika DDV-ja.">
+					    				</h:inputText>
+					    				<h:message for="ddv" />
+					    			</h:column>
+					    			<h:column>
+					    				<f:facet name="header">Vrednost z DDV (€) </f:facet>
+					    				<h:inputText id="vrednost" value="#{p.vrednostZddv}" required="true" requiredMessage="Prosim vnesite vrednost z DDV." validatorMessage="Neustrezena oblika vrednosti z DDV-jem.">
+					    				</h:inputText>
+					    				<h:message for="vrednost" />
+					    			</h:column>
+					    			<h:column>
+					    				<h:commandButton class="btn" action="#{upravljanjeERacuna.izbrisi(p)}" value="Izbriši"></h:commandButton>
+					    			</h:column>
+					    		
+					    		</h:dataTable>	
 								 <br/>
 								 <br/>
 								 <br/>
 								 <table>
 									 <tbody> 
 										<tr class="order-table-odd-row" style="margin-left:50px;"> 
-											<td>Skupen znesek brez DDV</td> 
+											<td>Skupen znesek brez DDV </td> 
 											<td><h:inputText value="200" disabled="true"/></td> 
 										</tr>
 										<tr>	
-											<td>Vsota zneskov popustov</td> 
+											<td>Vsota zneskov popustov </td> 
 											<td><h:inputText value="400" disabled="true"/></td> 
 										</tr> 
 										<tr>	
-											<td>Osnova za DDV (22%)</td> 
+											<td>Osnova za DDV (22%) </td> 
 											<td><h:inputText value="22" disabled="true"/></td> 
 										</tr> 
 										<tr>	
-											<td>Obračun 22% DDV</td> 
+											<td>Obračun 22% DDV </td> 
 											<td><h:inputText value="100" disabled="true"/></td> 
 										</tr>
 										<tr>	
-											<td>Vsota zneskov DDV</td> 
+											<td>Vsota zneskov DDV </td> 
 											<td><h:inputText value="200" disabled="true"/></td> 
 										</tr>
 										<tr>	
-											<td><bold>SKUPAJ za plačilo</bold></td> 
+											<td><bold>SKUPAJ za plačilo </bold></td> 
 											<td><bold><h:inputText value="500" disabled="true"/></bold></td> 
 										</tr>    
 									  </tbody> 
@@ -91,7 +120,7 @@
 						<div class="col-md-12">
 							<div class="vpisGumb">
 								<h:commandButton class="btn" value="Shrani" id="submit"
-									action="/Banka/banka"></h:commandButton>
+									action="#{upravljanjeERacuna.shraniERacun()}"></h:commandButton>
 							</div>
 						</div>
 					</div>

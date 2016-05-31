@@ -16,6 +16,7 @@ public interface ITransakcijskiRacun {
 	void zapri(TransakcijskiRacun trr);
 	void edit(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(TransakcijskiRacun trr);
+	TransakcijskiRacun najdi(int id);
 	
 	ArrayList<TransakcijskiRacun> vrniVse();
 	ArrayList<Racun> vrniRacuneTrrja();

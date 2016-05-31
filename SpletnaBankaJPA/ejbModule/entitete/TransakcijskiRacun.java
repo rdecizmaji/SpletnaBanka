@@ -27,6 +27,7 @@ public class TransakcijskiRacun implements Serializable{
 	private BigDecimal stanje;
 	private Komitent komitent;
 	private List<Racun> racuni = new ArrayList<Racun>();
+	private List<ERacun> eracuni = new ArrayList<ERacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<BancnaKartica> bancneKartice = new ArrayList<BancnaKartica>();
 
@@ -80,7 +81,7 @@ public class TransakcijskiRacun implements Serializable{
 		this.stanje = stanje;
 	}
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<Racun> getRacuni() {
 		return racuni;
 	}
@@ -89,7 +90,7 @@ public class TransakcijskiRacun implements Serializable{
 		this.racuni = racuni;
 	}
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<Transakcija> getTransakcije() {
 		return transakcije;
 	}
@@ -98,7 +99,7 @@ public class TransakcijskiRacun implements Serializable{
 		this.transakcije = transakcije;
 	}
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<BancnaKartica> getBancneKartice() {
 		return bancneKartice;
 	}
@@ -116,4 +117,13 @@ public class TransakcijskiRacun implements Serializable{
 		this.komitent = komitent;
 	}
 
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	public List<ERacun> getEracuni() {
+		return eracuni;
+	}
+
+	public void setEracuni(List<ERacun> eracuni) {
+		this.eracuni = eracuni;
+	}
+	
 }

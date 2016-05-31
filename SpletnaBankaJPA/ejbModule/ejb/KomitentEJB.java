@@ -144,9 +144,10 @@ IBancnaKartica banKar;
 	}
 	@Override
 	public List<TransakcijskiRacun> vrniTRRje(Komitent izbrani) {
+		Komitent izb=najdi(izbrani);
 		List<TransakcijskiRacun> tra=new ArrayList<TransakcijskiRacun>();
 		Query query = manager.createQuery("SELECT t FROM TransakcijskiRacun t WHERE komitent=?");
-		query.setParameter(1, izbrani);
+		query.setParameter(1, izb);
 		tra = (ArrayList<TransakcijskiRacun>) query.getResultList();
 		return tra;
 	}

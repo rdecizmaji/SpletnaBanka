@@ -81,9 +81,9 @@ public class UpravljanjeKomitenta {
 		return "banka";
 	}
 	
-	public List<TransakcijskiRacun> vrniTRR(){
+	public List<TransakcijskiRacun> vrniTRR(Komitent k){
 		List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
-		tr=kom.vrniTRRje(izbrani);
+		tr=kom.vrniTRRje(k);
 		return tr;
 	}
 	
@@ -143,17 +143,26 @@ public class UpravljanjeKomitenta {
 	public void setPrejemnik(Komitent prejemnik) {
 		this.prejemnik = prejemnik;
 	}
-	   public List<Komitent> dopolni(String query) {
-	        List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
-	        List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
-	         
-	        for (int i = 0; i < vsiKomitenti.size(); i++) {
-	            Komitent kom = vsiKomitenti.get(i);
-	            if(kom.getIme().toLowerCase().startsWith(query)) {
-	                izbraniKomitenti.add(kom);
-	            }
-	        }
-	         
-	        return izbraniKomitenti;
-	    }
+   public List<Komitent> dopolni(String query) {
+        List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
+        List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
+         
+        for (int i = 0; i < vsiKomitenti.size(); i++) {
+            Komitent kom = vsiKomitenti.get(i);
+            if(kom.getIme().toLowerCase().startsWith(query)) {
+                izbraniKomitenti.add(kom);
+            }
+        }
+         
+        return izbraniKomitenti;
+    }
+   public String nastaviPrejmnika(Komitent k){
+	   if(k!=null){
+		    prejemnik=k;
+		    return k.getIme()+" "+k.getPriimek();
+	   }
+	   else
+		   return null;
+		  
+   }
 }

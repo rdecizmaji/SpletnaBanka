@@ -43,6 +43,11 @@ public class KodaNamenaEJB implements IKodaNamena {
 		kodaNamena = em.find(KodaNamena.class , kn.getId());
 		return kodaNamena;
 	}
+	@Override
+	public KodaNamena najdi(int id) {
+		kodaNamena = em.find(KodaNamena.class , id);
+		return kodaNamena;
+	}
 
 	@Override
 	public ArrayList<KodaNamena> vrniVse() {

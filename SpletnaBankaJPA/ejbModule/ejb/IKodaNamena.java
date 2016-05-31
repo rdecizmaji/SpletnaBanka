@@ -14,6 +14,7 @@ public interface IKodaNamena {
 	void izbrisi(KodaNamena kn);
 	void edit(KodaNamena kn);
 	KodaNamena najdi(KodaNamena kn);
+	KodaNamena najdi(int id);
 	
 	ArrayList<KodaNamena> vrniVse();
 	ArrayList<Racun> vrniVseRacune();

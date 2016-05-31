@@ -27,36 +27,39 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label>Številka računa: </label>
-									<h:inputText id="stevilka" class="form-control" value="1234" required="true" requiredMessage="Prosim vnesite številko računa." validatorMessage="Neustrezena oblika številke računa.">
-										<f:convertNumber integerOnly="true" type="number" />
+									<h:inputText id="stevilka" class="form-control" value="#{upravljanjeERacuna.eRacun.stevilkaRacuna}" required="true" requiredMessage="Prosim vnesite številko računa." validatorMessage="Neustrezena oblika številke računa.">
+										<f:convertNumber integerOnly="false" type="number" />
 									</h:inputText>
 								<h:message for="stevilka" />
 								</div>
 								<div class="form-group">
 									<label>Kraj izdaje: </label>
-									<h:inputText id="kraj" class="form-control" value="Ljubljana" required="true" requiredMessage="Prosim vnesite kraj izdaje." validatorMessage="Neustrezena oblika kraja izdaje.">
+									<h:inputText id="kraj" class="form-control" value="#{upravljanjeERacuna.eRacun.krajIzdaje}" required="true" requiredMessage="Prosim vnesite kraj izdaje." validatorMessage="Neustrezena oblika kraja izdaje.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
 									</h:inputText>
 									<h:message for="kraj" />
 								</div>
 								<div class="form-group">
 									<label>Način plačila: </label>
-									<h:selectOneMenu class="form-control" value="plačano">
+									<h:selectOneMenu id="nacin" class="form-control" value="#{upravljanjeERacuna.eRacun.nacinPlacila}">
 							            <f:selectItem itemValue="Račun je potrebno plačati." itemLabel="Račun je potrebno plačati." />
 							            <f:selectItem itemValue="Račun bo potrbno plačti preko direktne bremenitve." itemLabel="Račun bo potrbno plačti preko direktne bremenitve." />
 							            <f:selectItem itemValue="Račun je že plačan." itemLabel="Račun je že plačan." />
 							            <f:selectItem itemValue="Drugo" itemLabel="Drugo"/>				
 							         </h:selectOneMenu>	
+							         <h:message for="nacin" />
 								</div>
 								<div class="form-group">
 									<label>Koda namena: </label>
-									<h:selectOneMenu class="form-control" value="Ni je še">
-   											<f:selectItems value="#{upravljanjeERacuna.kn}" var="k" itemLabel="#{k.koda}" itemValue="#{k.koda}"/>
+									<h:selectOneMenu id="koda" class="form-control" value="#{upravljanjeERacuna.idKn}">
+   											<f:selectItems value="#{upravljanjeERacuna.kn}" var="k" itemLabel="#{k.koda}" itemValue="#{k.id}">
+   											</f:selectItems>
    									</h:selectOneMenu>
+   									<h:message for="koda" />
 								</div>
 								<div class="form-group">
 									<label>Referenca: </label>
-									<h:inputText id="referenca" class="form-control" value="SI56111111111" required="true" requiredMessage="Prosim vnesite referenco." validatorMessage="Neustrezena oblika reference.">
+									<h:inputText id="referenca" class="form-control" value="#{upravljanjeERacuna.eRacun.referenca}" required="true" requiredMessage="Prosim vnesite referenco." validatorMessage="Neustrezena oblika reference.">
 									</h:inputText>
 									<h:message for="referenca" />
 								</div>
@@ -73,7 +76,7 @@
 								<div class="form-group">
 									<label>Datum izdaje: </label>
 									<h:inputText id="datumI" class="form-control"
-										value="1.1.2006" required="true"
+										value="#{upravljanjeERacuna.datumI}" required="true"
 										requiredMessage="Prosim vnesite datum izdaje."
 										validatorMessage="Neustrezena oblika datuma izdaje.">
 										<f:convertDateTime pattern="dd.MM.yyyy" />
@@ -83,7 +86,7 @@
 								<div class="form-group">
 									<label>Datum opravljene storitve/dobave blaga: </label><br/>
 									Od: <h:inputText id="od" class="form-control"
-										value="2.2.2007"
+										value="#{upravljanjeERacuna.datumOd}"
 										required="true"
 										requiredMessage="Prosim vnesite datum."
 										validatorMessage="Neustrezena oblika datuma.">
@@ -91,7 +94,7 @@
 									</h:inputText>
 									<h:message for="od" /><br/>
 									Do: <h:inputText id="do" class="form-control"
-										value="5.2.2007"
+										value="#{upravljanjeERacuna.datumDo}"
 										validatorMessage="Neustrezena oblika datuma.">
 										<f:convertDateTime pattern="dd.MM.yyyy" />
 									</h:inputText>
@@ -100,11 +103,11 @@
 								<div class="form-group">
 									<label>Datum zapadlosti: </label>
 									<h:inputText id="zapadlost" class="form-control"
-										value="15.3.2007"
+										value="#{upravljanjeERacuna.datumZap}"
 										required="true" requiredMessage="Prosim vnesite datum zapadlosti."
 										validatorMessage="Neustrezena oblika datuma zapadlosti.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
 									</h:inputText>
-				
 									<h:message for="zapadlost" />
 								</div>
 							</div>
@@ -113,8 +116,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="vpisGumb">
-								<h:commandButton class="btn" value="Naprej" id="submit"
-									action="/Banka/ustvariPostavke"></h:commandButton>
+								<h:commandButton class="b" value="Naprej" id="submit"
+									action="/Banka/ustvariPostavke.xhtml"></h:commandButton>
 							</div>
 						</div>
 					</div>
