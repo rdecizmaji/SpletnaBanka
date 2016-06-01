@@ -21,7 +21,7 @@ public class TransakcijskiRacun implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String stevilkaTRR;
-	private Calendar datumOdprja;
+	private Calendar datumOdprtja;
 	private Calendar datumZaprtja;
 	private boolean zaprt;
 	private BigDecimal stanje;
@@ -49,12 +49,12 @@ public class TransakcijskiRacun implements Serializable{
 		this.stevilkaTRR = stevilkaTRR;
 	}
 
-	public Calendar getDatumOdprja() {
-		return datumOdprja;
+	public Calendar getDatumOdprtja() {
+		return datumOdprtja;
 	}
 
-	public void setDatumOdprja(Calendar datumOdprja) {
-		this.datumOdprja = datumOdprja;
+	public void setDatumOdprtja(Calendar datumOdprtja) {
+		this.datumOdprtja = datumOdprtja;
 	}
 
 	public Calendar getDatumZaprtja() {
