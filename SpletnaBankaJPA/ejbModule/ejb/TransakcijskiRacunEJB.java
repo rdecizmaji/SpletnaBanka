@@ -84,5 +84,17 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		trr = em.find(TransakcijskiRacun.class , id);
 		return trr;
 	}
-	
+
+	@Override
+	public TransakcijskiRacun najdi(String TRR) {
+	Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr");
+	@SuppressWarnings("unchecked")
+	ArrayList<TransakcijskiRacun> trrList = (ArrayList<TransakcijskiRacun>) query.getResultList();
+	for(int i = 0; i < trrList.size(); i++) {
+		if(trrList.get(i).getStevilkaTRR().equals(TRR)) {
+			trr = trrList.get(i);
+		}
+	}
+		return trr;
+	}	
 }

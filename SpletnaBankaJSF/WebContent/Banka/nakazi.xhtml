@@ -27,19 +27,18 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label>IBAN: </label>
-									<h:selectOneMenu class="form-control" value="#{upravljanjeERacuna.idTRR}">
+									<h:selectOneMenu id="iban" class="form-control" value="#{upravljanjeTransakcije.TRR}">
    											<f:selectItems value="#{upravljanjeKomitenta.vrniTRR(upravljanjeKomitenta.izbrani)}" var="t" itemLabel="#{t.stevilkaTRR}" itemValue="#{t.id}"/>
    									</h:selectOneMenu>
-									
+   									<h:message for="iban" />
 								</div>
 								<div class="form-group">
 									<label>Referenca:</label>
 									<h:inputText id="referenca" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.priimek}"
+										value="#{upravljanjeTransakcije.transakcija.naziv}"
 										required="false"
 										requiredMessage="Prosim vnesite vašo referenco."
 										validatorMessage="Neustrezena oblika reference.">
-										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
 									</h:inputText>
 									<h:message for="referenca" />
 								</div>
@@ -49,7 +48,6 @@
 										value="#{upravljanjeKomitenta.izbrani.ime} #{upravljanjeKomitenta.izbrani.priimek}" required="true"
 										requiredMessage="Prosim vnesite naziv."
 										validatorMessage="Neustrezena oblika naziva." disabled="true">
-										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
 									</h:inputText>
 									<h:message for="naziv" />
 								</div>
@@ -93,7 +91,7 @@
 									</h:inputText>
 									<h:message for="drzava" />
 								</div>
-								<div class="form-group">
+								<!--  <div class="form-group">
 									<label><span id="obvezno">*</span>Koda namena:</label>
 									<h:selectOneMenu class="form-control" value="">
 										<f:selectItem itemValue="MSVC - Večnamesnke storitve"
@@ -103,7 +101,7 @@
 										<f:selectItem itemValue="REBT - Vračilo rabata"
 											itemLabel="REBT - Vračilo rabata" />
 									</h:selectOneMenu>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -114,17 +112,27 @@
 								<div class="form-group">
 									<label><span id="obvezno">*</span>EUR:</label>
 									<h:inputText id="eur" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.posta}" required="true"
+										value="#{upravljanjeTransakcije.znesek}" required="true"
 										requiredMessage="Prosim vnesite vrednost."
-										validatorMessage="Neustrezena oblika denarja.">
+										validatorMessage="Neustrezena oblika.">
 										<f:validateRegex pattern="^[0-9]*$" />
 									</h:inputText>
 									<h:message for="eur" />
 								</div>
 								<div class="form-group">
+									<label>IBAN:</label>
+									<h:inputText id="ibanP" class="form-control"
+										value="#{upravljanjeTransakcije.TRRP}"
+										required="false"
+										requiredMessage="Prosim vnesite vašo referenco."
+										validatorMessage="Neustrezena oblika reference.">
+									</h:inputText>
+									<h:message for="ibanP" />
+								</div>
+								<div class="form-group">
 									<label>Referenca:</label>
 									<h:inputText id="referencaP" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.priimek}"
+										value="#{upravljanjeTransakcije.transakcija.naziv}"
 										required="false"
 										requiredMessage="Prosim vnesite vašo referenco."
 										validatorMessage="Neustrezena oblika reference.">
@@ -164,11 +172,11 @@
 								</div>
 								<div class="form-group">
 									<label><span id="obvezno">*</span>Poštna številka:</label>
-									<h:inputText id="postnast" type="text" class="form-control"
+									<h:inputText id="postnast" type="number" class="form-control"
 										value="#{upravljanjeKomitenta.komitent.postnaSt}" required="true"
 										requiredMessage="Prosim vnesite poštno številko."
 										validatorMessage="Neustrezena oblika poštne številke.">
-										<f:validateRegex pattern="^[0-9]*$" />
+										<f:validateRegex pattern="^[1000-9999]*$" />
 									</h:inputText>
 									<h:message for="postnast" />
 								</div>
@@ -188,14 +196,13 @@
 							<div class="col-md-12">
 								<div class="vpisGumb">
 									<h:commandButton class="btn" value="Pošlji nakazilo" id="submit"
-										action="#{upravljanjeKomitenta.registrirajKomitenta()}"></h:commandButton>
+										action="#{upravljanjeTransakcije.shraniTransakcijo()}"></h:commandButton>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</h:form>
-
 		</ui:define>
 	</ui:composition>
 </h:body>

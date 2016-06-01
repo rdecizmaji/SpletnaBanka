@@ -17,7 +17,7 @@ public interface ITransakcijskiRacun {
 	void edit(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(int id);
-	
+	TransakcijskiRacun najdi(String stevilkaTRR);
 	ArrayList<TransakcijskiRacun> vrniVse();
 	ArrayList<Racun> vrniRacuneTrrja();
 	ArrayList<Transakcija> vrniTransakcijeTrrja();

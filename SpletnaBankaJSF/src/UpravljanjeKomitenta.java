@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -73,6 +74,8 @@ public class UpravljanjeKomitenta {
 		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(izbrani.getDrzava()));
 		transakcijskiRacun.setDatumOdprtja(Calendar.getInstance());
 		transakcijskiRacun.setZaprt(false);
+		BigDecimal bd=new BigDecimal(0);
+		transakcijskiRacun.setStanje(bd);
 		trr.shrani(transakcijskiRacun);
 		Komitent k1 = kom.najdi(izbrani);
 		transakcijskiRacun.setKomitent(k1);
@@ -81,7 +84,7 @@ public class UpravljanjeKomitenta {
 	}
 	
 	public String dodajKartico(){
-		BancnaKartica novakartica= new BancnaKartica();
+		BancnaKartica novakartica = new BancnaKartica();
 		return "vseKartice";
 	}
 	
@@ -100,6 +103,11 @@ public class UpravljanjeKomitenta {
 		tr=kom.vrniTRRje(k);
 		return tr;
 	}
+	/*
+	 * 
+	 * TRANSAKCIJE
+	 * 
+	 */
 	
 	//OSTALE FUNKCIJE 
 		public String pretvori(Calendar c){

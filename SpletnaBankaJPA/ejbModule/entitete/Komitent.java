@@ -23,7 +23,7 @@ public class Komitent implements Serializable{
 	private String priimek;
 	private String naslov;
 	private String posta;
-	private int postnaSt;
+	private String postnaSt;
 	private String drzava;
 	private String emso;
 	private String davcnaSt;
@@ -158,11 +158,11 @@ public class Komitent implements Serializable{
 		this.idKomitent = idKomitent;
 	}
 
-	public int getPostnaSt() {
+	public String getPostnaSt() {
 		return postnaSt;
 	}
 
-	public void setPostnaSt(int postnaSt) {
+	public void setPostnaSt(String postnaSt) {
 		this.postnaSt = postnaSt;
 	}
 
