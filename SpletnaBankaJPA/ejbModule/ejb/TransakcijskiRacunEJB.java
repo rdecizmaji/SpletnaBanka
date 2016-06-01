@@ -27,7 +27,6 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 
 	@Override
 	public void shrani(TransakcijskiRacun trr) {
-		trr.setDatumOdprtja(Calendar.getInstance());
 		em.persist(trr);
 		System.out.println("Transakcijski racun shranjen.");
 	}

@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import dodatniRazredi.TrrGenerator;
+
 @Entity
 public class TransakcijskiRacun implements Serializable{
 

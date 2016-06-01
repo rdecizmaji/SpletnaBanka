@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import dodatniRazredi.TrrGenerator;
 import ejb.IBancnaKartica;
 import ejb.IKomitent;
 import ejb.ITipKartice;
@@ -26,6 +27,8 @@ public class UpravljanjeKomitenta {
 	IKomitent kom;
 	@EJB
 	ITipKartice tipkar;
+	@EJB
+	ITransakcijskiRacun trr;
 	
 	private Komitent komitent=new Komitent();
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
@@ -33,6 +36,7 @@ public class UpravljanjeKomitenta {
 	private Komitent izbrani;
 	private TipKartice tipkartice;
 	private Komitent prejemnik=new Komitent();
+	private TransakcijskiRacun transakcijskiRacun = new TransakcijskiRacun();
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	
 	
@@ -62,8 +66,17 @@ public class UpravljanjeKomitenta {
 	
 	//TRRJI IN KARTICE
 	
-	public String dodajTRR(){
-		
+	public String dodajTRR() {
+		System.out.println("Dodaj trr...");
+		transakcijskiRacun = new TransakcijskiRacun();
+		TrrGenerator tg = new TrrGenerator();
+		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(izbrani.getDrzava()));
+		transakcijskiRacun.setDatumOdprtja(Calendar.getInstance());
+		transakcijskiRacun.setZaprt(false);
+		trr.shrani(transakcijskiRacun);
+		Komitent k1 = kom.najdi(izbrani);
+		transakcijskiRacun.setKomitent(k1);
+		trr.edit(transakcijskiRacun);
 		return "pregledTransakcijskihRacunov";
 	}
 	
@@ -146,12 +159,20 @@ public class UpravljanjeKomitenta {
 	}
 	
 	public List<TransakcijskiRacun> getTrrji() {
-		trrji = kom.vrniTRRje(komitent);
+		trrji = kom.vrniTRRje(izbrani);
 		return trrji;
 	}
 
 	public void setTrrji(List<TransakcijskiRacun> trrji) {
 		this.trrji = trrji;
+	}
+	
+	public TransakcijskiRacun getTransakcijskiRacun() {
+		return transakcijskiRacun;
+	}
+
+	public void setTransakcijskiRacun(TransakcijskiRacun transakcijskiRacun) {
+		this.transakcijskiRacun = transakcijskiRacun;
 	}
 	
    public List<Komitent> dopolni(String query) {
@@ -176,5 +197,4 @@ public class UpravljanjeKomitenta {
 		   return null;
 		  
    }
-
 }
