@@ -1,6 +1,7 @@
 package entitete;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,8 +25,8 @@ public class Komitent implements Serializable{
 	private String posta;
 	private int postnaSt;
 	private String drzava;
-	private long emso;
-	private int davcnaSt;
+	private String emso;
+	private String davcnaSt;
 	private String email;
 	private Calendar datum;
 	private Calendar datumVnosa;
@@ -133,19 +134,19 @@ public class Komitent implements Serializable{
 		this.drzava = drzava;
 	}
 
-	public long getEmso() {
+	public String getEmso() {
 		return emso;
 	}
 
-	public void setEmso(long emso) {
+	public void setEmso(String emso) {
 		this.emso = emso;
 	}
 
-	public int getDavcnaSt() {
+	public String getDavcnaSt() {
 		return davcnaSt;
 	}
 
-	public void setDavcnaSt(int davcnaSt) {
+	public void setDavcnaSt(String davcnaSt) {
 		this.davcnaSt = davcnaSt;
 	}
 

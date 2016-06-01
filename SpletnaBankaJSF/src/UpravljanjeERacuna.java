@@ -117,45 +117,38 @@ public class UpravljanjeERacuna {
 			eRacun.setPlacan(true);
 		}
 			
-
-	
 			//POSTAVKA
 			for(int i=0; i<postavke.size(); i++){
 				Postavka p=postavke.get(i);
 				p.setIdEr(eRacun);
 				post.shrani(p);
 			}
+			
+		eRacun.setPostavke(postavke);	
+			
 		TransakcijskiRacun tRac=tr.najdi(idTRR);	
 		KodaNamena kodaNam=koda.najdi(idKn);
 		
 		System.out.println("PRED");
+		
 		eRacun.setIdTr(tRac);
 		eRacun.setTRRprejmnika(trrPRJ);
 		eRacun.setIdKn(kodaNam);	
-		eRacun.setPostavke(postavke);
-		eRac.izdajERacun(eRacun);
-		System.out.println("PO");
 		
+		eRac.izdajERacun(eRacun);
+		
+		System.out.println("PO");
+	
+			//KODA NAMENA
+			List<ERacun> er= kodaNam.getEracuni();
+			er.add(eRacun);
+			koda.edit(kodaNam);
+			
 			//TRR
 			List<ERacun> list=tRac.getEracuni();
 			list.add(eRacun);
 			tRac.setEracuni(list);
-			//tr.edit(tRac);
-			
-	
-			//KODA NAMENA
-			boolean spremeni=true;
-			List<ERacun> er= kodaNam.getEracuni();
-			for(int i=0; i<er.size();i++){
-				if(er.get(i).equals(eRacun)){
-					spremeni=false;
-				}
-			}
-		
-			if(spremeni){
-				er.add(eRacun);
-				//koda.edit(kodaNam);
-			}
+			tr.edit(tRac);
 			
 		postavke=new ArrayList<Postavka>();
 		kn=new ArrayList<KodaNamena>();
