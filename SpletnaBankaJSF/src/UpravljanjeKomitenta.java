@@ -33,6 +33,7 @@ public class UpravljanjeKomitenta {
 	private Komitent izbrani;
 	private TipKartice tipkartice;
 	private Komitent prejemnik=new Komitent();
+	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	
 	
 	//UPRAVLJANJE KOMITENTA 
@@ -143,6 +144,15 @@ public class UpravljanjeKomitenta {
 	public void setPrejemnik(Komitent prejemnik) {
 		this.prejemnik = prejemnik;
 	}
+	
+	public List<TransakcijskiRacun> getTrrji() {
+		return trrji;
+	}
+
+	public void setTrrji(List<TransakcijskiRacun> trrji) {
+		this.trrji = trrji;
+	}
+	
    public List<Komitent> dopolni(String query) {
         List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
         List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
@@ -165,4 +175,5 @@ public class UpravljanjeKomitenta {
 		   return null;
 		  
    }
+
 }
