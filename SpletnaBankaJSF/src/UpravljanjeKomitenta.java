@@ -11,11 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import dodatniRazredi.TrrGenerator;
-import ejb.IBancnaKartica;
 import ejb.IKomitent;
 import ejb.ITipKartice;
 import ejb.ITransakcijskiRacun;
-import ejb.KomitentEJB;
 import entitete.BancnaKartica;
 import entitete.Komitent;
 import entitete.TipKartice;
@@ -204,5 +202,9 @@ public class UpravljanjeKomitenta {
 	   else
 		   return null;
 		  
+   }
+   public String razveljavi(){
+	   prejemnik=new Komitent();
+	   return "/Banka/ustvariERacun2";
    }
 }

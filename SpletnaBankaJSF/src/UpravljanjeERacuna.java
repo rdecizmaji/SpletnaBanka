@@ -128,18 +128,10 @@ public class UpravljanjeERacuna {
 			
 		TransakcijskiRacun tRac=tr.najdi(idTRR);	
 		KodaNamena kodaNam=koda.najdi(idKn);
-		
-		System.out.println("PRED");
-		
-		eRacun.setIdTr(tRac);
 		eRacun.setTRRprejmnika(trrPRJ);
+		eRacun.setIdTr(tRac);
 		eRacun.setIdKn(kodaNam);	
-		
-		eRac.izdajERacun(eRacun);
-		
-		System.out.println("PO");
-	
-			//KODA NAMENA
+		//KODA NAMENA
 			List<ERacun> er= kodaNam.getEracuni();
 			er.add(eRacun);
 			koda.edit(kodaNam);
@@ -149,6 +141,13 @@ public class UpravljanjeERacuna {
 			list.add(eRacun);
 			tRac.setEracuni(list);
 			tr.edit(tRac);
+		
+		System.out.println("PRED");
+		eRac.izdajERacun(eRacun);
+		
+		System.out.println("PO");
+	
+			
 			
 		postavke=new ArrayList<Postavka>();
 		kn=new ArrayList<KodaNamena>();

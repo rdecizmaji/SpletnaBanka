@@ -62,7 +62,7 @@
 								<div class="form-group naziv_forma">
 									<label>Naziv: </label>
 									<p:autoComplete id="naziv" value="#{upravljanjeKomitenta.prejemnik.ime}" completeMethod="#{upravljanjeKomitenta.dopolni}"
-                       				 var="k" itemLabel="#{upravljanjeKomitenta.nastaviPrejmnika(k)}" itemValue="#{upravljanjeKomitenta.nastaviPrejmnika(k)}"  forceSelection="true" >
+                       				 var="k" itemLabel="#{upravljanjeKomitenta.nastaviPrejmnika(k)}" converter="objektConverter" itemValue="#{upravljanjeKomitenta.nastaviPrejmnika(k)}"  forceSelection="true" >
                          				<p:ajax event="blur" update="naslov" />
                          				<p:ajax event="blur" update="posta" />
                          				<p:ajax event="blur" update="davcna" />
@@ -112,7 +112,7 @@
 						<div class="col-md-12">
 							<div class="vpisGumb">
 								<h:commandButton class="btn" value="Naprej" id="submit"
-									action="/Banka/ustvariERacun2"></h:commandButton>
+									action="#{upravljanjeKomitenta.razveljavi()}"></h:commandButton>
 							</div>
 						</div>
 					</div>
