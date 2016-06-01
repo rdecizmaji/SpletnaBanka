@@ -146,6 +146,7 @@ public class UpravljanjeKomitenta {
 	}
 	
 	public List<TransakcijskiRacun> getTrrji() {
+		trrji = kom.vrniTRRje(komitent);
 		return trrji;
 	}
 
