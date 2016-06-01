@@ -78,7 +78,7 @@ public class UpravljanjeKomitenta {
 	public String urediKomitenta (){
 		System.out.println("asd");
 		kom.shrani(izbrani);
-		return "banka";
+		return "pregledKomitenta";
 	}
 	
 	public List<TransakcijskiRacun> vrniTRR(Komitent k){

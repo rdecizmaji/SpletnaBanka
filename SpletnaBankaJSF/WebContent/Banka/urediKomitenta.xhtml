@@ -44,6 +44,10 @@ xmlns:f="http://java.sun.com/jsf/core">
                                           <label>Naslov: </label>
                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.naslov}" required="true"></h:inputText>
                                       </div>
+                                      <div class="form-group">
+                                          <label>Pošta: </label>
+                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.posta}" required="true"></h:inputText>
+                                      </div>
                                       </div>
                                       </div>
                                       </div>
@@ -53,10 +57,6 @@ xmlns:f="http://java.sun.com/jsf/core">
                               
                               </div>
                                       <div class="panel-body">
-                                      <div class="form-group">
-                                          <label>Pošta: </label>
-                                          <h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.posta}" required="true"></h:inputText>
-                                      </div>
                                       <div class="form-group">
                                           <label>Poštna številka: </label>
                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.postnaSt}" required="true"></h:inputText>
@@ -72,11 +72,15 @@ xmlns:f="http://java.sun.com/jsf/core">
                                       <div class="form-group">
                                           <label>EMŠO: </label>
                                           <h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.emso}" required="true"></h:inputText>
-                                      </div>
-                                      <div class="vpisGumb">
-                                      <h:commandButton class="btn btn-info" value="Spremeni" action="#{upravljanjeKomitenta.urediKomitenta()}"></h:commandButton>
-                                  </div>
+                                      </div>   
                               </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                          <div class="col-md-12">
+                           <div class="vpisGumb">
+                                      <h:commandButton class="btn" value="Spremeni" action="#{upravljanjeKomitenta.urediKomitenta()}"></h:commandButton>
+                                  </div>
                           </div>
                           </div>
 </div>
