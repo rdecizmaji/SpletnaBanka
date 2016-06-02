@@ -1,4 +1,3 @@
-
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,7 +69,7 @@ public class UpravljanjeKomitenta {
 	
 	public String trrPodrobno(TransakcijskiRacun trr) {
 		izbraniTrr = trr;
-		return "pregledTransakcij";
+		return "pregledTransakcij.xhtml";
 	}
 	
 	public String dodajTRR() {
@@ -80,7 +79,7 @@ public class UpravljanjeKomitenta {
 		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(izbrani.getDrzava()));
 		transakcijskiRacun.setDatumOdprtja(Calendar.getInstance());
 		transakcijskiRacun.setZaprt(false);
-		BigDecimal bd=new BigDecimal(0);
+		BigDecimal bd = new BigDecimal(0);
 		transakcijskiRacun.setStanje(bd);
 		trr.shrani(transakcijskiRacun);
 		Komitent k1 = kom.najdi(izbrani);
@@ -192,7 +191,7 @@ public class UpravljanjeKomitenta {
 	}
 	
 	public List<Transakcija> getTransakcije() {
-		transakcije = trr.vrniTransakcijeTrrja();
+		transakcije = trr.vrniTransakcije(izbraniTrr);
 		return transakcije;
 	}
 

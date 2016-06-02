@@ -22,16 +22,14 @@
 					transakcijskih računov</h1>
 				<div class="row">
 					<div class="col-md-12">
-						<h:form>
-							<div class="row" style="margin-bottom: 5px;">
-								<div class="col-md-12">
-									<br /> <br />
-									<h:commandButton style="float:right;" class="btn"
-										value="Dodaj transakcijski račun" id="submit"
-										action="#{upravljanjeKomitenta.dodajTRR()}"></h:commandButton>
-								</div>
+						<div class="row" style="margin-bottom: 5px;">
+							<div class="col-md-12">
+								<br /> <br />
+								<h:commandButton style="float:right;" class="btn"
+									value="Dodaj transakcijski račun" id="submit"
+									action="#{upravljanjeKomitenta.dodajTRR()}"></h:commandButton>
 							</div>
-						</h:form>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -59,10 +57,8 @@
 									</h:column>
 									<h:column>
 										<f:facet name="header">Transakcije</f:facet>
-										<h:form>
-											<h:commandButton class="btn" value="Podrobno"
-												action="#{upravljanjeKomitenta.trrPodrobno(trr)}" />
-										</h:form>
+										<h:commandButton class="btn" value="Podrobno"
+											action="#{upravljanjeKomitenta.trrPodrobno(trr)}"></h:commandButton>
 									</h:column>
 								</h:dataTable>
 							</div>

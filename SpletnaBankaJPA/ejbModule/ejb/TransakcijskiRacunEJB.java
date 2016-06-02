@@ -2,6 +2,7 @@ package ejb;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entitete.BancnaKartica;
+import entitete.Komitent;
 import entitete.Racun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
@@ -66,12 +68,14 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 	}
 
 	@Override
-	public ArrayList<Transakcija> vrniTransakcijeTrrja() {
-		Query query = em.createQuery("SELECT trr.transakcije FROM TransakcijskiRacun trr");
+	public List<Transakcija> vrniTransakcije(TransakcijskiRacun izbraniTrr) {
+		TransakcijskiRacun izb = najdi(izbraniTrr);
+		Query query = em.createQuery("SELECT tr FROM Transakcija tr WHERE idTran_id=?");
+		query.setParameter(1, izb.getId());
 		transakcije = (ArrayList<Transakcija>) query.getResultList();
 		return transakcije;
 	}
-
+	
 	@Override
 	public ArrayList<BancnaKartica> vrniBancneKarticeTrrja() {
 		Query query = em.createQuery("SELECT trr.bancneKartice FROM TransakcijskiRacun trr");

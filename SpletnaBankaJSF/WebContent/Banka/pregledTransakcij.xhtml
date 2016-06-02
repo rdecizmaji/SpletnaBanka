@@ -31,19 +31,11 @@
 									<h:column>
 										<f:facet name="header">Datum</f:facet>
 										<h:outputText
-											value="#{upravljanjeKomitenta.pretvori(trr.datum)}" />
+											value="#{upravljanjeKomitenta.pretvori(tr.datum)}" />
 									</h:column>
 									<h:column>
 										<f:facet name="header">Znesek</f:facet>
 										<h:outputText value="#{tr.znesek}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Številka kartice</f:facet>
-										<h:outputText value="#{tr.stKartice}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Šifra računa</f:facet>
-										<h:outputText value="#{tr.sifraRacuna}" />
 									</h:column>
 								</h:dataTable>
 							</div>
