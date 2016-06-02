@@ -4,8 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import ejb.IKomitent;
 import ejb.ITipKartice;
 import ejb.ITransakcija;
@@ -33,8 +36,17 @@ public class UpravljanjeTransakcije {
 	private BigDecimal znesek;
 	private Date datumT;
 
-
+	public void fatal() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error"));
+    }
 	public String shraniTransakcijo(){
+		
+		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
+		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
+		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
+			fatal();
+			System.out.println("Transakcija ni možna");
+		}
 		//datum transakcije
 		datumT = new Date();
 		Calendar cal = Calendar.getInstance();
@@ -42,21 +54,21 @@ public class UpravljanjeTransakcije {
 		transakcija.setDatum(cal);
 		transakcija.setZnesek(znesek);
 		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
-		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
-		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
-		transakcija.setTRRplacnika(transakcijskiRacunPlacnika.getStevilkaTRR());
+		transakcija.setTRRprejemnika(transakcijskiRacunPrejemnika);
+		transakcija.setIdTran(transakcijskiRacunPlacnika);
+		
 		//nastavljanje novega stanja
 		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(znesek);
 		transakcijskiRacunPlacnika.setStanje(novoStanje);
 		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(znesek);
 		transakcijskiRacunPrejemnika.setStanje(novoStanje);
 		
+		tran.shrani(transakcija);
 		trr.edit(transakcijskiRacunPrejemnika);
 		trr.edit(transakcijskiRacunPlacnika);
 
-		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
-			System.out.println("Transakcija ni možna");
-		}
+		
+	
 		
 		System.out.println("Prejemnik: " + transakcijskiRacunPrejemnika.getStevilkaTRR());
 		System.out.println("Placnik: " + transakcijskiRacunPlacnika.getStevilkaTRR());

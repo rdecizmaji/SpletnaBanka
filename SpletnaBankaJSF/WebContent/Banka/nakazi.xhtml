@@ -18,9 +18,11 @@
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<h1 class="display-1 hidden-xs-down">Univerzitetni Plačilni
+				<h1 class="display-1 hidden-xs-down">Univerzalni Plačilni
 					Nalog</h1>
 				<div class="row" style="margin-bottom: 5px;">
+    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+
 					<div class="col-md-6">
 						<div class="panel">
 							<div class="panel-heading">Plačnik</div>
@@ -115,7 +117,6 @@
 										value="#{upravljanjeTransakcije.znesek}" required="true"
 										requiredMessage="Prosim vnesite vrednost."
 										validatorMessage="Neustrezena oblika.">
-										<f:validateRegex pattern="^[0-9]*$" />
 									</h:inputText>
 									<h:message for="eur" />
 								</div>
@@ -156,7 +157,6 @@
 										value="#{upravljanjeKomitenta.komitent.naslov}"
 										required="true" requiredMessage="Prosim vnesite naslov."
 										validatorMessage="Neustrezena oblika naslova.">
-										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
 									</h:inputText>
 									<h:message for="naslovP" />
 								</div>

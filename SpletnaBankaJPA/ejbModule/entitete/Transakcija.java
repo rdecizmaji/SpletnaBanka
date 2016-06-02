@@ -25,8 +25,7 @@ public class Transakcija implements Serializable {
 	private Racun racun;
 	private ERacun eRacun;
 	private TransakcijskiRacun idTran;
-	private String TRRprejemnika;//??
-	private String TRRplacnika;
+	private TransakcijskiRacun TRRprejemnika;
 	
 	
 	@Id
@@ -96,19 +95,11 @@ public class Transakcija implements Serializable {
 		this.eRacun = eRacun;
 	}
 
-	public String getTRRprejemnika() {
+	public TransakcijskiRacun getTRRprejemnika() {
 		return TRRprejemnika;
 	}
 
-	public void setTRRprejemnika(String tRRprejemnika) {
+	public void setTRRprejemnika(TransakcijskiRacun tRRprejemnika) {
 		TRRprejemnika = tRRprejemnika;
-	}
-
-	public String getTRRplacnika() {
-		return TRRplacnika;
-	}
-
-	public void setTRRplacnika(String tRRplacnika) {
-		TRRplacnika = tRRplacnika;
 	}
 }

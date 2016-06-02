@@ -49,14 +49,20 @@ public class UpravljanjeKomitenta {
 	public String registrirajKomitenta(){
 		
 		//pretvorba iz Date v Calendar
+		datumR = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumR);
 		komitent.setDatum(cal);
 		
-		//klicana metoda za vnos
-		kom.shrani(komitent);
+		//dodajanje TRR
 		
+		//klicana metoda za vnos
+		
+		kom.shrani(komitent);
+		izbrani = kom.najdi(komitent);
+		dodajTRR();
 		//ustvari nova insatnca
+		komitent = izbrani;
 		komitent=new Komitent();
 		datumR=null;
 		
@@ -71,6 +77,9 @@ public class UpravljanjeKomitenta {
 		TrrGenerator tg = new TrrGenerator();
 		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(izbrani.getDrzava()));
 		transakcijskiRacun.setDatumOdprtja(Calendar.getInstance());
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.YEAR, 10);
+		transakcijskiRacun.setDatumZaprtja(cal);
 		transakcijskiRacun.setZaprt(false);
 		BigDecimal bd=new BigDecimal(0);
 		transakcijskiRacun.setStanje(bd);
