@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+<title>Dash</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Pregled vseh transakcij</h1>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-body table-responsive">
+								<h:dataTable class="table table-hover"
+									value="#{upravljanjeKomitenta.transakcije}" var="tr">
+									<h:column>
+										<f:facet name="header">Naziv</f:facet>
+										<h:outputText value="#{tr.naziv}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Datum</f:facet>
+										<h:outputText
+											value="#{upravljanjeKomitenta.pretvori(tr.datum)}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Znesek</f:facet>
+										<h:outputText value="#{tr.znesek}" />
+									</h:column>
+								</h:dataTable>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,4 +1,3 @@
-
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ import ejb.ITransakcijskiRacun;
 import entitete.BancnaKartica;
 import entitete.Komitent;
 import entitete.TipKartice;
+import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
 
 @ManagedBean(name = "upravljanjeKomitenta")
@@ -33,10 +33,12 @@ public class UpravljanjeKomitenta {
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
 	private Komitent izbrani;
+	private TransakcijskiRacun izbraniTrr;
 	private TipKartice tipkartice;
 	private Komitent prejemnik=new Komitent();
 	private TransakcijskiRacun transakcijskiRacun = new TransakcijskiRacun();
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
+	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	
 	
 	//UPRAVLJANJE KOMITENTA 
@@ -71,6 +73,11 @@ public class UpravljanjeKomitenta {
 	
 	//TRRJI IN KARTICE
 	
+	public String trrPodrobno(TransakcijskiRacun trr) {
+		izbraniTrr = trr;
+		return "pregledTransakcij.xhtml";
+	}
+	
 	public String dodajTRR() {
 		System.out.println("Dodaj trr...");
 		transakcijskiRacun = new TransakcijskiRacun();
@@ -81,7 +88,7 @@ public class UpravljanjeKomitenta {
 		cal.add(Calendar.YEAR, 10);
 		transakcijskiRacun.setDatumZaprtja(cal);
 		transakcijskiRacun.setZaprt(false);
-		BigDecimal bd=new BigDecimal(0);
+		BigDecimal bd = new BigDecimal(0);
 		transakcijskiRacun.setStanje(bd);
 		trr.shrani(transakcijskiRacun);
 		Komitent k1 = kom.najdi(izbrani);
@@ -140,6 +147,7 @@ public class UpravljanjeKomitenta {
 	public void setDatumR(Date datumR) {
 		this.datumR = datumR;
 	}
+	
 	public List<Komitent> getKomitenti() {
 		komitenti=kom.vrniVse();
 		return komitenti;
@@ -152,11 +160,12 @@ public class UpravljanjeKomitenta {
 	public void setIzbrani(Komitent izbrani) {
 		this.izbrani = izbrani;
 	}
+	
 	public String izbraniK(Komitent k) {
 		izbrani=k;
 		return "/Banka/pregledKomitenta";
 	}
-
+	
 	public TipKartice getTipkartice() {
 		return tipkartice;
 	}
@@ -188,6 +197,23 @@ public class UpravljanjeKomitenta {
 
 	public void setTransakcijskiRacun(TransakcijskiRacun transakcijskiRacun) {
 		this.transakcijskiRacun = transakcijskiRacun;
+	}
+	
+	public List<Transakcija> getTransakcije() {
+		transakcije = trr.vrniTransakcije(izbraniTrr);
+		return transakcije;
+	}
+
+	public void setTransakcije(List<Transakcija> transakcije) {
+		this.transakcije = transakcije;
+	}
+	
+	public TransakcijskiRacun getIzbraniTrr() {
+		return izbraniTrr;
+	}
+
+	public void setIzbraniTrr(TransakcijskiRacun izbraniTrr) {
+		this.izbraniTrr = izbraniTrr;
 	}
 	
    public List<Komitent> dopolni(String query) {

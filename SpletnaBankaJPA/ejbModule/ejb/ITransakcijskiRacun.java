@@ -1,6 +1,7 @@
 package ejb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -20,6 +21,6 @@ public interface ITransakcijskiRacun {
 	TransakcijskiRacun najdi(String stevilkaTRR);
 	ArrayList<TransakcijskiRacun> vrniVse();
 	ArrayList<Racun> vrniRacuneTrrja();
-	ArrayList<Transakcija> vrniTransakcijeTrrja();
 	ArrayList<BancnaKartica> vrniBancneKarticeTrrja();
+	List<Transakcija> vrniTransakcije(TransakcijskiRacun izbrani);
 }
