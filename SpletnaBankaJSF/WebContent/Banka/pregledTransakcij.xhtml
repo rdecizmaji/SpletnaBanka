@@ -11,58 +11,39 @@
 <h:outputStylesheet library="css" name="custom-style.css" />
 <head>
 <meta http-equiv="Content-Type" content="text/html" />
-
 <title>Dash</title>
 </head>
 <h:body>
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<h1 class="display-1 hidden-xs-down">Pregled vseh
-					transakcijskih računov</h1>
-				<div class="row">
-					<div class="col-md-12">
-						<h:form>
-							<div class="row" style="margin-bottom: 5px;">
-								<div class="col-md-12">
-									<br /> <br />
-									<h:commandButton style="float:right;" class="btn"
-										value="Dodaj transakcijski račun" id="submit"
-										action="#{upravljanjeKomitenta.dodajTRR()}"></h:commandButton>
-								</div>
-							</div>
-						</h:form>
-					</div>
-				</div>
+				<h1 class="display-1 hidden-xs-down">Pregled vseh transakcij</h1>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel">
 							<div class="panel-body table-responsive">
 								<h:dataTable class="table table-hover"
-									value="#{upravljanjeKomitenta.trrji}" var="trr">
+									value="#{upravljanjeKomitenta.transakcije}" var="tr">
 									<h:column>
-										<f:facet name="header">Številka</f:facet>
-										<h:outputText value="#{trr.stevilkaTRR}" />
+										<f:facet name="header">Naziv</f:facet>
+										<h:outputText value="#{tr.naziv}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Datum odprtja</f:facet>
+										<f:facet name="header">Datum</f:facet>
 										<h:outputText
-											value="#{upravljanjeKomitenta.pretvori(trr.datumOdprtja)}" />
+											value="#{upravljanjeKomitenta.pretvori(trr.datum)}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Status</f:facet>
-										<h:outputText value="#{trr.zaprt}" />
+										<f:facet name="header">Znesek</f:facet>
+										<h:outputText value="#{tr.znesek}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Stanje</f:facet>
-										<h:outputText value="#{trr.stanje}" />
+										<f:facet name="header">Številka kartice</f:facet>
+										<h:outputText value="#{tr.stKartice}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Transakcije</f:facet>
-										<h:form>
-											<h:commandButton class="btn" value="Podrobno"
-												action="#{upravljanjeKomitenta.trrPodrobno(trr)}" />
-										</h:form>
+										<f:facet name="header">Šifra računa</f:facet>
+										<h:outputText value="#{tr.sifraRacuna}" />
 									</h:column>
 								</h:dataTable>
 							</div>
