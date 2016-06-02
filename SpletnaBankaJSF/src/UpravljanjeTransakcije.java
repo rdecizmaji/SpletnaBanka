@@ -32,6 +32,7 @@ public class UpravljanjeTransakcije {
 	
 	private int idKn;
 	private Transakcija transakcija = new Transakcija();
+	private Transakcija transakcijaPrejemnika = new Transakcija();
 	private Komitent komitent = new Komitent();
 	private String TRRP;
 	private int TRR;
@@ -56,6 +57,7 @@ public class UpravljanjeTransakcije {
 			}
 	}
 	public String shraniTransakcijo(){
+		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
 		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
@@ -84,22 +86,27 @@ public class UpravljanjeTransakcije {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumT);
 		transakcija.setDatum(cal);
-		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
-		transakcija.setTRRprejemnika(transakcijskiRacunPrejemnika);
+		transakcijaPrejemnika.setDatum(cal);
+		transakcijaPrejemnika.setTRRprejemnika(transakcijskiRacunPrejemnika);
 		transakcija.setIdTran(transakcijskiRacunPlacnika);
-		//shrani staro stanje
-		transakcija.setTrenutnoStanje(transakcijskiRacunPlacnika.getStanje());
+		transakcijaPrejemnika.setZnesek(transakcija.getZnesek());
+		transakcijaPrejemnika.setNaziv(transakcija.getNaziv());
 		//nastavljanje novega stanja
 		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek());
+		transakcija.setZnesek(transakcija.getZnesek().negate());
+		transakcija.setTrenutnoStanje(novoStanje);
 		transakcijskiRacunPlacnika.setStanje(novoStanje);
-		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(transakcija.getZnesek());
+		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(transakcijaPrejemnika.getZnesek());
 		transakcijskiRacunPrejemnika.setStanje(novoStanje);
+		transakcijaPrejemnika.setTrenutnoStanje(novoStanje);
+		tran.shrani(transakcijaPrejemnika);
 		tran.shrani(transakcija);
 		trr.edit(transakcijskiRacunPrejemnika);
 		trr.edit(transakcijskiRacunPlacnika);
 		znesek = null;
 		TRRP = null;
 		transakcija = new Transakcija();
+		transakcijaPrejemnika = new Transakcija();
 		setKomitent(new Komitent());
 		return "/Banka/pregledTransakcijskihRacunov.xhtml";
 		}
@@ -108,6 +115,7 @@ public class UpravljanjeTransakcije {
 			return "nakazi";
 		}
 	}
+
 	public String pologDenarja() {
 		TransakcijskiRacun transakcijskiRacun = trr.najdi(TRR);
 		if(transakcijskiRacun.isZaprt() != true) {
@@ -119,6 +127,7 @@ public class UpravljanjeTransakcije {
 		cal.setTime(datumT);
 		transakcija.setDatum(cal);
 		transakcija.setNaziv("Polog denarja");
+		transakcija.setTrenutnoStanje(transakcijskiRacun.getStanje().add(transakcija.getZnesek()));
 		BigDecimal novoStanje = transakcijskiRacun.getStanje().add(transakcija.getZnesek());
 		transakcijskiRacun.setStanje(novoStanje);
 		transakcija.setIdTran(transakcijskiRacun);

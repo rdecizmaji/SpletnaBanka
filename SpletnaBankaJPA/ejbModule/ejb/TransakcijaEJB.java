@@ -1,5 +1,6 @@
 package ejb;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -56,8 +57,7 @@ public class TransakcijaEJB implements ITransakcija {
 	@Override
 	public TransakcijskiRacun vrniTrr(Transakcija t) {
 		transakcija = najdi(t);
-		Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr WHERE idTran_id=?");
-		query.setParameter(1, transakcija.getId());
+		Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr");
 		trr = (TransakcijskiRacun) query.getResultList();
 		return trr;
 	}

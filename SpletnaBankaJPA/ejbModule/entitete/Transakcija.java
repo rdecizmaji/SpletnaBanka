@@ -19,7 +19,6 @@ public class Transakcija implements Serializable {
 	private int id;
 	private String naziv;
 	private BigDecimal znesek;
-	private BigDecimal trenutnoStanje;
 	private Calendar datum;
 	private int stKartice;//????
 	//private String sifraRacuna;//??TRR
@@ -27,6 +26,7 @@ public class Transakcija implements Serializable {
 	private ERacun eRacun;
 	private TransakcijskiRacun idTran;
 	private TransakcijskiRacun TRRprejemnika;
+	private BigDecimal trenutnoStanje;
 	
 	
 	@Id
