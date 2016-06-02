@@ -87,6 +87,8 @@ public class UpravljanjeTransakcije {
 		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		transakcija.setTRRprejemnika(transakcijskiRacunPrejemnika);
 		transakcija.setIdTran(transakcijskiRacunPlacnika);
+		//shrani staro stanje
+		transakcija.setTrenutnoStanje(transakcijskiRacunPlacnika.getStanje());
 		//nastavljanje novega stanja
 		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek());
 		transakcijskiRacunPlacnika.setStanje(novoStanje);

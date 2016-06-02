@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Dodaj racun</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Dodaj račun</h1>
+				<div class="row" style="margin-bottom: 5px;">
+				
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Številka računa: </label>
+									<h:inputText id="stevilka" class="form-control" value="#{upravljanjeERacuna.eRacun.stevilkaRacuna}" required="true" requiredMessage="Prosim vnesite številko računa." validatorMessage="Neustrezena oblika številke računa.">
+										<f:convertNumber integerOnly="false" type="number" />
+									</h:inputText>
+								<h:message for="stevilka" />
+								</div>
+								<div class="form-group">
+									<label>Kraj izdaje: </label>
+									<h:inputText id="kraj" class="form-control" value="#{upravljanjeERacuna.eRacun.krajIzdaje}" required="true" requiredMessage="Prosim vnesite kraj izdaje." validatorMessage="Neustrezena oblika kraja izdaje.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="kraj" />
+								</div>
+								<div class="form-group">
+									<label>Način plačila: </label>
+									<h:selectOneMenu id="nacin" class="form-control" value="#{upravljanjeERacuna.eRacun.nacinPlacila}">
+							            <f:selectItem itemValue="Račun je potrebno plačati." itemLabel="Račun je potrebno plačati." />
+							            <f:selectItem itemValue="Račun bo potrbno plačti preko direktne bremenitve." itemLabel="Račun bo potrbno plačti preko direktne bremenitve." />
+							            <f:selectItem itemValue="Račun je že plačan." itemLabel="Račun je že plačan." />
+							            <f:selectItem itemValue="Drugo" itemLabel="Drugo"/>				
+							         </h:selectOneMenu>	
+							         <h:message for="nacin" />
+								</div>
+								<div class="form-group">
+									<label>Koda namena: </label>
+									<h:selectOneMenu id="koda" class="form-control" value="#{upravljanjeERacuna.idKn}">
+   											<f:selectItems value="#{upravljanjeERacuna.kn}" var="k" itemLabel="#{k.koda}" itemValue="#{k.id}">
+   											</f:selectItems>
+   									</h:selectOneMenu>
+   									<h:message for="koda" />
+								</div>
+								<div class="form-group">
+									<label>Referenca: </label>
+									<h:inputText id="referenca" class="form-control" value="#{upravljanjeERacuna.eRacun.referenca}" required="true" requiredMessage="Prosim vnesite referenco." validatorMessage="Neustrezena oblika reference.">
+									</h:inputText>
+									<h:message for="referenca" />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">
+							</div>
+							
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Datum izdaje: </label>
+									<h:inputText id="datumI" class="form-control"
+										value="#{upravljanjeERacuna.datumI}" required="true"
+										requiredMessage="Prosim vnesite datum izdaje."
+										validatorMessage="Neustrezena oblika datuma izdaje.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:inputText>
+									<h:message for="datumI" />
+								</div>
+								<div class="form-group">
+									<label>Datum opravljene storitve/dobave blaga: </label><br/>
+									Od: <h:inputText id="od" class="form-control"
+										value="#{upravljanjeERacuna.datumOd}"
+										required="true"
+										requiredMessage="Prosim vnesite datum."
+										validatorMessage="Neustrezena oblika datuma.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:inputText>
+									<h:message for="od" /><br/>
+									Do: <h:inputText id="do" class="form-control"
+										value="#{upravljanjeERacuna.datumDo}"
+										validatorMessage="Neustrezena oblika datuma.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:inputText>
+									<h:message for="do" />
+								</div>
+								<div class="form-group">
+									<label>Datum zapadlosti: </label>
+									<h:inputText id="zapadlost" class="form-control"
+										value="#{upravljanjeERacuna.datumZap}"
+										required="true" requiredMessage="Prosim vnesite datum zapadlosti."
+										validatorMessage="Neustrezena oblika datuma zapadlosti.">
+										<f:convertDateTime pattern="dd.MM.yyyy" />
+									</h:inputText>
+									<h:message for="zapadlost" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="vpisGumb">
+								<h:commandButton class="b" value="Naprej" id="submit"
+									action="/Banka/ustvariPostavke.xhtml"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

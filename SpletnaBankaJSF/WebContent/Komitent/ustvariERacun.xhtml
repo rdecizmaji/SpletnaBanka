@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Ustvari e-racun</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Ustvari e-račun</h1>
+				<div class="row" style="margin-bottom: 5px;">
+				
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">Izdajatelj</div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Naziv: </label>
+									<h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.ime} #{upravljanjeKomitenta.izbrani.priimek} " disabled="true" />
+								</div>
+								<div class="form-group">
+									<label>Nalov: </label>
+									<h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.naslov} " disabled="true"/>
+								</div>
+								<div class="form-group">
+									<label>Poštna številka in kraj: </label>
+									<h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.postnaSt} #{upravljanjeKomitenta.izbrani.posta} " disabled="true" />
+								</div>
+								<div class="form-group">
+									<label>Davčna številka: </label>
+									<h:inputText class="form-control" value="#{upravljanjeKomitenta.izbrani.davcnaSt} " disabled="true"/>
+								</div>
+								<div class="form-group">
+									<label>IBAN: </label>
+									<h:selectOneMenu class="form-control" value="#{upravljanjeERacuna.idTRR}">
+   											<f:selectItems value="#{upravljanjeKomitenta.vrniTRR(upravljanjeKomitenta.izbrani)}" var="t" itemLabel="#{t.stevilkaTRR}" itemValue="#{t.id}"/>
+   									</h:selectOneMenu>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">
+							Prejemnik
+							</div>
+							
+							<div class="panel-body">
+								<div class="form-group naziv_forma">
+									<label>Naziv: </label>
+									<p:autoComplete id="naziv" value="#{upravljanjeKomitenta.prejemnik.ime}" completeMethod="#{upravljanjeKomitenta.dopolni}"
+                       				 var="k" itemLabel="#{upravljanjeKomitenta.nastaviPrejmnika(k)}" converter="objektConverter" itemValue="#{upravljanjeKomitenta.nastaviPrejmnika(k)}"  forceSelection="true" >
+                         				<p:ajax event="blur" update="naslov" />
+                         				<p:ajax event="blur" update="posta" />
+                         				<p:ajax event="blur" update="davcna" />
+                         				<p:ajax event="blur" update="iban" />
+                         			</p:autoComplete>
+								</div>
+								<div class="form-group">
+									<label>Naslov: </label>
+									<h:inputText id="naslov" class="form-control"
+										value="#{upravljanjeKomitenta.prejemnik.naslov}"
+										required="true"
+										requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova.">
+									</h:inputText>
+									<h:message for="naslov" />
+								</div>
+								<div class="form-group">
+									<label>Poštna številka in kraj: </label>
+									<h:inputText id="posta" class="form-control"
+										value="#{upravljanjeKomitenta.prejemnik.posta}"
+										required="true" requiredMessage="Prosim vnesite poštno številko in kraj."
+										validatorMessage="Neustrezena oblika pošte.">
+									</h:inputText>
+									<h:message for="posta" />
+								</div>
+								<div class="form-group">
+									<label>Davčna številka: </label>
+									<h:inputText id="davcna" class="form-control"
+										value="#{upravljanjeKomitenta.prejemnik.davcnaSt}"
+										required="true"
+										requiredMessage="Prosim vnesite davčno številko."
+										validatorMessage="Neustrezena oblika davčne številke.">
+										<f:convertNumber integerOnly="true" type="number" />
+									</h:inputText>
+									<h:message for="davcna" />
+								</div>
+								<div class="form-group">
+									<label>IBAN: </label>
+									<h:selectOneMenu id="iban" class="form-control" value="#{upravljanjeERacuna.trrPRJ}">
+   											<f:selectItems value="#{upravljanjeKomitenta.vrniTRR(upravljanjeKomitenta.prejemnik)}" var="t" itemLabel="#{t.stevilkaTRR}" itemValue="#{t.stevilkaTRR}"/>
+   									</h:selectOneMenu>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="vpisGumb">
+								<h:commandButton class="btn" value="Naprej" id="submit"
+									action="#{upravljanjeKomitenta.razveljavi()}"></h:commandButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
