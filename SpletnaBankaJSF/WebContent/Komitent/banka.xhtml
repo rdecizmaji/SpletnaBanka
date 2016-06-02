@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core">
+
+ <h:outputStylesheet library="css" name="bootstrap.min1.css"/>
+ <h:outputStylesheet library="css" name="bootstrap.css"/> 
+  <h:outputStylesheet library="css" name="custom-style.css"/>
+<head>
+<meta http-equiv="Content-Type" content="text/html"/>
+
+<title>Dash</title>
+</head>
+<h:body>
+ <ui:composition template="/resources/template.xhtml">
+ <ui:define name="content">
+<h1 class="display-1 hidden-xs-down">
+           Armaturna Plošča
+            </h1>
+<div class="row" style="margin-bottom:5px;">
+
+
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
+                                <div class="sm-st-info">
+                                    <span>200</span>
+                                    Opravljenih Transakcij
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
+                                <div class="sm-st-info">
+                                    <span>2</span>
+                                    Nova sporočila
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+                                <div class="sm-st-info">
+                                    <span>100,320</span>
+                                    Stanje na računu
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
+                                <div class="sm-st-info">
+                                   <span><h:outputText value="34"></h:outputText></span>
+                                    Vseh e-računov
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="panel">
+                              <div class="panel-heading">
+                                  Graf transakcij
+                            </div>
+                            <div class="panel-body">
+                          </div>
+                            </div>
+                            </div>
+                            </div>
+                  <div class="row">
+
+                        <div class="col-md-8">
+                            <div class="panel">
+                              <div class="panel-heading">
+                                  Stanje računov
+                            </div>
+                            <div class="panel-body table-responsive">
+                                <table class="table table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Opis</th>
+                                      <th>Prejemnik</th>
+                                      <!-- <th>Client</th> -->
+                                      <th>Izdaja</th>
+                                      <!-- <th>Price</th> -->
+                                      <th>Status</th>
+                                      <th>Znesek</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>Gradnja hiše</td>
+                                  <td>Jože Macuh</td>
+                                  <td>10/10/2014</td>
+                                  <td><span class="label label-danger">ni plačano</span></td>
+                                  <td><span class="badge badge-info">500€</span></td>
+                              </tr>
+                              <tr>
+                                  <td>2</td>
+                                  <td>Prevoz živali</td>
+                                  <td>Branko Kranjec</td>
+                                  <td>01/11/2014</td>
+                                  <td><span class="label label-success">plačano</span></td>
+                                  <td><span class="badge badge-success">35€</span></td>
+                              </tr>
+                              <tr>
+                                  <td>3</td>
+                                  <td>Popravilo avta</td>
+                                  <td>Karl Bedek</td>
+                                  <td>10/10/2014</td>
+                                  <td><span class="label label-danger">ni plačano</span></td>
+                                  <td><span class="badge badge-info">300€</span></td>
+                              </tr>
+                              <tr>
+                                  <td>4</td>
+                                  <td>Čiščenje oblačil</td>
+                                  <td>Breda Novak</td>
+                                  <td>01/11/2014</td>
+                                  <td><span class="label label-success">plačano</span></td>
+                                  <td><span class="badge badge-success">15€</span></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div><!--end col-6 -->
+            <div class="col-lg-4">
+                         <div class="panel">
+                              <div class="panel-heading">
+                                  Vpis 
+                              </div>
+                              <div class="panel-body">
+                                  <form role="form">
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail1">Email naslov</label>
+                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="exampleInputPassword1">Geslo</label>
+                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                      </div>
+                                      <h:commandButton class="btn btn-info" value="Vpisi se"></h:commandButton>
+                                  </form>
+                              </div>
+                          </div>
+                          </div>
+                          </div>                       
+	</ui:define>
+ </ui:composition>
+</h:body>
+</html>
