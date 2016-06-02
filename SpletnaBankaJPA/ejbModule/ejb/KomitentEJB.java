@@ -67,8 +67,7 @@ IBancnaKartica banKar;
 				String trr=tg.generirajIBAN(k.getDrzava());
 				t.setStevilkaTRR(trr);
 				t.setZaprt(false);
-				BigDecimal bd=new BigDecimal(0);
-				t.setStanje(bd);
+				t.setStanje(0);
 				t.setKomitent(k);
 				
 					//kreiranje kartice

@@ -20,7 +20,6 @@
 			<h:form>
 				<h1 class="display-1 hidden-xs-down">Pregled vseh
 					transakcijskih računov</h1>
-
 				<div class="row">
 					<div class="col-md-12">
 						<h:form>
@@ -57,6 +56,10 @@
 									<h:column>
 										<f:facet name="header">Stanje</f:facet>
 										<h:outputText value="#{trr.stanje}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Podrobno</f:facet>
+										<h:commandButton class="btn" value="Transakcije" action="transakcije"/>
 									</h:column>
 								</h:dataTable>
 							</div>

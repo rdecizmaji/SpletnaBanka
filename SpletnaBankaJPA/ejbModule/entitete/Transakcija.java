@@ -18,7 +18,7 @@ public class Transakcija implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String naziv;
-	private BigDecimal znesek;
+	private double znesek;
 	private Calendar datum;
 	private int stKartice;
 	private String sifraRacuna;
@@ -42,11 +42,11 @@ public class Transakcija implements Serializable {
 		this.naziv = naziv;
 	}
 
-	public BigDecimal getZnesek() {
+	public double getZnesek() {
 		return znesek;
 	}
 
-	public void setZnesek(BigDecimal znesek) {
+	public void setZnesek(double znesek) {
 		this.znesek = znesek;
 	}
 

@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import ejb.IKomitent;
 import ejb.ITipKartice;
+import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
@@ -22,6 +23,8 @@ public class UpravljanjeTransakcije {
 	ITipKartice tipkar;
 	@EJB
 	ITransakcijskiRacun trr;
+	@EJB
+	ITransakcija tran;
 	
 	private int idKn;
 	private Transakcija transakcija = new Transakcija();
@@ -32,19 +35,29 @@ public class UpravljanjeTransakcije {
 
 
 	public String shraniTransakcijo(){
+		//datum transakcije
+		datumT = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumT);
 		transakcija.setDatum(cal);
 		double znesekDouble = Double.parseDouble(znesek);
-		BigDecimal znesek = new BigDecimal(znesekDouble);
-		transakcija.setZnesek(znesek);
+		transakcija.setZnesek(znesekDouble);
+		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
+		transakcija.setSifraRacuna(transakcijskiRacunPlacnika.getStevilkaTRR());
+		//nastavljanje novega stanja
+		double novoStanje = transakcijskiRacunPlacnika.getStanje() - znesekDouble;
+		transakcijskiRacunPlacnika.setStanje(novoStanje);
+		novoStanje = transakcijskiRacunPrejemnika.getStanje() + znesekDouble;
+		transakcijskiRacunPrejemnika.setStanje(novoStanje);
 		
+		trr.edit(transakcijskiRacunPrejemnika);
+		trr.edit(transakcijskiRacunPlacnika);
+
 		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
 			System.out.println("Transakcija ni možna");
 		}
-		
 		
 		System.out.println("Prejemnik: " + transakcijskiRacunPrejemnika.getStevilkaTRR());
 		System.out.println("Placnik: " + transakcijskiRacunPlacnika.getStevilkaTRR());

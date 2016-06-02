@@ -26,7 +26,7 @@ public class TransakcijskiRacun implements Serializable{
 	private Calendar datumOdprtja;
 	private Calendar datumZaprtja;
 	private boolean zaprt;
-	private BigDecimal stanje;
+	private double stanje;
 	private Komitent komitent;
 	private List<Racun> racuni = new ArrayList<Racun>();
 	private List<ERacun> eracuni = new ArrayList<ERacun>();
@@ -75,11 +75,11 @@ public class TransakcijskiRacun implements Serializable{
 		this.zaprt = zaprt;
 	}
 
-	public BigDecimal getStanje() {
+	public double getStanje() {
 		return stanje;
 	}
 
-	public void setStanje(BigDecimal stanje) {
+	public void setStanje(double stanje) {
 		this.stanje = stanje;
 	}
 	
