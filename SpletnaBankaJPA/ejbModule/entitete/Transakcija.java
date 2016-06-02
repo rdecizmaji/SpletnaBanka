@@ -18,11 +18,16 @@ public class Transakcija implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String naziv;
-	private double znesek;
+	private BigDecimal znesek;
 	private Calendar datum;
-	private int stKartice;
-	private String sifraRacuna;
+	private int stKartice;//????
+	//private String sifraRacuna;//??TRR
+	private Racun racun;
+	private ERacun eRacun;
 	private TransakcijskiRacun idTran;
+	private String TRRprejemnika;//??
+	private String TRRplacnika;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,12 +47,12 @@ public class Transakcija implements Serializable {
 		this.naziv = naziv;
 	}
 
-	public double getZnesek() {
+	public BigDecimal getZnesek() {
 		return znesek;
 	}
 
-	public void setZnesek(double znesek) {
-		this.znesek = znesek;
+	public void setZnesek(BigDecimal db) {
+		this.znesek = db;
 	}
 
 	public Calendar getDatum() {
@@ -65,14 +70,6 @@ public class Transakcija implements Serializable {
 	public void setStKartice(int stKartice) {
 		this.stKartice = stKartice;
 	}
-
-	public String getSifraRacuna() {
-		return sifraRacuna;
-	}
-
-	public void setSifraRacuna(String sifraRacuna) {
-		this.sifraRacuna = sifraRacuna;
-	}
 	
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public TransakcijskiRacun getIdTran() {
@@ -81,5 +78,37 @@ public class Transakcija implements Serializable {
 
 	public void setIdTran(TransakcijskiRacun idTran) {
 		this.idTran = idTran;
+	}
+
+	public Racun getRacun() {
+		return racun;
+	}
+
+	public void setRacun(Racun racun) {
+		this.racun = racun;
+	}
+
+	public ERacun geteRacun() {
+		return eRacun;
+	}
+
+	public void seteRacun(ERacun eRacun) {
+		this.eRacun = eRacun;
+	}
+
+	public String getTRRprejemnika() {
+		return TRRprejemnika;
+	}
+
+	public void setTRRprejemnika(String tRRprejemnika) {
+		TRRprejemnika = tRRprejemnika;
+	}
+
+	public String getTRRplacnika() {
+		return TRRplacnika;
+	}
+
+	public void setTRRplacnika(String tRRplacnika) {
+		TRRplacnika = tRRplacnika;
 	}
 }

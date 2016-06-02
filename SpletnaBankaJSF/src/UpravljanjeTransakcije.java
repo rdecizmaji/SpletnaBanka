@@ -30,7 +30,7 @@ public class UpravljanjeTransakcije {
 	private Transakcija transakcija = new Transakcija();
 	private String TRRP;
 	private int TRR;
-	private String znesek;
+	private BigDecimal znesek;
 	private Date datumT;
 
 
@@ -40,16 +40,15 @@ public class UpravljanjeTransakcije {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumT);
 		transakcija.setDatum(cal);
-		double znesekDouble = Double.parseDouble(znesek);
-		transakcija.setZnesek(znesekDouble);
+		transakcija.setZnesek(znesek);
 		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
-		transakcija.setSifraRacuna(transakcijskiRacunPlacnika.getStevilkaTRR());
+		transakcija.setTRRplacnika(transakcijskiRacunPlacnika.getStevilkaTRR());
 		//nastavljanje novega stanja
-		double novoStanje = transakcijskiRacunPlacnika.getStanje() - znesekDouble;
+		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(znesek);
 		transakcijskiRacunPlacnika.setStanje(novoStanje);
-		novoStanje = transakcijskiRacunPrejemnika.getStanje() + znesekDouble;
+		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(znesek);
 		transakcijskiRacunPrejemnika.setStanje(novoStanje);
 		
 		trr.edit(transakcijskiRacunPrejemnika);
@@ -79,10 +78,10 @@ public class UpravljanjeTransakcije {
 	public void setIdKn(int idKn) {
 		this.idKn = idKn;
 	}
-	public String getZnesek() {
+	public BigDecimal getZnesek() {
 		return znesek;
 	}
-	public void setZnesek(String znesek) {
+	public void setZnesek(BigDecimal znesek) {
 		this.znesek = znesek;
 	}
 	public Transakcija getTransakcija() {
