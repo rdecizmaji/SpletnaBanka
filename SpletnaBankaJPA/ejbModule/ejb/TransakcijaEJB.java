@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entitete.Transakcija;
+import entitete.TransakcijskiRacun;
 
 @Stateless
 public class TransakcijaEJB implements ITransakcija {
@@ -17,6 +18,7 @@ public class TransakcijaEJB implements ITransakcija {
 	EntityManager em;
 	
 	Transakcija transakcija;
+	TransakcijskiRacun trr;
 	ArrayList<Transakcija> transakcije = new ArrayList<Transakcija>();
 	
 	@Override
@@ -49,6 +51,15 @@ public class TransakcijaEJB implements ITransakcija {
 		Query query = em.createQuery("SELECT t FROM Transakcija t");
 		transakcije = (ArrayList<Transakcija>) query.getResultList();
 		return transakcije;
+	}
+	
+	@Override
+	public TransakcijskiRacun vrniTrr(Transakcija t) {
+		transakcija = najdi(t);
+		Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr WHERE idTran_id=?");
+		query.setParameter(1, transakcija.getId());
+		trr = (TransakcijskiRacun) query.getResultList();
+		return trr;
 	}
 
 }

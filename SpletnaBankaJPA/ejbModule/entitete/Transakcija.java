@@ -19,6 +19,7 @@ public class Transakcija implements Serializable {
 	private int id;
 	private String naziv;
 	private BigDecimal znesek;
+	private BigDecimal trenutnoStanje;
 	private Calendar datum;
 	private int stKartice;//????
 	//private String sifraRacuna;//??TRR
@@ -101,5 +102,13 @@ public class Transakcija implements Serializable {
 
 	public void setTRRprejemnika(TransakcijskiRacun tRRprejemnika) {
 		TRRprejemnika = tRRprejemnika;
+	}
+
+	public BigDecimal getTrenutnoStanje() {
+		return trenutnoStanje;
+	}
+
+	public void setTrenutnoStanje(BigDecimal trenutnoStanje) {
+		this.trenutnoStanje = trenutnoStanje;
 	}
 }
