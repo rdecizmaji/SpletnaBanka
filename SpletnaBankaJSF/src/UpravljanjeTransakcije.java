@@ -51,11 +51,13 @@ public class UpravljanjeTransakcije {
 		if(vrstaNapake == 3) {
 	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Preglejte vpisane podatke in poskusite ponovno."));
 			}
+		if(vrstaNapake == 4) {
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Polog ni možen!", "Transakcijski raèun je zaprt/blokiran."));
+			}
 	}
 	public String shraniTransakcijo(){
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
-		
 		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
 			fatal(0);
 			System.out.println("IBAN NI PRAVI!");
@@ -71,13 +73,11 @@ public class UpravljanjeTransakcije {
 			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
 			return "nakazi";
 		}
-		if(transakcijskiRacunPlacnika.getStanje().subtract(znesek).doubleValue() <= -100) {
+		if(transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek()).doubleValue() <= -100) {
 			fatal(2);
 			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
 			return "nakazi";
 		}
-		
-		
 		//datum transakcije
 		try {
 		datumT = new Date();
@@ -87,20 +87,14 @@ public class UpravljanjeTransakcije {
 		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		transakcija.setTRRprejemnika(transakcijskiRacunPrejemnika);
 		transakcija.setIdTran(transakcijskiRacunPlacnika);
-		
 		//nastavljanje novega stanja
 		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek());
 		transakcijskiRacunPlacnika.setStanje(novoStanje);
 		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(transakcija.getZnesek());
 		transakcijskiRacunPrejemnika.setStanje(novoStanje);
-		
 		tran.shrani(transakcija);
 		trr.edit(transakcijskiRacunPrejemnika);
 		trr.edit(transakcijskiRacunPlacnika);
-
-		System.out.println("Prejemnik: " + transakcijskiRacunPrejemnika.getStevilkaTRR());
-		System.out.println("Placnik: " + transakcijskiRacunPlacnika.getStevilkaTRR());
-		
 		znesek = null;
 		TRRP = null;
 		transakcija = new Transakcija();
@@ -111,6 +105,26 @@ public class UpravljanjeTransakcije {
 			fatal(3);
 			return "nakazi";
 		}
+	}
+	public String pologDenarja() {
+		TransakcijskiRacun transakcijskiRacun = trr.najdi(TRR);
+		if(transakcijskiRacun.isZaprt() != true) {
+			fatal(4);
+			return "polog";
+		}
+		datumT = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(datumT);
+		transakcija.setDatum(cal);
+		transakcija.setNaziv("Polog denarja");
+		BigDecimal novoStanje = transakcijskiRacun.getStanje().add(transakcija.getZnesek());
+		transakcijskiRacun.setStanje(novoStanje);
+		transakcija.setIdTran(transakcijskiRacun);
+		
+		tran.shrani(transakcija);
+		trr.edit(transakcijskiRacun);
+		transakcija = new Transakcija();
+		return "pregledTransakcijskihRacunov";
 	}
 	
 	public String pretvori(Calendar c){

@@ -17,10 +17,98 @@
 <h:body>
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
-			<h:form>
-				<h1 class="display-1 hidden-xs-down">Dvigni - Položi</h1>
+		<h:form>
+			<h1 class="display-1 hidden-xs-down">Polog denarja</h1>
 				<div class="row" style="margin-bottom: 5px;">
-					<div class="col-lg-12">VSEBINA GRE TUKAJ!</div>
+    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naziv:</label>
+									<h:inputText id="naziv" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.ime} #{upravljanjeKomitenta.izbrani.priimek}" required="true"
+										requiredMessage="Prosim vnesite naziv."
+										validatorMessage="Neustrezena oblika naziva." disabled="true">
+									</h:inputText>
+									<h:message for="naziv" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Naslov:</label>
+									<h:inputText id="naslov" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.naslov}"
+										required="true" requiredMessage="Prosim vnesite naslov."
+										validatorMessage="Neustrezena oblika naslova." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="naslov" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Kraj:</label>
+									<h:inputText id="kraj" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.posta}" required="true"
+										requiredMessage="Prosim vnesite kraj."
+										validatorMessage="Neustrezena oblika kraja." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="kraj" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Poštna številka:</label>
+									<h:inputText id="postnastevilka" type="text" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.postnaSt}" required="true"
+										requiredMessage="Prosim vnesite poštno številko."
+										validatorMessage="Neustrezena oblika poštne številke." disabled="true">
+										<f:validateRegex pattern="^[0-9]*$" />
+									</h:inputText>
+									<h:message for="postnastevilka" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>Država: </label>
+									<h:inputText id="drzava" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.drzava}"
+										required="true" requiredMessage="Prosim vnesite državo."
+										validatorMessage="Neustrezena oblika države." disabled="true">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="drzava" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+							<div class="form-group">
+									<label>IBAN: </label>
+									<h:selectOneMenu id="iban" class="form-control" value="#{upravljanjeTransakcije.TRR}">
+   											<f:selectItems value="#{upravljanjeKomitenta.vrniTRR(upravljanjeKomitenta.izbrani)}" var="t" itemLabel="#{t.stevilkaTRR}" itemValue="#{t.id}"/>
+   									</h:selectOneMenu>
+   									<h:message for="iban" />
+								</div>
+								<div class="form-group">
+									<label><span id="obvezno">*</span>EUR:</label>
+									<h:inputText id="eur" class="form-control"
+										value="#{upravljanjeTransakcije.transakcija.znesek}" required="true"
+										requiredMessage="Prosim vnesite vrednost."
+										validatorMessage="Neustrezena oblika.">
+									</h:inputText>
+									<h:message for="eur" />
+								</div>
+						</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="vpisGumb">
+									<h:commandButton class="btn" value="Polog denarja" id="submit"
+										action="#{upravljanjeTransakcije.pologDenarja}"></h:commandButton>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</h:form>
 		</ui:define>
