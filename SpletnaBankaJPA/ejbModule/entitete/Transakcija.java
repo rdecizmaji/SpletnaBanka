@@ -70,7 +70,7 @@ public class Transakcija implements Serializable {
 		this.stKartice = stKartice;
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	public TransakcijskiRacun getIdTran() {
 		return idTran;
 	}
@@ -94,7 +94,7 @@ public class Transakcija implements Serializable {
 	public void seteRacun(ERacun eRacun) {
 		this.eRacun = eRacun;
 	}
-
+	@ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
 	public TransakcijskiRacun getTRRprejemnika() {
 		return TRRprejemnika;
 	}

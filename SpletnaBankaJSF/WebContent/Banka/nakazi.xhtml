@@ -114,7 +114,7 @@
 								<div class="form-group">
 									<label><span id="obvezno">*</span>EUR:</label>
 									<h:inputText id="eur" class="form-control"
-										value="#{upravljanjeTransakcije.znesek}" required="true"
+										value="#{upravljanjeTransakcije.transakcija.znesek}" required="true"
 										requiredMessage="Prosim vnesite vrednost."
 										validatorMessage="Neustrezena oblika.">
 									</h:inputText>
@@ -132,19 +132,19 @@
 								</div>
 								<div class="form-group">
 									<label>Namen transakcije:</label>
-									<h:inputText id="referencaP" class="form-control"
+									<h:inputText id="namen" class="form-control"
 										value="#{upravljanjeTransakcije.transakcija.naziv}"
 										required="false"
 										requiredMessage="Prosim vnesite vašo referenco."
 										validatorMessage="Neustrezena oblika reference.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
 									</h:inputText>
-									<h:message for="referencaP" />
+									<h:message for="namen" />
 								</div>
 								<div class="form-group">
-									<label><span id="obvezno">*</span>Naziv:</label>
+									<label><span id="obvezno">*</span>Ime:</label>
 									<h:inputText id="nazivP" type="text" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.ime}" required="true"
+										value="#{upravljanjeTransakcije.komitent.ime}" required="true"
 										requiredMessage="Prosim vnesite naziv."
 										validatorMessage="Neustrezena oblika naziva.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
@@ -152,9 +152,19 @@
 									<h:message for="nazivP" />
 								</div>
 								<div class="form-group">
+									<label><span id="obvezno">*</span>Priimek:</label>
+									<h:inputText id="priimekP" type="text" class="form-control"
+										value="#{upravljanjeTransakcije.komitent.priimek}" required="true"
+										requiredMessage="Prosim vnesite priimek."
+										validatorMessage="Neustrezena oblika priimka.">
+										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+									</h:inputText>
+									<h:message for="priimekP" />
+								</div>
+								<div class="form-group">
 									<label><span id="obvezno">*</span>Naslov:</label>
 									<h:inputText id="naslovP" type="text" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.naslov}"
+										value="#{upravljanjeTransakcije.komitent.naslov}"
 										required="true" requiredMessage="Prosim vnesite naslov."
 										validatorMessage="Neustrezena oblika naslova.">
 									</h:inputText>
@@ -163,7 +173,7 @@
 								<div class="form-group">
 									<label><span id="obvezno">*</span>Kraj:</label>
 									<h:inputText id="krajP" type="text" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.posta}" required="true"
+										value="#{upravljanjeTransakcije.komitent.posta}" required="true"
 										requiredMessage="Prosim vnesite kraj."
 										validatorMessage="Neustrezena oblika kraja.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
@@ -173,7 +183,7 @@
 								<div class="form-group">
 									<label><span id="obvezno">*</span>Poštna številka:</label>
 									<h:inputText id="postnast" type="number" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.postnaSt}" required="true"
+										value="#{upravljanjeTransakcije.komitent.postnaSt}" required="true"
 										requiredMessage="Prosim vnesite poštno številko."
 										validatorMessage="Neustrezena oblika poštne številke.">
 										<f:validateRegex pattern="^[1000-9999]*$" />
@@ -183,7 +193,7 @@
 								<div class="form-group">
 									<label><span id="obvezno">*</span>Država: </label>
 									<h:inputText id="drzavaP" class="form-control"
-										value="#{upravljanjeKomitenta.komitent.drzava}"
+										value="#{upravljanjeTransakcije.komitent.drzava}"
 										required="true" requiredMessage="Prosim vnesite državo."
 										validatorMessage="Neustrezena oblika države.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />

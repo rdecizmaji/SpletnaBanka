@@ -13,6 +13,7 @@ import ejb.IKomitent;
 import ejb.ITipKartice;
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
+import entitete.Komitent;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
 
@@ -31,50 +32,85 @@ public class UpravljanjeTransakcije {
 	
 	private int idKn;
 	private Transakcija transakcija = new Transakcija();
+	private Komitent komitent = new Komitent();
 	private String TRRP;
 	private int TRR;
 	private BigDecimal znesek;
 	private Date datumT;
 
-	public void fatal() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "System Error"));
-    }
+	public void fatal(int vrstaNapake) {
+		if(vrstaNapake == 0) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "IBAN raèun se ne ujema z nobenim drugim raèunom v NMB Banki."));
+		}
+		if(vrstaNapake == 1) {
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Prosimo poskusite ponovno kasneje."));
+			}
+		if(vrstaNapake == 2) {
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Na raèunu ni dovolj denarja."));
+			}
+		if(vrstaNapake == 3) {
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Preglejte vpisane podatke in poskusite ponovno."));
+			}
+	}
 	public String shraniTransakcijo(){
-		
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
+		
 		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
-			fatal();
-			System.out.println("Transakcija ni možna");
+			fatal(0);
+			System.out.println("IBAN NI PRAVI!");
+			return "nakazi";
 		}
+		if(transakcijskiRacunPlacnika.isZaprt() != true || transakcijskiRacunPlacnika.isZaprt() !=true ) {
+			fatal(1);
+			System.out.println("NEKDO IMA ZAPRT RACUN!");
+			return "nakazi";
+		}
+		if(transakcijskiRacunPlacnika.getStanje().doubleValue() <= -100) {
+			fatal(2);
+			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			return "nakazi";
+		}
+		if(transakcijskiRacunPlacnika.getStanje().subtract(znesek).doubleValue() <= -100) {
+			fatal(2);
+			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			return "nakazi";
+		}
+		
+		
 		//datum transakcije
+		try {
 		datumT = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumT);
 		transakcija.setDatum(cal);
-		transakcija.setZnesek(znesek);
 		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
 		transakcija.setTRRprejemnika(transakcijskiRacunPrejemnika);
 		transakcija.setIdTran(transakcijskiRacunPlacnika);
 		
 		//nastavljanje novega stanja
-		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(znesek);
+		BigDecimal novoStanje = transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek());
 		transakcijskiRacunPlacnika.setStanje(novoStanje);
-		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(znesek);
+		novoStanje = transakcijskiRacunPrejemnika.getStanje().add(transakcija.getZnesek());
 		transakcijskiRacunPrejemnika.setStanje(novoStanje);
 		
 		tran.shrani(transakcija);
 		trr.edit(transakcijskiRacunPrejemnika);
 		trr.edit(transakcijskiRacunPlacnika);
 
-		
-	
-		
 		System.out.println("Prejemnik: " + transakcijskiRacunPrejemnika.getStevilkaTRR());
 		System.out.println("Placnik: " + transakcijskiRacunPlacnika.getStevilkaTRR());
 		
-		
+		znesek = null;
+		TRRP = null;
+		transakcija = new Transakcija();
+		setKomitent(new Komitent());
 		return "/Banka/pregledTransakcijskihRacunov.xhtml";
+		}
+		catch (Exception e) {
+			fatal(3);
+			return "nakazi";
+		}
 	}
 	
 	public String pretvori(Calendar c){
@@ -121,6 +157,12 @@ public class UpravljanjeTransakcije {
 
 	public void setTRR(int tRR) {
 		TRR = tRR;
+	}
+	public Komitent getKomitent() {
+		return komitent;
+	}
+	public void setKomitent(Komitent komitent) {
+		this.komitent = komitent;
 	}
 	
 }

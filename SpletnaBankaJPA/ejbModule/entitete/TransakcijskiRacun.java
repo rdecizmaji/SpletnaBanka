@@ -92,7 +92,7 @@ public class TransakcijskiRacun implements Serializable{
 		this.racuni = racuni;
 	}
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	public List<Transakcija> getTransakcije() {
 		return transakcije;
 	}
