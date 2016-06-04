@@ -18,8 +18,8 @@ public class KodaNamena implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String koda;
-	private List<Racun> racuni= new ArrayList<Racun>();
-	private List<ERacun> eracuni= new ArrayList<ERacun>();
+	//private List<Racun> racuni= new ArrayList<Racun>();
+	//private List<ERacun> eracuni= new ArrayList<ERacun>();
 
 
 	@Id
@@ -40,7 +40,7 @@ public class KodaNamena implements Serializable {
 		this.koda = koda;
 	}
 	
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	/*@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<Racun> getRacuni() {
 		return racuni;
 	}
@@ -48,14 +48,14 @@ public class KodaNamena implements Serializable {
 	public void setRacuni(List<Racun> racuni) {
 		this.racuni = racuni;
 	}
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<ERacun> getEracuni() {
 		return eracuni;
 	}
 
 	public void setEracuni(List<ERacun> eracuni) {
 		this.eracuni = eracuni;
-	}
+	}*/
 	
 
 }

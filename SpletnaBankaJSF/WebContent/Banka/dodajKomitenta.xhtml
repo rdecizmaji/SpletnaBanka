@@ -31,6 +31,7 @@
 										requiredMessage="Prosim vnesite ime."
 										validatorMessage="Neustrezena oblika imena.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+										<f:validateLength minimum="2" />
 									</h:inputText>
 									<h:message for="ime" />
 								</div>
@@ -41,6 +42,7 @@
 										required="true" requiredMessage="Prosim vnesite priimek."
 										validatorMessage="Neustrezena oblika priimka.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+										<f:validateLength minimum="2" />
 									</h:inputText>
 									<h:message for="priimek" />
 								</div>
@@ -72,6 +74,7 @@
 										required="true" requiredMessage="Prosim vnesite naslov."
 										validatorMessage="Neustrezena oblika naslova.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z0-9-\s]*$" />
+										<f:validateLength minimum="2" />
 									</h:inputText>
 									<h:message for="naslov" />
 								</div>
@@ -89,6 +92,7 @@
 										requiredMessage="Prosim vnesite pošto."
 										validatorMessage="Neustrezena oblika pošte.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+										<f:validateLength minimum="2" />
 									</h:inputText>
 									<h:message for="posta" />
 								</div>
@@ -100,6 +104,7 @@
 										requiredMessage="Prosim vnesite poštno številko."
 										validatorMessage="Neustrezena oblika poštne številke.">
 										<f:convertNumber integerOnly="true" type="number" />
+										<f:validateLength minimum="4" maximum="5" />
 									</h:inputText>
 									<h:message for="postnaSt" />
 								</div>
@@ -110,6 +115,7 @@
 										required="true" requiredMessage="Prosim vnesite državo."
 										validatorMessage="Neustrezena oblika države.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+										<f:validateLength minimum="3" />
 									</h:inputText>
 									<h:message for="drzava" />
 								</div>
@@ -120,6 +126,7 @@
 										required="true"
 										requiredMessage="Prosim vnesite davčno številko."
 										validatorMessage="Neustrezena oblika davčne številke.">
+										<f:validateLength minimum="8" maximum="8" />
 									</h:inputText>
 									<h:message for="davcna" />
 								</div>
@@ -129,6 +136,7 @@
 										value="#{upravljanjeKomitenta.komitent.emso}" required="true"
 										requiredMessage="Prosim vnesite EMŠO."
 										validatorMessage="Neustrezena oblika EMŠO-ja.">
+										<f:validateLength minimum="13" maximum="13" />
 									</h:inputText>
 									<h:message for="emso" />
 								</div>

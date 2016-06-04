@@ -28,6 +28,7 @@ public class ERacunEJB implements IERacun{
 			} else {
 				manager.persist(r);
 			}
+		System.out.println("Raèun shranjen!");
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import entitete.Racun;
 public interface IKodaNamena {
 
 	void shrani(KodaNamena kn);
+	void vnesi(KodaNamena kn);
 	void izbrisi(KodaNamena kn);
 	void edit(KodaNamena kn);
 	KodaNamena najdi(KodaNamena kn);

@@ -29,6 +29,7 @@
 									<label>Številka računa: </label>
 									<h:inputText id="stevilka" class="form-control" value="#{upravljanjeERacuna.eRacun.stevilkaRacuna}" required="true" requiredMessage="Prosim vnesite številko računa." validatorMessage="Neustrezena oblika številke računa.">
 										<f:convertNumber integerOnly="false" type="number" />
+										<f:validateLength minimum="4" maximum="10" />
 									</h:inputText>
 								<h:message for="stevilka" />
 								</div>
@@ -36,6 +37,7 @@
 									<label>Kraj izdaje: </label>
 									<h:inputText id="kraj" class="form-control" value="#{upravljanjeERacuna.eRacun.krajIzdaje}" required="true" requiredMessage="Prosim vnesite kraj izdaje." validatorMessage="Neustrezena oblika kraja izdaje.">
 										<f:validateRegex pattern="^[A-ZĐđŽžĆćČčŠša-z\s]*$" />
+										<f:validateLength minimum="2" />
 									</h:inputText>
 									<h:message for="kraj" />
 								</div>
@@ -60,6 +62,7 @@
 								<div class="form-group">
 									<label>Referenca: </label>
 									<h:inputText id="referenca" class="form-control" value="#{upravljanjeERacuna.eRacun.referenca}" required="true" requiredMessage="Prosim vnesite referenco." validatorMessage="Neustrezena oblika reference.">
+										<f:validateLength minimum="5" />
 									</h:inputText>
 									<h:message for="referenca" />
 								</div>
@@ -116,8 +119,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="vpisGumb">
-								<h:commandButton class="b" value="Naprej" id="submit"
-									action="/Banka/ustvariPostavke.xhtml"></h:commandButton>
+								<h:commandButton class="btn" value="Nazaj"
+									action="/Banka/ustvariERacun.xhtml"></h:commandButton>
+								<h:commandButton class="btn" value="Naprej" id="submit"
+									action="#{upravljanjeKomitenta.razveljavi()}"></h:commandButton>
 							</div>
 						</div>
 					</div>

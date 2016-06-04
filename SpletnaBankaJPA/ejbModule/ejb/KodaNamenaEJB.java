@@ -1,6 +1,7 @@
 package ejb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -8,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import entitete.KodaNamena;
+import entitete.Postavka;
 import entitete.Racun;
+import entitete.TransakcijskiRacun;
 
 @Stateless
 public class KodaNamenaEJB implements IKodaNamena {
@@ -22,7 +25,12 @@ public class KodaNamenaEJB implements IKodaNamena {
 	
 	@Override
 	public void shrani(KodaNamena kn) {
-		em.persist(kn);
+		KodaNamena k= em.find(KodaNamena.class, kn.getId());
+		if (k != null) {
+			em.merge(k);
+			} else {
+				em.persist(kn);
+			}
 		System.out.println("Koda namena shranjena.");
 	}
 
@@ -61,6 +69,18 @@ public class KodaNamenaEJB implements IKodaNamena {
 		Query query = em.createQuery("SELECT kn.racuni FROM KodaNamena kn");
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
+	}
+
+	@Override
+	public void vnesi(KodaNamena kn) {
+		List<KodaNamena> kode=new ArrayList<KodaNamena>();
+		Query query = em.createQuery("SELECT k FROM KodaNamena k WHERE k.koda=?");
+		query.setParameter(1, kn.getKoda());
+		kode = (ArrayList<KodaNamena>) query.getResultList();
+		if(kode.size()<1){
+			em.persist(kn);
+		}
+		
 	}
 
 }

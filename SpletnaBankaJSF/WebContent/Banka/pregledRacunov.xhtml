@@ -18,9 +18,42 @@
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<h1 class="display-1 hidden-xs-down">Pregled plačanih in neplačanih računov</h1>
+				<h1 class="display-1 hidden-xs-down">Pregled izdanih e-Računov</h1>
 				<div class="row" style="margin-bottom: 5px;">
-					<div class="col-lg-12">VSEBINA GRE TUKAJ!</div>
+					<div class="col-lg-12">
+						<div class="panel">
+                            <div class="panel-body table-responsive">
+				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
+								   <h:column>
+								      <f:facet name="header">TRR Prejemnika</f:facet>
+								      <h:outputText value="#{r.TRRprejmnika}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Datum izdaje</f:facet>
+								      <h:outputText value="#{upravljanjeKomitenta.pretvori(r.datumIzdaje)}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Številka računa</f:facet>
+								      <h:outputText value="#{r.stevilkaRacuna}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Kraj izdaje</f:facet>
+								      <h:outputText value="#{r.krajIzdaje}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Plačan</f:facet>
+								      <h:outputText value="#{r.placan}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Podrobno</f:facet>
+								      <h:form>
+			                              <h:commandButton class="btn" value="Podrobno" />
+			                          </h:form>  
+								   </h:column>
+							   </h:dataTable>
+                  			</div>
+              			</div>
+					</div>
 				</div>
 			</h:form>
 		</ui:define>

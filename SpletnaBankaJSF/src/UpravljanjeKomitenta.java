@@ -10,10 +10,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import dodatniRazredi.TrrGenerator;
+import ejb.IKodaNamena;
 import ejb.IKomitent;
 import ejb.ITipKartice;
 import ejb.ITransakcijskiRacun;
 import entitete.BancnaKartica;
+import entitete.KodaNamena;
 import entitete.Komitent;
 import entitete.TipKartice;
 import entitete.Transakcija;
@@ -28,6 +30,8 @@ public class UpravljanjeKomitenta {
 	ITipKartice tipkar;
 	@EJB
 	ITransakcijskiRacun trr;
+	@EJB
+	IKodaNamena kn;
 	
 	private Komitent komitent=new Komitent();
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
@@ -240,6 +244,15 @@ public class UpravljanjeKomitenta {
    }
    public String razveljavi(){
 	   prejemnik=new Komitent();
-	   return "/Banka/ustvariERacun2";
+	   return "/Banka/ustvariPostavke.xhtml";
+   }
+   public  String vnesi(){
+	   String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
+	   for(int i=0; i<kode.length; i++){
+		   KodaNamena k=new KodaNamena();
+		   k.setKoda(kode[i]);
+		   kn.vnesi(k);
+	   }
+	   return "/Banka/ustvariERacun";
    }
 }

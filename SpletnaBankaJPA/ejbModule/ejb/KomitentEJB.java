@@ -131,8 +131,13 @@ IBancnaKartica banKar;
 
 	@Override
 	public Komitent najdi(Komitent k) {
-		Komitent komitent=manager.find(Komitent.class, k.getId());
-		return komitent;
+		if(k!=null){
+			Komitent komitent=manager.find(Komitent.class, k.getId());
+			return komitent;
+		}
+		else{
+			return null;
+		}
 	}
 	@Override
 	public List<Komitent> vrniVse() {

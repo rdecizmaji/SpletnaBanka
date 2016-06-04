@@ -25,10 +25,12 @@ public class ERacun implements Serializable {
 	private Calendar datumOd;
 	private Calendar datumDo;
 	private Calendar datumZapadlosti;
-	private TransakcijskiRacun idTr;
-	private KodaNamena idKn;
+	private long idTr;
+	private long idKn;
+	//private TransakcijskiRacun idTr;
+	//private KodaNamena idKn;
 	private String TRRprejmnika;
-	private List<Postavka> postavke;
+	//private List<Postavka> postavke;
 	private boolean izbrisan=false;
 	private boolean placan=false;
 	@Id
@@ -87,7 +89,7 @@ public class ERacun implements Serializable {
 	public void setDatumZapadlosti(Calendar datumZapadlosti) {
 		this.datumZapadlosti = datumZapadlosti;
 	}
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	/*@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public TransakcijskiRacun getIdTr() {
 		return idTr;
 	}
@@ -100,7 +102,7 @@ public class ERacun implements Serializable {
 	}
 	public void setIdKn(KodaNamena idKn) {
 		this.idKn = idKn;
-	}
+	}*/
 	public boolean isIzbrisan() {
 		return izbrisan;
 	}
@@ -119,12 +121,24 @@ public class ERacun implements Serializable {
 	public void setTRRprejmnika(String tRRprejmnika) {
 		TRRprejmnika = tRRprejmnika;
 	}
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	/*@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	public List<Postavka> getPostavke() {
 		return postavke;
 	}
 	public void setPostavke(List<Postavka> postavke) {
 		this.postavke = postavke;
+	}*/
+	public long getIdTr() {
+		return idTr;
+	}
+	public void setIdTr(long idTr) {
+		this.idTr = idTr;
+	}
+	public long getIdKn() {
+		return idKn;
+	}
+	public void setIdKn(long idKn) {
+		this.idKn = idKn;
 	}
 	
 	

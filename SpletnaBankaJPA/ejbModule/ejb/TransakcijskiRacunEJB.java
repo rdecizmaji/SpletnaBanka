@@ -2,7 +2,6 @@ package ejb;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,6 +10,9 @@ import javax.persistence.Query;
 
 import entitete.BancnaKartica;
 import entitete.Komitent;
+
+import entitete.Postavka;
+
 import entitete.Racun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
@@ -29,7 +31,12 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 
 	@Override
 	public void shrani(TransakcijskiRacun trr) {
-		em.persist(trr);
+		TransakcijskiRacun t= em.find(TransakcijskiRacun.class, trr.getId());
+		if (t != null) {
+			em.merge(t);
+			} else {
+				em.persist(trr);
+			}
 		System.out.println("Transakcijski racun shranjen.");
 	}
 
