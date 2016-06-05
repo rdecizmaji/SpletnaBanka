@@ -59,7 +59,8 @@ public class UpravljanjeKomitenta {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumR);
 		komitent.setDatum(cal);
-		
+		//Komitenta dodamo kot userja
+		komitent.setVloga("user");
 		//dodajanje TRR
 		
 		//klicana metoda za vnos

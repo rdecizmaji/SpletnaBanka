@@ -33,6 +33,7 @@ public class Komitent implements Serializable{
 	private String geslo;
 	private boolean izbrisan;
 	private List<TransakcijskiRacun> transakcijskiRacuni = new ArrayList<TransakcijskiRacun>();
+	private String vloga;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -175,5 +176,13 @@ public class Komitent implements Serializable{
 	public String zdruzi(String ime, String priimek){
 		
 		return ime +" "+priimek;
+	}
+
+	public String getVloga() {
+		return vloga;
+	}
+
+	public void setVloga(String vloga) {
+		this.vloga = vloga;
 	}
 }

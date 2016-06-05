@@ -44,14 +44,14 @@ xmlns:f="http://java.sun.com/jsf/core">
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="" method="post" class="login-form">
+			                    <form role="form" action="j_security_check" method="post" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Uporabniško ime:</label>
-			                        	<input type="text" name="form-username" placeholder="Uporabniško ime" class="form-username form-control" id="form-username"/>
+			                        	<input type="text" name="j_username" placeholder="Uporabniško ime" class="form-username form-control" id="form-username"/>
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Geslo</label>
-			                        	<input type="password" name="form-password" placeholder="Geslo" class="form-password form-control" id="form-password"/>
+			                        	<input type="password" name="j_password" placeholder="Geslo" class="form-password form-control" id="form-password"/>
 			                        </div>
 			                        <button type="submit" class="btn">Vpis!</button>
 			                    </form>
