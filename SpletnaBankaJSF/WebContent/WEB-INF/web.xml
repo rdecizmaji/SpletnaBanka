@@ -16,13 +16,20 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
-
+	<error-page>
+    <error-code>404</error-code>
+    	<location>/faces/404.xhml</location>
+	</error-page>
+	<error-page>
+    <error-code>403</error-code>
+    	<location>/faces/404.xhml</location>
+	</error-page>
 	<!-- DODANO -->
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
 			<form-login-page>/faces/prijava.xhtml</form-login-page> 
-			<form-error-page>/faces/index.xhtml</form-error-page>
+			<form-error-page>/faces/prijava.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-role>
