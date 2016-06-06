@@ -139,6 +139,19 @@ IBancnaKartica banKar;
 			return null;
 		}
 	}
+	
+	@Override
+	public Komitent getSession(String username, String password) {
+		if(username!=null){
+			Query query = manager.createQuery("SELECT k FROM Komitent k WHERE uporabniskoime='"+username+"'");
+			Komitent k = (Komitent)query.getSingleResult();
+			return k;
+		}
+		else{
+			return null;
+		}
+	}
+	
 	@Override
 	public List<Komitent> vrniVse() {
 		List<Komitent> list=new ArrayList<Komitent>();

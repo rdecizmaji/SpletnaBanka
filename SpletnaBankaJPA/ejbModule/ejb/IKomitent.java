@@ -14,4 +14,5 @@ public interface IKomitent {
 	Komitent najdi(Komitent k);
 	List<Komitent> vrniVse();
 	List<TransakcijskiRacun> vrniTRRje(Komitent izbrani);
+	Komitent getSession(String username, String password);
 }

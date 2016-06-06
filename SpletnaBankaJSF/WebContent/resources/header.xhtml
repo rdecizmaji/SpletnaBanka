@@ -17,9 +17,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a>Prijavljen kot Joško Pokraculja</a></li>
-                        <li><a>Odjava</a></li>
-
+                    <h:form>
+                        <li><a>Prijavljen kot: <h:outputText value="#{user.ime} #{user.priimek}" /></a></li>
+                        <li><a><h:commandButton value="Odjava" action="#{auth.logout}" /></a></li>
+					</h:form>
                     </ul>
                 </div>
             </div>
