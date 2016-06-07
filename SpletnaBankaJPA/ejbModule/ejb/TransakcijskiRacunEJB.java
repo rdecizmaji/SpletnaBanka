@@ -78,9 +78,16 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 	@Override
 	public List<Transakcija> vrniTransakcije(TransakcijskiRacun izbraniTrr) {
 		TransakcijskiRacun izb = najdi(izbraniTrr);
-		Query query = em.createQuery("SELECT tr FROM Transakcija tr WHERE idTran_id=?");
+		Query query = em.createQuery("SELECT tr FROM Transakcija tr WHERE idTran_id=? OR TRRprejemnika_id=? ");
 		query.setParameter(1, izb.getId());
+		query.setParameter(2, izb.getId());
 		transakcije = (ArrayList<Transakcija>) query.getResultList();
+//		Query query2 = em.createQuery("SELECT tr FROM Transakcija tr WHERE TRRprejemnika_id=?");
+//		query2.setParameter(1, izb.getId());
+//		ArrayList<Transakcija> transakcije2 = (ArrayList<Transakcija>) query2.getResultList();
+//		for (Transakcija t: transakcije2){
+//			transakcije.add(t);
+//		}
 		return transakcije;
 	}
 	
