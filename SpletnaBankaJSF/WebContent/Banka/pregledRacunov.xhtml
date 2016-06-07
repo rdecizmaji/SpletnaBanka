@@ -23,6 +23,9 @@
 					<div class="col-lg-12">
 						<div class="panel">
                             <div class="panel-body table-responsive">
+                            <h:commandButton class="btn" value="Vsi" action="#{upravljanjeERacuna.setDolocitelj(0)}"/> 
+                            <h:commandButton class="btn" value="Plačani" action="#{upravljanjeERacuna.setDolocitelj(1)}"/> 
+                            <h:commandButton class="btn" value="Neplačani" action="#{upravljanjeERacuna.setDolocitelj(2)}"/> 
 				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
 								   <h:column>
 								      <f:facet name="header">TRR Prejemnika</f:facet>
@@ -41,13 +44,17 @@
 								      <h:outputText value="#{r.krajIzdaje}" />  
 								   </h:column>
 								   <h:column>
+								      <f:facet name="header">Znesek</f:facet>
+								      <h:outputText value="#{upravljanjeERacuna.vrniZnesek(r.id)}€" />   
+								   </h:column>
+								   <h:column>
 								      <f:facet name="header">Plačan</f:facet>
-								      <h:outputText value="#{r.placan}" />  
+								      <h:outputText value="#{upravljanjeERacuna.pretvoriString(r.placan)}" />  
 								   </h:column>
 								   <h:column>
 								      <f:facet name="header">Podrobno</f:facet>
 								      <h:form>
-			                              <h:commandButton class="btn" value="Podrobno" />
+			                              <h:commandButton class="btn" value="Podrobno" action="#{upravljanjeERacuna.dolociRacun(r.id)}"/>
 			                          </h:form>  
 								   </h:column>
 							   </h:dataTable>

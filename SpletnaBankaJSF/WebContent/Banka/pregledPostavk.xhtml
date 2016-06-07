@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Dash</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Pregled postavk</h1>
+				<div class="row" style="margin-bottom: 5px;">
+					<div class="col-lg-12">
+						<div class="panel">
+                            <div class="panel-body table-responsive">
+				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVsePostavke()}" var="p">
+								   <h:column>
+								      <f:facet name="header">Storitev/Izdelek</f:facet>
+								      <h:outputText value="#{p.storitev}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Cena na enoto</f:facet>
+								      <h:outputText value="#{p.cena_na_enoto}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Enota mere</f:facet>
+								      <h:outputText value="#{p.enota_mere}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Količina</f:facet>
+								      <h:outputText value="#{p.kolicina}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Popust</f:facet>
+								      <h:outputText value="#{p.popust}%" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">DDV</f:facet>
+								      <h:outputText value="#{p.ddv}%" />  
+								   </h:column>
+								    <h:column>
+								      <f:facet name="header">Vrednost z DDV</f:facet>
+								      <h:outputText value="#{p.vrednostZddv}€" />  
+								   </h:column>
+							   </h:dataTable>
+							   <h:commandButton class="btn" value="Nazaj" action="/Banka/pregledRacunov.xhtml"/>
+                  			</div>
+              			</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -130,9 +130,13 @@ public class UpravljanjeKomitenta {
 	
 	//OSTALE FUNKCIJE 
 		public String pretvori(Calendar c){
-			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-			String preoblikovan = oblika.format(c.getTime());
-			return preoblikovan;
+			if(c!=null){
+				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+				String preoblikovan = oblika.format(c.getTime());
+				return preoblikovan;}
+			else{
+				return null;
+			}
 		}
 	
 	//GETTI SETTI

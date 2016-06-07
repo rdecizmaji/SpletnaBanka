@@ -50,6 +50,7 @@ IBancnaKartica banKar;
 			} else {
 				
 				k.setIzbrisan(false);
+				k.setVloga("user");
 				//datum vnosa komitenta
 				Calendar danasnjiDat = Calendar.getInstance();
 				k.setDatumVnosa(danasnjiDat);
@@ -155,7 +156,8 @@ IBancnaKartica banKar;
 	@Override
 	public List<Komitent> vrniVse() {
 		List<Komitent> list=new ArrayList<Komitent>();
-		Query query = manager.createQuery("SELECT k FROM Komitent k");
+		Query query = manager.createQuery("SELECT k FROM Komitent k WHERE k.vloga=?");
+		query.setParameter(1, "user");
 		list = (ArrayList<Komitent>)query.getResultList();
 		return list;
 	}

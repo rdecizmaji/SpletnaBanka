@@ -47,4 +47,13 @@ public class PostavkaEJB implements IPostavka{
 		return list;
 	}
 
+	@Override
+	public List<Postavka> vrniZneske(long id) {
+		List<Postavka> list=new ArrayList<Postavka>();
+		Query query = manager.createQuery("SELECT p FROM Postavka p WHERE p.idER=?");
+		query.setParameter(1, id);
+		list = (ArrayList<Postavka>)query.getResultList();
+		return list;
+	}
+
 }

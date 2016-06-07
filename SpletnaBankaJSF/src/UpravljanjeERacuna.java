@@ -45,11 +45,30 @@ public class UpravljanjeERacuna {
 	private Date datumZap;
 	private int idTRR;
 	private String trrPRJ;
+	private long idRac;
+	private int dolocitelj=0;
 	
 	private BigDecimal skupenZnesekBrez=new BigDecimal("0");
 	private BigDecimal skupenZnesek=new BigDecimal("0");
 	private BigDecimal popusti=new BigDecimal("0");
 	private BigDecimal DDV=new BigDecimal("0");
+
+	
+	public int getDolocitelj() {
+		return dolocitelj;
+	}
+
+	public void setDolocitelj(int dlocitelj) {
+		this.dolocitelj = dlocitelj;
+	}
+
+	public long getIdRac() {
+		return idRac;
+	}
+
+	public void setIdRac(long idRac) {
+		this.idRac = idRac;
+	}
 
 	public List<KodaNamena> getKn() {
 		kn=koda.vrniVse();
@@ -174,6 +193,14 @@ public class UpravljanjeERacuna {
 		String preoblikovan = oblika.format(c.getTime());
 		return preoblikovan;
 	}
+	public String pretvoriString(boolean placan){
+		if(placan==false){
+			return "Ne";
+		}
+		else{
+			return "Da";
+		}
+	}
 
 	public int getIdKn() {
 		return idKn;
@@ -270,10 +297,33 @@ public class UpravljanjeERacuna {
 		}
 		
 	}
+	public String dolociRacun(int id){
+		idRac=id;
+		return "/Banka/pregledPostavk.xhtml";
+	}
+	
+	public List<Postavka> vrniVsePostavke(){
+		List<Postavka> list=post.vrniZneske(idRac);
+		return list;
+	}
+	
 	public List<ERacun> vrniVse(){
+		if(dolocitelj==1){
+			return eRac.vrniVsePlacane();
+		}
+		else if(dolocitelj==2){
+			return eRac.vrniVseNeplacane();
+		}
 		return eRac.vrniVse();
 	}
 	
-	
+	public String vrniZnesek(int id){ 
+		List<Postavka> list=post.vrniZneske(id);
+		BigDecimal znesek=new BigDecimal("0");
+		for(int i=0; i<list.size(); i++){
+			znesek=znesek.add(list.get(i).getVrednostZddv());
+		}
+		return znesek.toString();
+	}
 }
  

@@ -11,5 +11,6 @@ public interface IPostavka {
 	void izbrisi(Postavka p);
 	Postavka najdi(Postavka p);
 	
+	List<Postavka> vrniZneske(long id);
 	List<Postavka> vrniVse();
 }
