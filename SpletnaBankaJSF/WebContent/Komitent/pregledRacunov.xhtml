@@ -23,9 +23,11 @@
 					<div class="col-lg-12">
 						<div class="panel">
                             <div class="panel-body table-responsive">
+                            <div class="gubmi">
                             <h:commandButton class="btn" value="Vsi" action="#{upravljanjeERacuna.setDolocitelj(0)}"/> 
                             <h:commandButton class="btn" value="Plačani" action="#{upravljanjeERacuna.setDolocitelj(1)}"/> 
                             <h:commandButton class="btn" value="Neplačani" action="#{upravljanjeERacuna.setDolocitelj(2)}"/> 
+                            </div>
 				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
 								   <h:column>
 								      <f:facet name="header">TRR Prejemnika</f:facet>
