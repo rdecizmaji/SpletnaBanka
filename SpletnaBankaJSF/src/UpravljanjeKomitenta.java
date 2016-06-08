@@ -257,10 +257,8 @@ public class UpravljanjeKomitenta {
 	}
 	public String razveljavi(){
 		prejemnik=new Komitent();
-		if(izbrani.getVloga() == "admin")
 		return "/Banka/ustvariPostavke.xhtml";
-		else 
-		return "/Komitent/ustvariPostavke.xhtml";
+		
 	}
 	public String nazaj() {
 		if(izbrani.getVloga() == "admin") {
@@ -277,10 +275,6 @@ public class UpravljanjeKomitenta {
 	public void setRacuni(List<Racun> racuni) {
 		this.racuni = racuni;
 	}
-   public String razveljavi1(){
-	   prejemnik=new Komitent();
-	   return "/Banka/ustvariPostavke.xhtml";
-   }
    public  String vnesi(Komitent koma){
 	   String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
 	   for(int i=0; i<kode.length; i++){
@@ -288,11 +282,7 @@ public class UpravljanjeKomitenta {
 		   k.setKoda(kode[i]);
 		   kn.vnesi(k);
 	   }
-		if(koma.getVloga() == "admin") {
-			return "/Banka/ustvariERacun";
-		}
-		else {
-			return "/Komitent/ustvariERacun";
-		}
+		
+	return "/Banka/ustvariERacun";
    }
 }

@@ -248,6 +248,17 @@ text-transform: uppercase;
 	margin:10px!important;
 }
 .gubmi input{
-	margin:5px;
-	
+	margin:5px;	
+}
+.ui-growl {
+	top:60px;
+}
+.tabel input {
+	width:95%;
+}
+.tabel select {
+	width:95%;
+}
+#tabela td {
+	padding:5px;
 }
