@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entitete.Komitent;
 import entitete.Racun;
 import entitete.TransakcijskiRacun;
 
@@ -83,5 +84,12 @@ public class RacunEJB implements IRacun {
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
 	}
-	
+
+	@Override
+	public ArrayList<Racun> vrniRacuneKomitenta(Komitent k) {
+		Query query = em.createQuery("SELECT r FROM Racun r WHERE idKn_id=?");
+		query.setParameter(1, k.getId());
+		racuni = (ArrayList<Racun>) query.getResultList();
+		return racuni;
+	}	
 }

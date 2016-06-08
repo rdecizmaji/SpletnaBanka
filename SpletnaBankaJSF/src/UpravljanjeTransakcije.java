@@ -65,7 +65,7 @@ public class UpravljanjeTransakcije {
 			System.out.println("IBAN NI PRAVI!");
 			return "nakazi";
 		}
-		if(transakcijskiRacunPlacnika.isZaprt() != true || transakcijskiRacunPlacnika.isZaprt() !=true ) {
+		if(transakcijskiRacunPlacnika.isZaprt() != false || transakcijskiRacunPlacnika.isZaprt() !=false ) {
 			fatal(1);
 			System.out.println("NEKDO IMA ZAPRT RACUN!");
 			return "nakazi";

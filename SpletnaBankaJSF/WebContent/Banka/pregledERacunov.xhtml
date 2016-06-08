@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Dash</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateBanka.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Pregled izdanih e-Računov</h1>
+				<div class="row" style="margin-bottom: 5px;">
+					<div class="col-lg-12">
+						<div class="panel">
+                            <div class="panel-body table-responsive">
+                            <h:commandButton class="btn" value="Vsi" action="#{upravljanjeERacuna.setDolocitelj(0)}"/> 
+                            <h:commandButton class="btn" value="Plačani" action="#{upravljanjeERacuna.setDolocitelj(1)}"/> 
+                            <h:commandButton class="btn" value="Neplačani" action="#{upravljanjeERacuna.setDolocitelj(2)}"/> 
+				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
+								   <h:column>
+								      <f:facet name="header">TRR Prejemnika</f:facet>
+								      <h:outputText value="#{r.TRRprejmnika}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Datum izdaje</f:facet>
+								      <h:outputText value="#{upravljanjeKomitenta.pretvori(r.datumIzdaje)}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Številka računa</f:facet>
+								      <h:outputText value="#{r.stevilkaRacuna}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Kraj izdaje</f:facet>
+								      <h:outputText value="#{r.krajIzdaje}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Znesek</f:facet>
+								      <h:outputText value="#{upravljanjeERacuna.vrniZnesek(r.id)}€" />   
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Plačan</f:facet>
+								      <h:outputText value="#{upravljanjeERacuna.pretvoriString(r.placan)}" />  
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Podrobno</f:facet>
+								      <h:form>
+			                              <h:commandButton class="btn" value="Podrobno" action="#{upravljanjeERacuna.dolociRacun(r.id)}"/>
+			                          </h:form>  
+								   </h:column>
+							   </h:dataTable>
+                  			</div>
+              			</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
