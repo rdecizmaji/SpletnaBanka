@@ -302,12 +302,12 @@ public class UpravljanjeERacuna {
 	}
 	public String dolociRacun(int id){
 		idRac=id;
-		System.out.println("doloci");
 		if(UpravljanjeKomitenta.glavni!=null){
 			return "/Banka/pregledPostavk.xhtml";
 		}
-		else
+		else{
 			return "/Komitent/pregledPostavk.xhtml";
+		}
 	}
 	
 	public List<Postavka> vrniVsePostavke(){

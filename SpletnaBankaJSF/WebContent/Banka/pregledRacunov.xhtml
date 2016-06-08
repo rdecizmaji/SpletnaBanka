@@ -18,7 +18,7 @@
 	<ui:composition template="/resources/templateBanka.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<h1 class="display-1 hidden-xs-down">Pregled vseh računov</h1>
+				<h1 class="display-1 hidden-xs-down">Pregled e-Računov</h1>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel">
@@ -55,9 +55,7 @@
 								   </h:column>
 								   <h:column>
 								      <f:facet name="header">Podrobno</f:facet>
-								      <h:form>
 			                              <h:commandButton class="btn" value="Podrobno" action="#{upravljanjeERacuna.dolociRacun(r.id)}"/>
-			                          </h:form>  
 								   </h:column>
 							   </h:dataTable>
                   			</div>
