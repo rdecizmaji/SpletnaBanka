@@ -10,10 +10,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.CategoryAxis;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
+
+import dodatniRazredi.Graf;
 import dodatniRazredi.TrrGenerator;
 import ejb.IKodaNamena;
 import ejb.IKomitent;
@@ -60,19 +68,54 @@ public class UpravljanjeKomitenta {
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
 	private String currentTime;
-	
+	List<List<Transakcija>> listi=new ArrayList<List<Transakcija>>();
+	private LineChartModel lineModel;
+
+	public LineChartModel getLineModel() {
+		narisiGraf();
+		createLineModels(listi);
+		return lineModel;
+	}
+
+    private void createLineModels(List<List<Transakcija>> listi) {
+         
+    	lineModel = initCategoryModel(listi);
+        lineModel.setTitle("Transakcije");
+        lineModel.setLegendPosition("e");
+        lineModel.setShowPointLabels(true);
+        lineModel.getAxes().put(AxisType.X, new CategoryAxis("Datum"));
+    }
+     
+    private LineChartModel initCategoryModel(List<List<Transakcija>> listi) {
+        LineChartModel model = new LineChartModel();
+        
+        
+        for(int i=0; i<listi.size(); i++){
+			List<Transakcija> list=listi.get(i);
+			ChartSeries znes = new ChartSeries();
+	        znes.setLabel("TRR "+i);
+	        	for(int j=0; j<list.size(); j++){
+	        		BigDecimal bd= list.get(j).getZnesek(); // the value you get
+	        		double d = bd.doubleValue();
+	        		
+	        		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+	    			String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
+	        		
+	        		znes.set(preoblikovan,d);
+	        	}
+	        	
+	        model.addSeries(znes);  
+		}
+         
+        return model;
+    }
+
 	//UPRAVLJANJE KOMITENTA 
 	
 	public String komitentPodrobno(Komitent k){
 		izbrani=k;
 		return "pregledKomitenta";
 	}
-
-
-	public String registrirajKomitenta() {
-
-		// pretvorba iz Date v Calendar
-		datumR = new Date();
 
 	public String getDatumU() {
 		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
@@ -179,10 +222,6 @@ public class UpravljanjeKomitenta {
 		return tipkar.vrniVse();
 	}
 
-
-	public String urediKomitenta() {
-		System.out.println("asd");
-
 	
 	public String urediKomitenta (){
 		
@@ -203,14 +242,9 @@ public class UpravljanjeKomitenta {
 	 */
 
 
-	// OSTALE FUNKCIJE
-	public String pretvori(Calendar c) {
-		if (c != null) {
-
 	
 	//OSTALE FUNKCIJE 
 	public String pretvori(Calendar c){
-		System.out.print(c);
 		if(c!=null){
 			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
 			String preoblikovan = oblika.format(c.getTime());
@@ -388,11 +422,6 @@ public class UpravljanjeKomitenta {
 		return glavni;
 	}
 
-	public String setGlavni(Komitent glavni) {
-		this.glavni = glavni;
-		return glavni.getIme() + " " + glavni.getPriimek();
-	}
-
 public String setGlavni(Komitent glavni) {
 	this.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
@@ -406,5 +435,16 @@ public String getCurrentTime() {
 public String setCurrentTime(String currentTime) {
 	return this.currentTime = currentTime;
 }
-   
+
+
+public void narisiGraf(){
+	Komitent k=kom.najdi(izbrani);
+	List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
+	listi=new ArrayList<List<Transakcija>>();
+	for(int i=0; i<tran.size(); i++){
+		List<Transakcija> list=tr.vrniVse(tran.get(i)); 
+		listi.add(list);		
+	}
+}
+
 }

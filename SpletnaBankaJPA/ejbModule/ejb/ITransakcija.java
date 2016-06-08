@@ -17,4 +17,5 @@ public interface ITransakcija {
 	TransakcijskiRacun vrniTrr(Transakcija t);
 	
 	ArrayList<Transakcija> vrniVse();
+	ArrayList<Transakcija> vrniVse(TransakcijskiRacun tr);
 }

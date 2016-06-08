@@ -55,6 +55,15 @@ public class TransakcijaEJB implements ITransakcija {
 	}
 	
 	@Override
+	public ArrayList<Transakcija> vrniVse(TransakcijskiRacun tr) {
+		Query query = em.createQuery("SELECT t FROM Transakcija t WHERE t.idTran=? OR t.TRRprejemnika=?");
+		query.setParameter(1, tr);
+		query.setParameter(2, tr);
+		transakcije = (ArrayList<Transakcija>) query.getResultList();
+		return transakcije;
+	}
+	
+	@Override
 	public TransakcijskiRacun vrniTrr(Transakcija t) {
 		transakcija = najdi(t);
 		Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr");

@@ -14,12 +14,18 @@ import ejb.IERacun;
 import ejb.IKodaNamena;
 import ejb.IKomitent;
 import ejb.IPostavka;
+import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
 import entitete.ERacun;
 import entitete.KodaNamena;
 import entitete.Komitent;
 import entitete.Postavka;
+import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
+
+import org.primefaces.model.chart.LineChartModel;
+
+import dodatniRazredi.Graf;
 
 @ManagedBean(name = "upravljanjeERacuna")
 @SessionScoped
@@ -39,6 +45,9 @@ public class UpravljanjeERacuna {
 	
 	@EJB
 	IKomitent komitent;
+	
+	@EJB
+	ITransakcija transakcija;
 	
 	private int idKn;
 	private ERacun eRacun=new ERacun();
@@ -153,7 +162,7 @@ public class UpravljanjeERacuna {
 			cal3.setTime(datumZap);
 			eRacun.setDatumZapadlosti(cal3);
 			
-			if(eRacun.getNacinPlacila().equals("Raèun je že plaèan")){
+			if(eRacun.getNacinPlacila().equals("Raèun je že plaèan.")){
 				eRacun.setPlacan(true);
 			}
 			eRacun.setTRRprejmnika(trrPRJ);
@@ -369,6 +378,26 @@ public class UpravljanjeERacuna {
 			stER=stER+list.size();
 		}
 		return stER;
+	}
+	
+	public int vseTransakcije(Komitent kom) {
+		Komitent k=komitent.najdi(kom);
+		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+		int stTransakcij=0;
+		for(int i=0; i<tran.size(); i++){
+			List<Transakcija> list=transakcija.vrniVse(tran.get(i)); 
+			stTransakcij=stTransakcij+list.size();
+		}
+		return stTransakcij;
+	}
+	public BigDecimal vsiZneski(Komitent kom) {
+		Komitent k=komitent.najdi(kom);
+		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+		BigDecimal znesek=new BigDecimal("0");
+		for(int i=0; i<tran.size(); i++){
+			znesek=znesek.add(tran.get(i).getStanje()); 
+		}
+		return znesek;
 	}
 	
 }

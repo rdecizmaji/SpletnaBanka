@@ -108,9 +108,13 @@ public class UpravljanjeTransakcije {
 		transakcija = new Transakcija();
 		transakcijaPrejemnika = new Transakcija();
 		setKomitent(new Komitent());
-		return "/Banka/pregledTransakcijskihRacunov.xhtml";
-		}
-		catch (Exception e) {
+			if(UpravljanjeKomitenta.glavni!=null){
+				return "/Banka/pregledTransakcijskihRacunov.xhtml";
+			}
+			else{
+				return "/Komitent/pregledTransakcijskihRacunov.xhtml";
+			}
+		}catch (Exception e) {
 			fatal(3);
 			return "nakazi";
 		}
