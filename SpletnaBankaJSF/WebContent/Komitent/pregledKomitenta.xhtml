@@ -12,13 +12,13 @@ xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html"/>
 
-<title>Pregled komitenta</title>
+<title>NMB Banka</title>
 </head>
 <h:body>
  <ui:composition template="/resources/templateKomitent.xhtml">
  <ui:define name="content">
 <h1 class="display-1 hidden-xs-down">
-           Pregled komitenta
+           Armaturna Plošča
             </h1>
 <div class="row" style="margin-bottom:5px;">
 
@@ -34,19 +34,10 @@ xmlns:f="http://java.sun.com/jsf/core">
                         </div>
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span>2</span>
-                                    Nova sporočila
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
                                 <div class="sm-st-info">
                                     <span>100,320</span>
-                                    Stanje na računu
+                                    Stanje na računih
                                 </div>
                             </div>
                         </div>
@@ -54,7 +45,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
                                 <div class="sm-st-info">
-                                   <span><h:outputText value="34"></h:outputText></span>
+                                   <span><h:outputText value="#{upravljanjeERacuna.getStER(upravljanjeKomitenta.izbrani)}"></h:outputText></span>
                                     Vseh e-računov
                                 </div>
                             </div>
@@ -66,72 +57,13 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="panel">
                               <div class="panel-heading">
                                   Graf transakcij
-                            </div>
+                            	</div>
                             <div class="panel-body">
-                          </div>
-                            </div>
-                            </div>
-                            </div>
-                  <div class="row">
-
-                        <div class="col-md-8">
-                            <div class="panel">
-                              <div class="panel-heading">
-                                  Stanje računov
-                            </div>
-                            <div class="panel-body table-responsive">
-                                <table class="table table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>#</th>
-                                      <th>Opis</th>
-                                      <th>Prejemnik</th>
-                                      <!-- <th>Client</th> -->
-                                      <th>Izdaja</th>
-                                      <!-- <th>Price</th> -->
-                                      <th>Status</th>
-                                      <th>Znesek</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>Gradnja hiše</td>
-                                  <td>Jože Macuh</td>
-                                  <td>10/10/2014</td>
-                                  <td><span class="label label-danger">ni plačano</span></td>
-                                  <td><span class="badge badge-info">500€</span></td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>Prevoz živali</td>
-                                  <td>Branko Kranjec</td>
-                                  <td>01/11/2014</td>
-                                  <td><span class="label label-success">plačano</span></td>
-                                  <td><span class="badge badge-success">35€</span></td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>Popravilo avta</td>
-                                  <td>Karl Bedek</td>
-                                  <td>10/10/2014</td>
-                                  <td><span class="label label-danger">ni plačano</span></td>
-                                  <td><span class="badge badge-info">300€</span></td>
-                              </tr>
-                              <tr>
-                                  <td>4</td>
-                                  <td>Čiščenje oblačil</td>
-                                  <td>Breda Novak</td>
-                                  <td>01/11/2014</td>
-                                  <td><span class="label label-success">plačano</span></td>
-                                  <td><span class="badge badge-success">15€</span></td>
-                              </tr>
-                          </tbody>
-                      </table>
+                        </div>
+                     </div>
               	</div>
-              </div>
-          </div><!--end col-6 -->
-       </div>                       
+           </div>
+                                       
 	</ui:define>
  </ui:composition>
 </h:body>

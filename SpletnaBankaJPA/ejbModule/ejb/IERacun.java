@@ -12,6 +12,7 @@ public interface IERacun {
 	ERacun najdi(ERacun r);
 	
 	List<ERacun> vrniVse();
-	List<ERacun> vrniVsePlacane();
-	List<ERacun> vrniVseNeplacane();
+	List<ERacun> vrniVsePlacane(long id);
+	List<ERacun> vrniVseNeplacane(long id);
+	List<ERacun> vrniVse(long id);
 }

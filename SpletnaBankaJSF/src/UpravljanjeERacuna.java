@@ -12,10 +12,12 @@ import javax.faces.bean.SessionScoped;
 
 import ejb.IERacun;
 import ejb.IKodaNamena;
+import ejb.IKomitent;
 import ejb.IPostavka;
 import ejb.ITransakcijskiRacun;
 import entitete.ERacun;
 import entitete.KodaNamena;
+import entitete.Komitent;
 import entitete.Postavka;
 import entitete.TransakcijskiRacun;
 
@@ -35,6 +37,9 @@ public class UpravljanjeERacuna {
 	@EJB
 	ITransakcijskiRacun tr;
 	
+	@EJB
+	IKomitent komitent;
+	
 	private int idKn;
 	private ERacun eRacun=new ERacun();
 	List<KodaNamena> kn=new ArrayList<KodaNamena>();
@@ -47,13 +52,13 @@ public class UpravljanjeERacuna {
 	private String trrPRJ;
 	private long idRac;
 	private int dolocitelj=0;
-	
+	private int stER;
 	private BigDecimal skupenZnesekBrez=new BigDecimal("0");
 	private BigDecimal skupenZnesek=new BigDecimal("0");
 	private BigDecimal popusti=new BigDecimal("0");
 	private BigDecimal DDV=new BigDecimal("0");
 
-	
+
 	public int getDolocitelj() {
 		return dolocitelj;
 	}
@@ -315,14 +320,35 @@ public class UpravljanjeERacuna {
 		return list;
 	}
 	
-	public List<ERacun> vrniVse(){
+	public List<ERacun> vrniVse(Komitent kom){
 		if(dolocitelj==1){
-			return eRac.vrniVsePlacane();
+			Komitent k=komitent.najdi(kom);
+			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+			List<ERacun> list=new ArrayList<ERacun>();
+			for(int i=0; i<tran.size(); i++){
+				List<ERacun> list2=eRac.vrniVsePlacane(tran.get(i).getId());
+				list.addAll(list2);
+			}
+			return list;
 		}
 		else if(dolocitelj==2){
-			return eRac.vrniVseNeplacane();
+			Komitent k=komitent.najdi(kom);
+			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+			List<ERacun> list=new ArrayList<ERacun>();
+			for(int i=0; i<tran.size(); i++){
+				List<ERacun> list2=eRac.vrniVseNeplacane(tran.get(i).getId());
+				list.addAll(list2);
+			}
+			return list;
 		}
-		return eRac.vrniVse();
+		Komitent k=komitent.najdi(kom);
+		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+		List<ERacun> list=new ArrayList<ERacun>();
+		for(int i=0; i<tran.size(); i++){
+			List<ERacun> list2=eRac.vrniVse(tran.get(i).getId());
+			list.addAll(list2);
+		}
+		return list;
 	}
 	
 	public String vrniZnesek(int id){ 
@@ -333,5 +359,17 @@ public class UpravljanjeERacuna {
 		}
 		return znesek.toString();
 	}
+
+	public int getStER(Komitent kom) {
+		Komitent k=komitent.najdi(kom);
+		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+		stER=0;
+		for(int i=0; i<tran.size(); i++){
+			List<ERacun> list=eRac.vrniVse(tran.get(i).getId());
+			stER=stER+list.size();
+		}
+		return stER;
+	}
+	
 }
  

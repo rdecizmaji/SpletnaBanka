@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import entitete.BancnaKartica;
+import entitete.Komitent;
 import entitete.Racun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
@@ -23,5 +24,8 @@ public interface ITransakcijskiRacun {
 	ArrayList<Racun> vrniRacuneTrrja();
 	ArrayList<BancnaKartica> vrniBancneKarticeTrrja();
 	List<Transakcija> vrniTransakcije(TransakcijskiRacun izbrani);
+
 	ArrayList<Racun> vrniRacuneTrrja(TransakcijskiRacun trr);
+
+	List<TransakcijskiRacun> vrniTRR(int kom);
 }

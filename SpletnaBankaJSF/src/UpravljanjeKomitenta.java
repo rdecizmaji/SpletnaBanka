@@ -1,5 +1,9 @@
 import java.math.BigDecimal;
+
 import java.text.DateFormat;
+
+import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +48,7 @@ public class UpravljanjeKomitenta {
 	private Komitent komitent = new Komitent();
 	private List<Komitent> komitenti = new ArrayList<Komitent>();
 	private Date datumR;
+	private String datumU;
 	private Komitent izbrani;
 	public static Komitent glavni;
 	private TransakcijskiRacun izbraniTrr;
@@ -63,10 +68,33 @@ public class UpravljanjeKomitenta {
 		return "pregledKomitenta";
 	}
 
+
 	public String registrirajKomitenta() {
 
 		// pretvorba iz Date v Calendar
 		datumR = new Date();
+
+	public String getDatumU() {
+		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		datumU = oblika.format(izbrani.getDatum().getTime());
+		return datumU;
+	}
+
+	public void setDatumU(String datumU) {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		try {
+			cal.setTime(sdf.parse(datumU));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		izbrani.setDatum(cal);
+	}
+
+	public String registrirajKomitenta(){
+		
+		//pretvorba iz Date v Calendar
+
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(datumR);
 		komitent.setDatum(cal);
@@ -151,8 +179,14 @@ public class UpravljanjeKomitenta {
 		return tipkar.vrniVse();
 	}
 
+
 	public String urediKomitenta() {
 		System.out.println("asd");
+
+	
+	public String urediKomitenta (){
+		
+
 		kom.shrani(izbrani);
 		return "pregledKomitenta";
 	}
@@ -168,9 +202,16 @@ public class UpravljanjeKomitenta {
 	 * 
 	 */
 
+
 	// OSTALE FUNKCIJE
 	public String pretvori(Calendar c) {
 		if (c != null) {
+
+	
+	//OSTALE FUNKCIJE 
+	public String pretvori(Calendar c){
+		System.out.print(c);
+		if(c!=null){
 			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
 			String preoblikovan = oblika.format(c.getTime());
 			return preoblikovan;

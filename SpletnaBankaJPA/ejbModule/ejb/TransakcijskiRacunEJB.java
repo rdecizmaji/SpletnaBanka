@@ -69,6 +69,17 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
 	}
+	
+	@Override
+	public List<TransakcijskiRacun> vrniTRR(int kom) {
+		List<TransakcijskiRacun> racunN=new ArrayList<TransakcijskiRacun>();
+		Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr WHERE trr.komitent.idKomitent=?");
+		query.setParameter(1, kom);
+		if( query.getResultList().size()>0){
+			racunN = (ArrayList<TransakcijskiRacun>) query.getResultList();
+		}
+		return racunN;
+	}
 
 	@Override
 	public List<Transakcija> vrniTransakcije(TransakcijskiRacun izbraniTrr) {

@@ -28,7 +28,7 @@
                             <h:commandButton class="btn" value="Plačani" action="#{upravljanjeERacuna.setDolocitelj(1)}"/> 
                             <h:commandButton class="btn" value="Neplačani" action="#{upravljanjeERacuna.setDolocitelj(2)}"/> 
                             </div>
-				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
+				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse(upravljanjeKomitenta.izbrani)}" var="r">
 								   <h:column>
 								      <f:facet name="header">TRR Prejemnika</f:facet>
 								      <h:outputText value="#{r.TRRprejmnika}" />  

@@ -64,18 +64,28 @@ public class ERacunEJB implements IERacun{
 		return list;
 	}
 	@Override
-	public List<ERacun> vrniVsePlacane() {
+	public List<ERacun> vrniVse(long id) {
 		List<ERacun> list=new ArrayList<ERacun>();
-		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=?");
-		query.setParameter(1, true);
+		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.idTr=?");
+		query.setParameter(1, id);
 		list = (ArrayList<ERacun>)query.getResultList();
 		return list;
 	}
 	@Override
-	public List<ERacun> vrniVseNeplacane() {
+	public List<ERacun> vrniVsePlacane(long id) {
 		List<ERacun> list=new ArrayList<ERacun>();
-		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=?");
+		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=? AND er.idTr=?");
+		query.setParameter(1, true);
+		query.setParameter(2, id);
+		list = (ArrayList<ERacun>)query.getResultList();
+		return list;
+	}
+	@Override
+	public List<ERacun> vrniVseNeplacane(long id) {
+		List<ERacun> list=new ArrayList<ERacun>();
+		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=? AND er.idTr=?");
 		query.setParameter(1, false);
+		query.setParameter(2, id);
 		list = (ArrayList<ERacun>)query.getResultList();
 		return list;
 	}

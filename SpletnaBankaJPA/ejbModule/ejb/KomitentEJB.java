@@ -46,10 +46,11 @@ IBancnaKartica banKar;
 			kom.setDatum(k.getDatum());
 			kom.setUporabniskoIme(k.getUporabniskoIme());
 			kom.setGeslo(k.getGeslo());
-			kom.setTransakcijskiRacuni(k.getTransakcijskiRacuni());
+			kom.setDavcnaSt(k.getDavcnaSt());
+			kom.setEmso(k.getEmso());
+			//kom.setTransakcijskiRacuni(k.getTransakcijskiRacuni());
 			manager.merge(kom);
 			} else {
-				
 				k.setIzbrisan(false);
 				k.setVloga("user");
 				//datum vnosa komitenta
