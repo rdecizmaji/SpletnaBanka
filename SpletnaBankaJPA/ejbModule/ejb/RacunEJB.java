@@ -30,7 +30,7 @@ public class RacunEJB implements IRacun {
 	
 	@Override
 	public void izbrisi(Racun r) {
-		em.remove(najdi(r).getId());
+		em.remove(najdi(r));
 		System.out.println("Racun izbrisan.");
 	}
 	
@@ -84,12 +84,4 @@ public class RacunEJB implements IRacun {
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
 	}
-
-	@Override
-	public ArrayList<Racun> vrniRacuneKomitenta(Komitent k) {
-		Query query = em.createQuery("SELECT r FROM Racun r WHERE idKn_id=?");
-		query.setParameter(1, k.getId());
-		racuni = (ArrayList<Racun>) query.getResultList();
-		return racuni;
-	}	
 }

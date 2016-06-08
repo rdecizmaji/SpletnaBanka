@@ -18,7 +18,6 @@ public interface IRacun {
 	Racun najdi(Racun r);
 	
 	ArrayList<Racun> vrniVse();
-	ArrayList<Racun> vrniRacuneKomitenta(Komitent k);
 	ArrayList<Racun> vrniZgodovinoRacunov(TransakcijskiRacun trr);
 	ArrayList<Racun> vrniPlacaneRacune(TransakcijskiRacun trr);
 	ArrayList<Racun> vrniNeplacaneRacune(TransakcijskiRacun trr);

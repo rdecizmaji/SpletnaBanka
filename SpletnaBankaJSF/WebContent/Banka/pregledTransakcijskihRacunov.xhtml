@@ -56,6 +56,11 @@
 										<h:outputText value="#{trr.stanje}" />
 									</h:column>
 									<h:column>
+										<f:facet name="header">Računi</f:facet>
+										<h:commandButton class="btn" value="Računi"
+											action="#{upravljanjeKomitenta.pregledRacunov(trr)}"></h:commandButton>
+									</h:column>
+									<h:column>
 										<f:facet name="header">Transakcije</f:facet>
 										<h:commandButton class="btn" value="Podrobno"
 											action="#{upravljanjeKomitenta.trrPodrobno(trr)}"></h:commandButton>

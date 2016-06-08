@@ -23,4 +23,5 @@ public interface ITransakcijskiRacun {
 	ArrayList<Racun> vrniRacuneTrrja();
 	ArrayList<BancnaKartica> vrniBancneKarticeTrrja();
 	List<Transakcija> vrniTransakcije(TransakcijskiRacun izbrani);
+	ArrayList<Racun> vrniRacuneTrrja(TransakcijskiRacun trr);
 }
