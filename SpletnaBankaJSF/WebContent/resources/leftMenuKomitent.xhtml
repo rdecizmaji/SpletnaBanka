@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+    
+    <h:form>
+        <ul class="nav nav-sidebar">
+        <li id="cas">
+                      <h1 class="animated fadeInLeft"><h:outputText value="#{user.ime} #{user.priimek}" />
+                       </h1>
+                    </li>
+            <li><h:commandLink value="Armaturna plošča" action="/Komitent/pregledKomitenta"></h:commandLink></li>
+        </ul>
+        
+        <ul class="nav nav-sidebar">
+             <li><h:commandLink value="Transakcijski računi" action="/Komitent/pregledTransakcijskihRacunov"></h:commandLink></li>
+             <li><h:commandLink value="Nakazi" action="/Komitent/nakazi"></h:commandLink></li>
+       </ul>    
+       <ul class="nav nav-sidebar">
+             <li><h:commandLink value="Ustvari eRačun" action="#{upravljanjeKomitenta.vnesi(user)}"></h:commandLink></li>
+             <li><h:commandLink value="Pregled eRačunov" action="/Komitent/pregledRacunov"></h:commandLink></li>    
+        </ul> 
+        <ul class="nav nav-sidebar">
+             <li><h:commandLink value="Nastavitve" action="/Komitent/nastavitve"></h:commandLink></li>   
+        </ul> 
+        </h:form>    
+    </ui:composition>
+</html>
+
+ 

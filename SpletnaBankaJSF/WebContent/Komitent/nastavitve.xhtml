@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
+<head>
+<meta http-equiv="Content-Type" content="text/html" />
+
+<title>Nastavitve</title>
+</head>
+<h:body>
+	<ui:composition template="/resources/templateKomitent.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<h1 class="display-1 hidden-xs-down">Nastavitve profila</h1>
+				<div class="row" style="margin-bottom: 5px;">
+					<div class="col-lg-6">
+						<div class="panel">
+							<div class="panel-heading"></div>
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Staro geslo:</label>
+									<h:inputText class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.ime}" required="true"></h:inputText>
+								</div>
+								<div class="form-group">
+									<label>Novo geslo:</label>
+									<h:inputText class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.priimek}"
+										required="true"></h:inputText>
+								</div>
+								<div class="form-group">
+									<label>Potrdi novo geslo:</label>
+									<h:inputText type="email" class="form-control"
+										value="#{upravljanjeKomitenta.izbrani.email}" equired="true"></h:inputText>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="vpisGumb">
+									<h:commandButton class="btn" value="Spremeni"
+										action="#{upravljanjeKomitenta.urediKomitenta()}"></h:commandButton>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

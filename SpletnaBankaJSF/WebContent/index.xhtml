@@ -13,7 +13,7 @@ xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Dash</title>
+<title>NMB Banka</title>
 </head>
 <h:body>
  <ui:composition template="resources/templatefullpage.xhtml">
@@ -24,9 +24,12 @@ xmlns:f="http://java.sun.com/jsf/core">
             <h3>Praktikum II</h3>
             <br/>  
             <h:form>
-            	<h:commandLink class="btn btn-dark btn-lg" value="Vstopi kot komitent" action="Komitent/banka?faces-redirect=true"></h:commandLink>
+            <div class="vstop">
+            	<h:commandLink class="btn btn-dark btn-lg" value="Vstopi kot komitent" action="Komitent/komitent?faces-redirect=true"></h:commandLink>
             	<h:commandLink class="btn btn-dark btn-lg" value="Vstopi kot uslužbenec" action="Banka/banka?faces-redirect=true"></h:commandLink>
+             </div>
             </h:form>
+           
         </div>
     </div>
     <!-- About -->

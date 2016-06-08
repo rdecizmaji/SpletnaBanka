@@ -232,3 +232,18 @@ text-transform: uppercase;
 	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s!important;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s!important;
 }
+#prijavljenkot {
+	color:white;
+}
+#prijava {
+	color:white;
+}
+#prijava input {
+	color:black;
+}
+.prijavniGumb {
+	float:right;
+}
+.vstop a {
+	margin:10px!important;
+}

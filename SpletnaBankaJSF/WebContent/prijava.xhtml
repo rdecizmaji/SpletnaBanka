@@ -18,12 +18,12 @@ xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Dash</title>
+<title>Prijava</title>
 </head>
 <h:body>
  <ui:composition template="resources/templatefullpage.xhtml">
  <ui:define name="fullpage">
-<div class="top-content">
+<div class="top-content" id="prijava">
         	
             <div class="inner-bg">
                 <div class="container">
@@ -47,15 +47,15 @@ xmlns:f="http://java.sun.com/jsf/core">
 			                    <h:form class="login-form">
 			                    	<div class="form-group">
 									    <h:outputLabel for="username" value="Uporabniško ime" />
-									    <h:inputText id="username" value="#{auth.username}" required="true" />
+									    <h:inputText class="form-control" id="username" value="#{auth.username}" required="true" />
 									    <h:message for="username" />
 									</div>
 								    <div class="form-group">
 									    <h:outputLabel for="password" value="Geslo" />
-									    <h:inputSecret id="password" value="#{auth.password}" required="true" />
+									    <h:inputSecret class="form-control" id="password" value="#{auth.password}" required="true" />
 									    <h:message for="password" />
 								    </div>
-								    <h:commandButton value="Login" action="#{auth.login}" />
+								    <h:commandButton class="btn prijavniGumb" value="Prijavi se" action="#{auth.login}" />
 								    <h:messages globalOnly="true" />
 								</h:form>
 		                    </div>

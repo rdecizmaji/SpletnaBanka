@@ -15,14 +15,16 @@
                     <h:commandLink class="navbar-brand" action="banka"><img src="/SpletnaBankaJSF/resources/images/nmbbela.png"/></h:commandLink>
                 </h:form>
                 </div>
+                 <h:form>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                    <h:form>
-                        <li><a>Prijavljen kot: <h:outputText value="#{user.ime} #{user.priimek}" /></a></li>
-                        <li><a><h:commandButton value="Odjava" action="#{auth.logout}" /></a></li>
-					</h:form>
+                   
+                        <li><a id="prijavljenkot">Prijavljen kot: <h:outputText value="#{user.ime} #{user.priimek}" /></a></li>
+                        <li><h:commandLink value="Odjava" action="#{auth.logout}"/></li>
+					
                     </ul>
                 </div>
+                </h:form>
             </div>
         </div>
     </ui:composition>

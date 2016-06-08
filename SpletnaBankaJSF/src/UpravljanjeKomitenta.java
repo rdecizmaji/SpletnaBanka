@@ -32,7 +32,7 @@ public class UpravljanjeKomitenta {
 	ITransakcijskiRacun trr;
 	@EJB
 	IKodaNamena kn;
-	
+
 	private Komitent komitent=new Komitent();
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
@@ -43,17 +43,17 @@ public class UpravljanjeKomitenta {
 	private TransakcijskiRacun transakcijskiRacun = new TransakcijskiRacun();
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
-	
-	
+
+
 	//UPRAVLJANJE KOMITENTA 
-	
+
 	public String komitentPodrobno(Komitent k){
 		izbrani=k;
 		return "pregledKomitenta";
 	}
 
 	public String registrirajKomitenta(){
-		
+
 		//pretvorba iz Date v Calendar
 		datumR = new Date();
 		Calendar cal = Calendar.getInstance();
@@ -62,9 +62,9 @@ public class UpravljanjeKomitenta {
 		//Komitenta dodamo kot userja
 		komitent.setVloga("user");
 		//dodajanje TRR
-		
+
 		//klicana metoda za vnos
-		
+
 		kom.shrani(komitent);
 		izbrani = kom.najdi(komitent);
 		dodajTRR();
@@ -72,17 +72,17 @@ public class UpravljanjeKomitenta {
 		komitent = izbrani;
 		komitent=new Komitent();
 		datumR=null;
-		
+
 		return "listaKomitentov";
 	}
-	
+
 	//TRRJI IN KARTICE
-	
+
 	public String trrPodrobno(TransakcijskiRacun trr) {
 		izbraniTrr = trr;
 		return "pregledTransakcij.xhtml";
 	}
-	
+
 	public String dodajTRR() {
 		System.out.println("Dodaj trr...");
 		transakcijskiRacun = new TransakcijskiRacun();
@@ -101,22 +101,22 @@ public class UpravljanjeKomitenta {
 		trr.edit(transakcijskiRacun);
 		return "pregledTransakcijskihRacunov";
 	}
-	
+
 	public String dodajKartico(){
 		BancnaKartica novakartica = new BancnaKartica();
 		return "vseKartice";
 	}
-	
+
 	public List<TipKartice> vrniTipeKartic(){
 		return tipkar.vrniVse();
 	}
-	
+
 	public String urediKomitenta (){
 		System.out.println("asd");
 		kom.shrani(izbrani);
 		return "pregledKomitenta";
 	}
-	
+
 	public List<TransakcijskiRacun> vrniTRR(Komitent k){
 		List<TransakcijskiRacun> tr=new ArrayList<TransakcijskiRacun>();
 		tr=kom.vrniTRRje(k);
@@ -127,20 +127,20 @@ public class UpravljanjeKomitenta {
 	 * TRANSAKCIJE
 	 * 
 	 */
-	
+
 	//OSTALE FUNKCIJE 
-		public String pretvori(Calendar c){
-			if(c!=null){
-				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-				String preoblikovan = oblika.format(c.getTime());
-				return preoblikovan;}
-			else{
-				return null;
-			}
+	public String pretvori(Calendar c){
+		if(c!=null){
+			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+			String preoblikovan = oblika.format(c.getTime());
+			return preoblikovan;}
+		else{
+			return null;
 		}
-	
+	}
+
 	//GETTI SETTI
-	
+
 	public Komitent getKomitent() {
 		return komitent;
 	}
@@ -156,7 +156,7 @@ public class UpravljanjeKomitenta {
 	public void setDatumR(Date datumR) {
 		this.datumR = datumR;
 	}
-	
+
 	public List<Komitent> getKomitenti() {
 		komitenti=kom.vrniVse();
 		return komitenti;
@@ -169,12 +169,12 @@ public class UpravljanjeKomitenta {
 	public void setIzbrani(Komitent izbrani) {
 		this.izbrani = izbrani;
 	}
-	
+
 	public String izbraniK(Komitent k) {
 		izbrani=k;
 		return "/Banka/pregledKomitenta";
 	}
-	
+
 	public TipKartice getTipkartice() {
 		return tipkartice;
 	}
@@ -190,7 +190,7 @@ public class UpravljanjeKomitenta {
 	public void setPrejemnik(Komitent prejemnik) {
 		this.prejemnik = prejemnik;
 	}
-	
+
 	public List<TransakcijskiRacun> getTrrji() {
 		trrji = kom.vrniTRRje(izbrani);
 		return trrji;
@@ -199,7 +199,7 @@ public class UpravljanjeKomitenta {
 	public void setTrrji(List<TransakcijskiRacun> trrji) {
 		this.trrji = trrji;
 	}
-	
+
 	public TransakcijskiRacun getTransakcijskiRacun() {
 		return transakcijskiRacun;
 	}
@@ -207,7 +207,7 @@ public class UpravljanjeKomitenta {
 	public void setTransakcijskiRacun(TransakcijskiRacun transakcijskiRacun) {
 		this.transakcijskiRacun = transakcijskiRacun;
 	}
-	
+
 	public List<Transakcija> getTransakcije() {
 		transakcije = trr.vrniTransakcije(izbraniTrr);
 		return transakcije;
@@ -216,7 +216,7 @@ public class UpravljanjeKomitenta {
 	public void setTransakcije(List<Transakcija> transakcije) {
 		this.transakcije = transakcije;
 	}
-	
+
 	public TransakcijskiRacun getIzbraniTrr() {
 		return izbraniTrr;
 	}
@@ -224,40 +224,45 @@ public class UpravljanjeKomitenta {
 	public void setIzbraniTrr(TransakcijskiRacun izbraniTrr) {
 		this.izbraniTrr = izbraniTrr;
 	}
-	
-   public List<Komitent> dopolni(String query) {
-        List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
-        List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
-         
-        for (int i = 0; i < vsiKomitenti.size(); i++) {
-            Komitent kom = vsiKomitenti.get(i);
-            if(kom.getIme().toLowerCase().startsWith(query)) {
-                izbraniKomitenti.add(kom);
-            }
-        }
-         
-        return izbraniKomitenti;
-    }
-   public String nastaviPrejmnika(Komitent k){
-	   if(k!=null){
-		    prejemnik=k;
-		    return k.getIme()+" "+k.getPriimek();
-	   }
-	   else
-		   return null;
-		  
-   }
-   public String razveljavi(){
-	   prejemnik=new Komitent();
-	   return "/Banka/ustvariPostavke.xhtml";
-   }
-   public  String vnesi(){
-	   String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
-	   for(int i=0; i<kode.length; i++){
-		   KodaNamena k=new KodaNamena();
-		   k.setKoda(kode[i]);
-		   kn.vnesi(k);
-	   }
-	   return "/Banka/ustvariERacun";
-   }
+
+	public List<Komitent> dopolni(String query) {
+		List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
+		List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
+
+		for (int i = 0; i < vsiKomitenti.size(); i++) {
+			Komitent kom = vsiKomitenti.get(i);
+			if(kom.getIme().toLowerCase().startsWith(query)) {
+				izbraniKomitenti.add(kom);
+			}
+		}
+
+		return izbraniKomitenti;
+	}
+	public String nastaviPrejmnika(Komitent k){
+		if(k!=null){
+			prejemnik=k;
+			return k.getIme()+" "+k.getPriimek();
+		}
+		else
+			return null;
+
+	}
+	public String razveljavi(){
+		prejemnik=new Komitent();
+		return "/Banka/ustvariPostavke.xhtml";
+	}
+	public  String vnesi(Komitent koma){
+		String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
+		for(int i=0; i<kode.length; i++){
+			KodaNamena k=new KodaNamena();
+			k.setKoda(kode[i]);
+			kn.vnesi(k);
+		}
+		if(koma.getVloga() == "admin") {
+			return "/Banka/ustvariERacun";
+		}
+		else {
+			return "/Komitent/ustvariERacun";
+		}
+	}
 }

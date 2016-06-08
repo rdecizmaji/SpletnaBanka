@@ -12,13 +12,13 @@ xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html"/>
 
-<title>NMB Banka</title>
+<title>Pregled komitenta</title>
 </head>
 <h:body>
- <ui:composition template="/resources/template.xhtml">
+ <ui:composition template="/resources/templateKomitent.xhtml">
  <ui:define name="content">
 <h1 class="display-1 hidden-xs-down">
-           Armaturna Plošča
+           Pregled komitenta
             </h1>
 <div class="row" style="margin-bottom:5px;">
 
@@ -128,30 +128,10 @@ xmlns:f="http://java.sun.com/jsf/core">
                               </tr>
                           </tbody>
                       </table>
-                  </div>
+              	</div>
               </div>
           </div><!--end col-6 -->
-            <div class="col-lg-4">
-                         <div class="panel">
-                              <div class="panel-heading">
-                                  Vpis 
-                              </div>
-                              <div class="panel-body">
-                                  <form role="form">
-                                      <div class="form-group">
-                                          <label for="exampleInputEmail1">Email naslov</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="exampleInputPassword1">Geslo</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
-                                      </div>
-                                      <h:commandButton class="btn btn-info" value="Vpisi se"></h:commandButton>
-                                  </form>
-                              </div>
-                          </div>
-                          </div>
-                          </div>                       
+       </div>                       
 	</ui:define>
  </ui:composition>
 </h:body>
