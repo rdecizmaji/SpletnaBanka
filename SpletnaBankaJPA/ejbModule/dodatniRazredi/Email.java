@@ -76,8 +76,8 @@ public class Email{
 	
 		message.setText("Spoštovani,"
 			+ "\n\n Podatki o vaši registraciji:"
-			+ "\n\n Številka TRR raèuna:"+stTRR
-			+ "\n\n Uporabniško ime:"+uporabnisko_ime
+			+ "\n\n Številka TRR raèuna: "+stTRR
+			+ "\n\n Uporabniško ime: "+uporabnisko_ime
 			+ "\n\n Geslo: "+geslo
 			+ "\n\n"
 			+ "\n\n Lep pozdrav"

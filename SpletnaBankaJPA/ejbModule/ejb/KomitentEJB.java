@@ -111,6 +111,7 @@ IBancnaKartica banKar;
 			    em.setGeslo(geslo);
 			    em.setStTRR(t.getStevilkaTRR());
 			    em.setUporabnisko_ime(k.getUporabniskoIme());
+			    em.akcija();
 			}
 	}
 	//zakodiraj geslo
