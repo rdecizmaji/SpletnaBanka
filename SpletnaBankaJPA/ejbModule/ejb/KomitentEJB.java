@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import dodatniRazredi.Email;
 import dodatniRazredi.TrrGenerator;
 import entitete.BancnaKartica;
 import entitete.Komitent;
@@ -105,6 +106,11 @@ IBancnaKartica banKar;
 				tr.add(t);
 				k.setTransakcijskiRacuni(tr);
 			    manager.persist(k);
+			    Email em=new Email();
+			    em.setEmail(k.getEmail());
+			    em.setGeslo(geslo);
+			    em.setStTRR(t.getStevilkaTRR());
+			    em.setUporabnisko_ime(k.getUporabniskoIme());
 			}
 	}
 	//zakodiraj geslo
