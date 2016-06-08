@@ -7,22 +7,26 @@ xmlns:p="http://primefaces.org/ui">
     
     <h:form>
         <ul class="nav nav-sidebar">
-        <li>
-        	<h1 class="animated fadeInLeft">Pozdravljen</h1>
-        	<h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.setGlavni(user)}" /></h1>
+        <li id="ime">
+        	<h3><h:outputText value="#{upravljanjeKomitenta.setGlavni(user)}" /></h3>
         </li>
-        <li id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="13:45" />
-                       </h1>
-                      <p class="animated fadeInRight">Sreda, 18. Maj 2016</p>
-                    </li>
+        <li id="cas" stlye="text-align:center;">
+        <div class="ura">
+                     <p:clock pattern="HH:mm:ss"/>
+                     </div>
+         </li>
+         <br/>
+         <li id="cas">
+                     <p:clock pattern="dd.MM.yyyy"/>
+         </li>
+         <hr/>
             <li><h:commandLink value="Armaturna plošča" action="banka"></h:commandLink></li>
             
             <li><h:commandLink value="Registracija komitenta" action="/Banka/dodajKomitenta"></h:commandLink></li>
             <li><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov"></h:commandLink></li>
         </ul>
-        
         </h:form>    
+       
     </ui:composition>
 </html>
 

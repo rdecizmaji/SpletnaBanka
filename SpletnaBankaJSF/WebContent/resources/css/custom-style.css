@@ -184,9 +184,7 @@ text-transform: uppercase;
     border-bottom: 1px solid #eee;
     background-color: #FAFAFA;
 }
-#cas {
-	padding-left:15px;
-}
+
 #navbarheader {
 	background-color:rgba(70, 70, 70, 0.46);
 	border: none;
@@ -261,4 +259,24 @@ text-transform: uppercase;
 }
 #tabela td {
 	padding:5px;
+}
+#ime {
+	text-align:center;
+}
+.ui-clock {
+	padding: 0px!important;
+}
+.ui-widget-header {
+	border:none;
+	background:none;
+}
+#cas {
+	text-align:center;
+}
+.ura {
+	font-size:30px;
+	font-weight:bold;
+}
+.izbrani {
+	padding-left:15px;
 }

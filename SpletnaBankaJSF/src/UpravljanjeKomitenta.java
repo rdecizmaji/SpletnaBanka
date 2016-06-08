@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +50,7 @@ public class UpravljanjeKomitenta {
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
+	private String currentTime;
 	
 	//UPRAVLJANJE KOMITENTA 
 	
@@ -309,6 +311,15 @@ public static Komitent getGlavni() {
 public String setGlavni(Komitent glavni) {
 	this.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
+}
+public String getCurrentTime() {
+	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	Date date = new Date();
+	return dateFormat.format(date);
+}
+
+public String setCurrentTime(String currentTime) {
+	return this.currentTime = currentTime;
 }
    
 }

@@ -1,30 +1,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
-    <ui:composition>
-    <h:form>
-        <ul class="nav nav-sidebar">
-        <li id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbrani.ime}" /><h:outputText value=" #{upravljanjeKomitenta.izbrani.priimek}" />
-                       </h1>
-                       Davčna: <h:outputText value=" #{upravljanjeKomitenta.izbrani.davcnaSt}" />
-                    </li>
-            <li><h:commandLink value="Pregled komitenta" action="/Banka/pregledKomitenta"></h:commandLink></li>
-            <li><h:commandLink value="Uredi komitenta" action="/Banka/urediKomitenta"></h:commandLink></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Transakcijski računi" action="/Banka/pregledTransakcijskihRacunov"></h:commandLink></li>
-             <li><h:commandLink value="Polog" action="/Banka/polog"></h:commandLink></li>
-             <li><h:commandLink value="Nakazi" action="/Banka/nakazi"></h:commandLink></li>
-       </ul>    
-       <ul class="nav nav-sidebar">
-             <li><h:commandLink value="Ustvari eRačun" action="#{upravljanjeKomitenta.vnesi(user)}"></h:commandLink></li>
-             <li><h:commandLink value="Pregled eRačunov" action="/Banka/pregledRacunov"></h:commandLink></li>    
-        </ul> 
-        </h:form>    
-    </ui:composition>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<h:form>
+		<ul class="nav nav-sidebar">
+			<li>
+			<p class="izbrani">Izbrani komitent:</p>
+				<h3 id="ime" class="animated fadeInLeft">
+					<h:outputText value="#{upravljanjeKomitenta.izbrani.ime} #{upravljanjeKomitenta.izbrani.priimek}" />
+				</h3>
+			</li>
+			<li id="cas">
+				<div class="ura">
+					<p:clock pattern="HH:mm:ss" />
+				</div>
+			</li>
+			<br />
+			<li id="cas"><p:clock pattern="dd.MM.yyyy" /></li>
+			<hr />
+			<li><h:commandLink value="Pregled komitenta"
+					action="/Banka/pregledKomitenta"></h:commandLink></li>
+			<li><h:commandLink value="Uredi komitenta"
+					action="/Banka/urediKomitenta"></h:commandLink></li>
+		</ul>
+		<ul class="nav nav-sidebar">
+			<li><h:commandLink value="Transakcijski računi"
+					action="/Banka/pregledTransakcijskihRacunov"></h:commandLink></li>
+			<li><h:commandLink value="Polog" action="/Banka/polog"></h:commandLink></li>
+			<li><h:commandLink value="Nakazi" action="/Banka/nakazi"></h:commandLink></li>
+		</ul>
+		<ul class="nav nav-sidebar">
+			<li><h:commandLink value="Ustvari eRačun"
+					action="#{upravljanjeKomitenta.vnesi(user)}"></h:commandLink></li>
+			<li><h:commandLink value="Pregled eRačunov"
+					action="/Banka/pregledRacunov"></h:commandLink></li>
+		</ul>
+
+	</h:form>
+</ui:composition>
 </html>
 
- 
+
