@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ejb.Local;
 
 import entitete.TransakcijskiRacun;
+import entitete.Komitent;
 import entitete.Racun;
 
 @Local
@@ -17,6 +18,7 @@ public interface IRacun {
 	Racun najdi(Racun r);
 	
 	ArrayList<Racun> vrniVse();
+	ArrayList<Racun> vrniRacuneKomitenta(Komitent k);
 	ArrayList<Racun> vrniZgodovinoRacunov(TransakcijskiRacun trr);
 	ArrayList<Racun> vrniPlacaneRacune(TransakcijskiRacun trr);
 	ArrayList<Racun> vrniNeplacaneRacune(TransakcijskiRacun trr);

@@ -32,12 +32,7 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 
 	@Override
 	public void shrani(TransakcijskiRacun trr) {
-		TransakcijskiRacun t= em.find(TransakcijskiRacun.class, trr.getId());
-		if (t != null) {
-			em.merge(t);
-			} else {
-				em.persist(trr);
-			}
+		em.persist(trr);
 		System.out.println("Transakcijski racun shranjen.");
 	}
 
