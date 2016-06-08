@@ -269,14 +269,6 @@ public class UpravljanjeKomitenta {
 		else 
 			return "/Komitent/ustvariERacun.xhtml";
 	}
-	public  String vnesi(Komitent koma){
-		String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
-		for(int i=0; i<kode.length; i++){
-			KodaNamena k=new KodaNamena();
-			k.setKoda(kode[i]);
-			kn.vnesi(k);
-		}
-	
 	public List<Racun> getRacuni() {
 		racuni = r.vrniRacuneKomitenta(izbrani);
 		return racuni;
@@ -285,34 +277,11 @@ public class UpravljanjeKomitenta {
 	public void setRacuni(List<Racun> racuni) {
 		this.racuni = racuni;
 	}
-	
-   public List<Komitent> dopolni(String query) {
-        List<Komitent> vsiKomitenti = komitenti=kom.vrniVse();
-        List<Komitent> izbraniKomitenti = new ArrayList<Komitent>();
-         
-        for (int i = 0; i < vsiKomitenti.size(); i++) {
-            Komitent kom = vsiKomitenti.get(i);
-            if(kom.getIme().toLowerCase().startsWith(query)) {
-                izbraniKomitenti.add(kom);
-            }
-        }
-         
-        return izbraniKomitenti;
-    }
-   public String nastaviPrejmnika(Komitent k){
-	   if(k!=null){
-		    prejemnik=k;
-		    return k.getIme()+" "+k.getPriimek();
-	   }
-	   else
-		   return null;
-		  
-   }
-   public String razveljavi(){
+   public String razveljavi1(){
 	   prejemnik=new Komitent();
 	   return "/Banka/ustvariPostavke.xhtml";
    }
-   public  String vnesi(){
+   public  String vnesi(Komitent koma){
 	   String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
 	   for(int i=0; i<kode.length; i++){
 		   KodaNamena k=new KodaNamena();
