@@ -8,7 +8,7 @@ xmlns:p="http://primefaces.org/ui">
     <h:form>
         <ul class="nav nav-sidebar">
         <li id="cas">
-                      <h1 class="animated fadeInLeft"><h:outputText value="#{user.ime} #{user.priimek}" />
+                      <h1 class="animated fadeInLeft"><h:outputText value="#{upravljanjeKomitenta.izbraniKomitent(user)}" />
                        </h1>
                     </li>
             <li><h:commandLink value="Armaturna plošča" action="/Komitent/pregledKomitenta"></h:commandLink></li>

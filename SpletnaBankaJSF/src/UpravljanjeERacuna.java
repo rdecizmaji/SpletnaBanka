@@ -185,8 +185,11 @@ public class UpravljanjeERacuna {
 			datumZap=null;
 			trrPRJ=null;
 		}
-
-		return "/Banka/pregledKomitenta.xhtml";
+		if(UpravljanjeKomitenta.glavni!=null){
+			return "/Banka/pregledKomitenta.xhtml";
+		}
+		else
+			return "/Komitent/pregledKomitenta.xhtml";
 	}
 	public String pretvori(Calendar c){
 		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
@@ -299,7 +302,12 @@ public class UpravljanjeERacuna {
 	}
 	public String dolociRacun(int id){
 		idRac=id;
-		return "/Banka/pregledPostavk.xhtml";
+		System.out.println("doloci");
+		if(UpravljanjeKomitenta.glavni!=null){
+			return "/Banka/pregledPostavk.xhtml";
+		}
+		else
+			return "/Komitent/pregledPostavk.xhtml";
 	}
 	
 	public List<Postavka> vrniVsePostavke(){

@@ -41,6 +41,7 @@ public class UpravljanjeKomitenta {
 	private List<Komitent> komitenti=new ArrayList<Komitent>();
 	private Date datumR;
 	private Komitent izbrani;
+	public static Komitent glavni;
 	private TransakcijskiRacun izbraniTrr;
 	private TipKartice tipkartice;
 	private Komitent prejemnik=new Komitent();
@@ -175,12 +176,17 @@ public class UpravljanjeKomitenta {
 		this.izbrani = izbrani;
 	}
 
-	public String izbraniK(Komitent k) {
+	public String izbrani(Komitent k) {
 		izbrani=k;
-		if(izbrani.getVloga() == "admin")
+		if(glavni!=null)
 			return "/Banka/pregledKomitenta";
 		else 
 			return "/Komitent/pregledKomitenta";
+	}
+	public String izbraniKomitent(Komitent k) {
+		izbrani=k;
+		glavni=null;
+		return  k.getIme()+" "+k.getPriimek();
 	}
 
 	public TipKartice getTipkartice() {
@@ -257,11 +263,13 @@ public class UpravljanjeKomitenta {
 	}
 	public String razveljavi(){
 		prejemnik=new Komitent();
-		return "/Banka/ustvariPostavke.xhtml";
-		
+		if(glavni!=null)
+			return "/Banka/ustvariPostavke.xhtml";
+		else 
+			return "/Komitent/ustvariPostavke.xhtml";
 	}
 	public String nazaj() {
-		if(izbrani.getVloga() == "admin") {
+		if(glavni!=null) {
 			return "/Banka/ustvariERacun.xhtml";
 		}
 		else 
@@ -275,6 +283,10 @@ public class UpravljanjeKomitenta {
 	public void setRacuni(List<Racun> racuni) {
 		this.racuni = racuni;
 	}
+   public String razveljavi1(){
+	   prejemnik=new Komitent();
+	   return "/Banka/ustvariPostavke.xhtml";
+   }
    public  String vnesi(Komitent koma){
 	   String[] kode = {"OTHR","ADMG","ADVA","AGRT","ALMY","ANNI","BECH","BENE","BEXP","BONU","CBFF","CBTV","CCRD","CCHD","CDCD","CFEE","CHAR","CMDT","COMM","COST","CSDB","DBTC","DEPT","DIVD","ECPG","ELEC","ESTX","GASB","GOVI","HLRP","HLTI","HREC","ICRF","INSM","INSU","INTE","LBRI","LIFI","LOAN","NWCH","PENS","PHON","RENT","SALA","SCVE","SECU","SUBS","TAXS","VATX"};
 	   for(int i=0; i<kode.length; i++){
@@ -282,7 +294,21 @@ public class UpravljanjeKomitenta {
 		   k.setKoda(kode[i]);
 		   kn.vnesi(k);
 	   }
-		
-	return "/Banka/ustvariERacun";
+		if(glavni!=null) {
+			return "/Banka/ustvariERacun";
+		}
+		else {
+			return "/Komitent/ustvariERacun";
+		}
    }
+
+public static Komitent getGlavni() {
+	return glavni;
+}
+
+public String setGlavni(Komitent glavni) {
+	this.glavni = glavni;
+	return glavni.getIme()+" "+glavni.getPriimek();
+}
+   
 }

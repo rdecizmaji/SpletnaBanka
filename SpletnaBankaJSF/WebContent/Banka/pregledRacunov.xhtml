@@ -62,49 +62,8 @@
 							   </h:dataTable>
                   			</div>
               			</div>
-							<div class="panel-body table-responsive">
-								<h:dataTable class="table table-hover"
-									value="#{upravljanjeKomitenta.racuni}" var="racun">
-									<h:column>
-										<f:facet name="header">Šifra računa</f:facet>
-										<h:outputText value="#{racun.sifraRacuna}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Znesek</f:facet>
-										<h:outputText value="#{racun.znesek}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Datum izdaje</f:facet>
-										<h:outputText
-											value="#{upravljanjeKomitenta.pretvori(racun.datumIzdaje)}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Datum plačila</f:facet>
-										<h:outputText
-											value="#{upravljanjeKomitenta.pretvori(racun.datumPlacila)}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Namen</f:facet>
-										<h:outputText value="#{racun.namen}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Stanje</f:facet>
-										<h:outputText value="#{racun.placan}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Trr prejemnika</f:facet>
-										<h:outputText value="#{racun.TRRprejmnika}" />
-									</h:column>
-									<h:column>
-										<f:facet name="header">Izbriši račun</f:facet>
-										<h:commandButton class="btn" value="Izbris"
-											action="#{upravljanjeKomitenta.racunIzbris(racun)}"></h:commandButton>
-									</h:column>
-								</h:dataTable>
-							</div>
 						</div>
 					</div>
-				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
