@@ -70,6 +70,7 @@ IBancnaKartica banKar;
 				t.setZaprt(false);
 				t.setStanje(new BigDecimal(0));
 				t.setKomitent(k);
+				t.setDatumOdprtja(Calendar.getInstance());
 				
 					//kreiranje kartice
 					List<BancnaKartica> bancneKartice=new ArrayList<BancnaKartica>();

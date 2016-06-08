@@ -61,13 +61,9 @@ public class UpravljanjeKomitenta {
 		komitent.setDatum(cal);
 		//Komitenta dodamo kot userja
 		komitent.setVloga("user");
-		//dodajanje TRR
-
 		//klicana metoda za vnos
-
 		kom.shrani(komitent);
 		izbrani = kom.najdi(komitent);
-		dodajTRR();
 		//ustvari nova insatnca
 		komitent = izbrani;
 		komitent=new Komitent();
