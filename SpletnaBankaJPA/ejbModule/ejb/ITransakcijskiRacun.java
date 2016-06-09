@@ -28,4 +28,5 @@ public interface ITransakcijskiRacun {
 	List<TransakcijskiRacun> vrniTRR(int kom);
 	ArrayList<Racun> vrniIzdaneRacuneTrrja(TransakcijskiRacun trr);
 	ArrayList<Racun> vrniPrejeteRacuneTrrja(TransakcijskiRacun trr);
+	Komitent vrniKomitenta(String trr);
 }

@@ -73,6 +73,8 @@ public class UpravljanjeKomitenta {
 	private String potrdigeslo;
 	private String novogeslo;
 	private String starogeslo;
+	private LineChartModel lineModel2;
+	private Transakcija transakcija;
 
 	public LineChartModel getLineModel() {
 		narisiGraf();

@@ -138,4 +138,11 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
 	}
+	
+	@Override
+	public Komitent vrniKomitenta(String trr) {
+		TransakcijskiRacun transakcijskiRacun = najdi(trr);
+		Komitent k = transakcijskiRacun.getKomitent();
+		return k;
+	}
 }
