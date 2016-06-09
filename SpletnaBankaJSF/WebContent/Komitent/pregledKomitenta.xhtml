@@ -19,8 +19,6 @@
 		<ui:define name="content">
 			<h1 class="display-1 hidden-xs-down">Armaturna Plošča</h1>
 			<div class="row" style="margin-bottom: 5px;">
-
-
 				<div class="col-md-4">
 					<div class="sm-st clearfix">
 						<span class="sm-st-icon st-red"><i
@@ -55,7 +53,35 @@
 				</div>
 			</div>
 			<div class="row">
-
+                        <div class="col-md-4">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
+                                <div class="sm-st-info">
+                                    <span><h:outputText value="#{upravljanjeERacuna.vseTransakcije(upravljanjeKomitenta.izbrani)}"/></span>
+                                    Opravljenih Transakcij
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+                                <div class="sm-st-info">
+                                    <span><h:outputText value="#{upravljanjeERacuna.vsiZneski(upravljanjeKomitenta.izbrani)}€"/></span>
+                                    Stanje na računih
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
+                                <div class="sm-st-info">
+                                   <span><h:outputText value="#{upravljanjeERacuna.getStER(upravljanjeKomitenta.izbrani)}"></h:outputText></span>
+                                    Vseh izdanih e-računov
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
 				<div class="col-md-12">
 					<div class="panel">
 						<div class="panel-heading">Graf transakcij</div>
