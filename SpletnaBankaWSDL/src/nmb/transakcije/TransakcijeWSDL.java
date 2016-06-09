@@ -8,20 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.jws.WebService;
-import javax.xml.ws.BindingProvider;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
-import org.jboss.security.annotation.SecurityDomain;
-
-import com.sun.xml.internal.org.jvnet.staxex.NamespaceContextEx.Binding;
-
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
-import entitete.Racun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
 
