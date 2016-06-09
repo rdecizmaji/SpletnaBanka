@@ -41,23 +41,23 @@ public class UpravljanjeTransakcije {
 
 	public void fatal(int vrstaNapake) {
 		if(vrstaNapake == 0) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "IBAN raèun se ne ujema z nobenim drugim raèunom v NMB Banki."));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni moï¿½na!", "IBAN raï¿½un se ne ujema z nobenim drugim raï¿½unom v NMB Banki."));
 		}
 		if(vrstaNapake == 1) {
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Prosimo poskusite ponovno kasneje."));
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni moï¿½na!", "Prosimo poskusite ponovno kasneje."));
 			}
 		if(vrstaNapake == 2) {
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Na raèunu ni dovolj denarja."));
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni moï¿½na!", "Na raï¿½unu ni dovolj denarja."));
 			}
 		if(vrstaNapake == 3) {
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Preglejte vpisane podatke in poskusite ponovno."));
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni moï¿½na!", "Preglejte vpisane podatke in poskusite ponovno."));
 			}
 		if(vrstaNapake == 4) {
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Polog ni možen!", "Transakcijski raèun je zaprt/blokiran."));
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Polog ni moï¿½en!", "Transakcijski raï¿½un je zaprt/blokiran."));
 			}
 	}
 	public String shraniTransakcijo(){
-		//iskanje transakcijsih raèunov, plaènik po id-ju, prejemnik po TRR-ju
+		//iskanje transakcijsih raï¿½unov, plaï¿½nik po id-ju, prejemnik po TRR-ju
 		TransakcijskiRacun transakcijskiRacunPlacnika = trr.najdi(TRR);
 		TransakcijskiRacun transakcijskiRacunPrejemnika = trr.najdi(TRRP);
 		if(transakcijskiRacunPlacnika == transakcijskiRacunPrejemnika) {
@@ -72,12 +72,12 @@ public class UpravljanjeTransakcije {
 		}
 		if(transakcijskiRacunPlacnika.getStanje().doubleValue() <= -100) {
 			fatal(2);
-			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			System.out.println("NA RAï¿½UNU NI DOVOLJ DENARJA");
 			return "nakazi";
 		}
 		if(transakcijskiRacunPlacnika.getStanje().subtract(transakcija.getZnesek()).doubleValue() <= -100) {
 			fatal(2);
-			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			System.out.println("NA RAï¿½UNU NI DOVOLJ DENARJA");
 			return "nakazi";
 		}
 		//datum transakcije
@@ -122,7 +122,7 @@ public class UpravljanjeTransakcije {
 
 	public String pologDenarja() {
 		TransakcijskiRacun transakcijskiRacun = trr.najdi(TRR);
-		if(transakcijskiRacun.isZaprt() != true) {
+		if(transakcijskiRacun.isZaprt() == true) {
 			fatal(4);
 			return "polog";
 		}
