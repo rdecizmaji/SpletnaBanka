@@ -17,7 +17,7 @@
 <h:body>
 	<ui:composition template="/resources/templateKomitent.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form onsubmit="return preveri(this);">
 				<h1 class="display-1 hidden-xs-down">Nastavitve profila</h1>
 				<div class="row" style="margin-bottom: 5px;">
 					<div class="col-lg-6">
@@ -26,31 +26,39 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label>Staro geslo:</label>
-									<h:inputText class="form-control"
-										value="#{upravljanjeKomitenta.izbrani.ime}" required="true"></h:inputText>
+									<h:inputText class="form-control" name="starogeslo" id="starogeslo"
+										value="#{upravljanjeKomitenta.izbrani.geslo}" required="true"></h:inputText>
 								</div>
 								<div class="form-group">
 									<label>Novo geslo:</label>
-									<h:inputText class="form-control"
-										value="#{upravljanjeKomitenta.izbrani.priimek}"
+									<h:inputText class="form-control" name="novogeslo" id="novogeslo"
+										value="#{upravljanjeKomitenta.izbrani.geslo}"
 										required="true"></h:inputText>
 								</div>
 								<div class="form-group">
 									<label>Potrdi novo geslo:</label>
-									<h:inputText type="email" class="form-control"
-										value="#{upravljanjeKomitenta.izbrani.email}" equired="true"></h:inputText>
+									<h:inputText class="form-control" name="potrdigeslo" id="potrdigeslo"
+										value="Prazno"></h:inputText>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="vpisGumb">
-									<h:commandButton class="btn" value="Spremeni"
+									<h:commandButton class="btn" value="Spremeni" 
 										action="#{upravljanjeKomitenta.urediKomitenta()}"></h:commandButton>
 								</div>
 							</div>
 						</div>
 					</div>
+					<script language="javascript">
+			function preveri(forma) {
+			//var staro = document.getElementById("starogeslo");
+			//var novo  = document.getElementById("novogeslo");
+			//var potrdi = document.getElementById("potrdigeslo");
+			alert(forma.starogeslo.value);
+			}
+			</script>
 				</div>
 			</h:form>
 		</ui:define>

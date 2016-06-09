@@ -21,7 +21,6 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 
-import dodatniRazredi.Graf;
 import dodatniRazredi.TrrGenerator;
 import ejb.IKodaNamena;
 import ejb.IKomitent;

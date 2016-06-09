@@ -25,8 +25,6 @@ import entitete.TransakcijskiRacun;
 
 import org.primefaces.model.chart.LineChartModel;
 
-import dodatniRazredi.Graf;
-
 @ManagedBean(name = "upravljanjeERacuna")
 @SessionScoped
 public class UpravljanjeERacuna {
