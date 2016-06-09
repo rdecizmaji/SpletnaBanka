@@ -272,6 +272,9 @@ public class UpravljanjeKomitenta {
 			izbrani.setGeslo(newpass);
 			kom.shrani(izbrani);
 			success();
+			novogeslo = "";
+			starogeslo = "";
+			potrdigeslo = "";
 			return "Komitent/nastavitve";
 		}
 		else {
