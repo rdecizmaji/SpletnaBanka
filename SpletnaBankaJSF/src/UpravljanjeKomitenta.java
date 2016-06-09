@@ -74,6 +74,7 @@ public class UpravljanjeKomitenta {
 	private String novogeslo;
 	private String starogeslo;
 	private LineChartModel lineModel2;
+	private Transakcija transakcija;
 
 
 	
