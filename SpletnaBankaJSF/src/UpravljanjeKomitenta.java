@@ -213,28 +213,37 @@ public class UpravljanjeKomitenta {
 		return racuni;
 	}
 
-	public String placajRacun(Racun racun) {
+	public String racunPlacaj(Racun racun) {
 		if (!racun.isPlacan()) {
 			racun.setPlacan(true);
 			racun.setDatumPlacila(Calendar.getInstance());
-			r.edit(racun);
-			/*
-			 * TransakcijskiRacun transakcijskiRacun =
-			TransakcijskiRacun transakcijskiRacun = trr.najdi(izbraniTrr.getId());
+			//r.edit(racun);
+			
+			TransakcijskiRacun prejemnikRacun = trr.najdi(racun.getTRRprejmnika());
+			TransakcijskiRacun posiljateljRacun = trr.najdi(racun.getIdTr());
+
 			transakcija.setDatum(Calendar.getInstance());
 			transakcija.setNaziv(racun.getNamen());
-			transakcija.setTrenutnoStanje(transakcijskiRacun.getStanje().add(transakcija.getZnesek()));
-			 * transakcija.getZnesek())); BigDecimal novoStanje =
-			BigDecimal novoStanje = transakcijskiRacun.getStanje().add(transakcija.getZnesek());
-			transakcijskiRacun.setStanje(novoStanje);
-			transakcija.setIdTran(transakcijskiRacun);
+			transakcija.setTrenutnoStanje(prejemnikRacun.getStanje());
+			BigDecimal novoStanje = prejemnikRacun.getStanje().subtract(racun.getZnesek());
+			prejemnikRacun.setStanje(novoStanje);
+			transakcija.setIdTran(prejemnikRacun);
 	
+			BigDecimal stanje = posiljateljRacun.getStanje();
+			posiljateljRacun.setStanje(stanje.add(racun.getZnesek()));
+			
+			System.out.println(prejemnikRacun.getStanje());
+			System.out.println(posiljateljRacun.getStanje());
+			
+			//trr.edit(posiljateljRacun);
+			//trr.edit(prejemnikRacun);
+			
 			tr.shrani(transakcija);
 			transakcija = new Transakcija();
-			*/
+			
 			System.out.println("Racun placan!");
 		}
-		return "pregledKomitenta";
+		return "pregledPrejetihRacunov";
 	}
 
 	public void racunIzbris(Racun racun) {

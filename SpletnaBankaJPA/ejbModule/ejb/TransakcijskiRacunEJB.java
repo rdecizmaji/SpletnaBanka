@@ -109,7 +109,7 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		trr = em.find(TransakcijskiRacun.class , id);
 		return trr;
 	}
-
+	
 	@Override
 	public TransakcijskiRacun najdi(String TRR) {
 	Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr");
