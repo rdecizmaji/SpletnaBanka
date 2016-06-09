@@ -12,8 +12,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
@@ -162,23 +164,34 @@ public class UpravljanjeKomitenta {
 	}
 
 	public String registrirajKomitenta(){
-		
-		//pretvorba iz Date v Calendar
-
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(datumR);
-		komitent.setDatum(cal);
-		// Komitenta dodamo kot userja
-		komitent.setVloga("user");
-		// klicana metoda za vnos
-		kom.shrani(komitent);
-		izbrani = kom.najdi(komitent);
-		// ustvari nova insatnca
-		komitent = izbrani;
-		komitent = new Komitent();
-		datumR = null;
-
-		return "listaKomitentov";
+		boolean vnesi=true;
+		List<String>emaili=kom.vrniEmaile();
+		for(int i=0; i<emaili.size(); i++){
+			if(komitent.getEmail().equals(emaili.get(i))){
+				FacesContext.getCurrentInstance().addMessage("email1", new FacesMessage("Ta e-naslov že obstaja!"));
+				vnesi=false;
+			}
+		}
+		if(vnesi){	
+			//pretvorba iz Date v Calendar
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(datumR);
+			komitent.setDatum(cal);
+			// Komitenta dodamo kot userja
+			komitent.setVloga("user");
+			// klicana metoda za vnos
+			kom.shrani(komitent);
+			izbrani = kom.najdi(komitent);
+			// ustvari nova insatnca
+			komitent = izbrani;
+			komitent = new Komitent();
+			datumR = null;
+			return "listaKomitentov";
+		}
+		else{
+			komitent.setEmail("");
+			return null;
+		}
 	}
 
 	// TRRJI IN KARTICE
