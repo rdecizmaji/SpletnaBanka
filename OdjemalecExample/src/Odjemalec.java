@@ -32,7 +32,9 @@ public class Odjemalec {
         headers.put("Password", Collections.singletonList("flores"));
         req_ctx.put(MessageContext.HTTP_REQUEST_HEADERS, headers);
         /**********************************************************************/
-		System.out.println(hello.transakcijaRacun("asdas", "asda"));
+		System.out.println(hello.testirajPovezavo());;
+        
+        //System.out.println(hello.izvrsiNalog(null, null, null));
 	}
 
 }

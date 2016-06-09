@@ -1,6 +1,8 @@
 
 package nmb.transakcije;
 
+import java.math.BigDecimal;
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -25,6 +27,18 @@ public interface TransakcijeWSDL {
 
     /**
      * 
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "testirajPovezavo", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.TestirajPovezavo")
+    @ResponseWrapper(localName = "testirajPovezavoResponse", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.TestirajPovezavoResponse")
+    public String testirajPovezavo();
+
+    /**
+     * 
+     * @param arg3
      * @param arg2
      * @param arg1
      * @param arg0
@@ -41,6 +55,22 @@ public interface TransakcijeWSDL {
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        BigDecimal arg3);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<nmb.transakcije.Transakcija>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "vrniTransakcije", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.VrniTransakcije")
+    @ResponseWrapper(localName = "vrniTransakcijeResponse", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.VrniTransakcijeResponse")
+    public List<Transakcija> vrniTransakcije(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
 }
