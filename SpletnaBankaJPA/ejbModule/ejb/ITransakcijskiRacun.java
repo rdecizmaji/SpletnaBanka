@@ -20,12 +20,12 @@ public interface ITransakcijskiRacun {
 	TransakcijskiRacun najdi(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(int id);
 	TransakcijskiRacun najdi(String stevilkaTRR);
+	
 	ArrayList<TransakcijskiRacun> vrniVse();
 	ArrayList<Racun> vrniRacuneTrrja();
 	ArrayList<BancnaKartica> vrniBancneKarticeTrrja();
 	List<Transakcija> vrniTransakcije(TransakcijskiRacun izbrani);
-
-	ArrayList<Racun> vrniRacuneTrrja(TransakcijskiRacun trr);
-
 	List<TransakcijskiRacun> vrniTRR(int kom);
+	ArrayList<Racun> vrniIzdaneRacuneTrrja(TransakcijskiRacun trr);
+	ArrayList<Racun> vrniPrejeteRacuneTrrja(TransakcijskiRacun trr);
 }

@@ -159,22 +159,39 @@ public class UpravljanjeKomitenta {
 
 	// TRRJI IN KARTICE
 
-	// racun
-	public String pregledRacunov(TransakcijskiRacun trr){
+	// RACUN
+	public String pregledIzdanihRacunov(TransakcijskiRacun trr) {
 		izbraniTrr = trr;
-		return "pregledNavadnihRacunov";
+		return "pregledIzdanihRacunov";
 	}
 	
+	public String pregledPrejetihRacunov(TransakcijskiRacun trr) {
+		izbraniTrr = trr;
+		return "pregledPrejetihRacunov";
+	}
+	
+	public List<Racun> izdaniRacuni() {
+		racuni = trr.vrniIzdaneRacuneTrrja(izbraniTrr);
+		return racuni;
+	}
+	
+	public List<Racun> prejetiRacuni() {
+		racuni = trr.vrniPrejeteRacuneTrrja(izbraniTrr);
+		return racuni;
+	}
+
 	public String placajRacun(Racun racun) {
-		if(!racun.isPlacan()) {
+		if (!racun.isPlacan()) {
 			racun.setPlacan(true);
 			racun.setDatumPlacila(Calendar.getInstance());
 			r.edit(racun);
 			/*
+			 * TransakcijskiRacun transakcijskiRacun =
 			TransakcijskiRacun transakcijskiRacun = trr.najdi(izbraniTrr.getId());
 			transakcija.setDatum(Calendar.getInstance());
 			transakcija.setNaziv(racun.getNamen());
 			transakcija.setTrenutnoStanje(transakcijskiRacun.getStanje().add(transakcija.getZnesek()));
+			 * transakcija.getZnesek())); BigDecimal novoStanje =
 			BigDecimal novoStanje = transakcijskiRacun.getStanje().add(transakcija.getZnesek());
 			transakcijskiRacun.setStanje(novoStanje);
 			transakcija.setIdTran(transakcijskiRacun);
@@ -188,7 +205,10 @@ public class UpravljanjeKomitenta {
 	}
 
 	public void racunIzbris(Racun racun) {
-		r.izbrisi(racun);
+		if (!racun.isIzbrisan()) {
+			racun.setIzbrisan(true);
+			r.edit(racun);
+		}
 		System.out.println("Racun izbrisan.");
 	}
 
@@ -280,6 +300,7 @@ public class UpravljanjeKomitenta {
 	
 	//OSTALE FUNKCIJE 
 	public String pretvori(Calendar c){
+		System.out.print(c);
 		if(c!=null){
 			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
 			String preoblikovan = oblika.format(c.getTime());
@@ -383,9 +404,9 @@ public class UpravljanjeKomitenta {
 	public void setIzbraniTrr(TransakcijskiRacun izbraniTrr) {
 		this.izbraniTrr = izbraniTrr;
 	}
-	
+
 	public List<Racun> getRacuni() {
-		racuni = trr.vrniRacuneTrrja(izbraniTrr);
+		racuni = r.vrniVse();
 		return racuni;
 	}
 
@@ -429,11 +450,6 @@ public class UpravljanjeKomitenta {
 			return "/Banka/ustvariERacun.xhtml";
 		} else
 			return "/Komitent/ustvariERacun.xhtml";
-	}
-
-	public String razveljavi1() {
-		prejemnik = new Komitent();
-		return "/Banka/ustvariPostavke.xhtml";
 	}
 
 	public String vnesi(Komitent koma) {

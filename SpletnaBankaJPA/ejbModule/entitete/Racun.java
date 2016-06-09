@@ -23,6 +23,7 @@ public class Racun implements Serializable {
 	private boolean placan;
 	private String TRRprejmnika;
 	private BigDecimal znesek;
+	private boolean izbrisan;
 	private TransakcijskiRacun idTr;
 	private KodaNamena idKn;
 
@@ -108,5 +109,13 @@ public class Racun implements Serializable {
 
 	public void setIdKn(KodaNamena idKn) {
 		this.idKn = idKn;
+	}
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
 	}
 }
