@@ -107,7 +107,7 @@ public class TransakcijeWSDL {
 	        }
 	        	
 	        //Should validate username and password with database
-	        if (username.equals("mkyong") && password.equals("password")){
+	        if (username.equals("floro") && password.equals("flores")){
 	        	return true;
 	        	
 	        }else{
