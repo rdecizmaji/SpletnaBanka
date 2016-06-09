@@ -24,6 +24,7 @@ public class RacunEJB implements IRacun {
 	@Override
 	public void izdajRacun(Racun r) {
 		r.setDatumIzdaje(Calendar.getInstance());
+		r.setIzbrisan(false);
 		em.persist(r);
 		System.out.println("Racun izdan.");
 	}
@@ -48,7 +49,7 @@ public class RacunEJB implements IRacun {
 
 	@Override
 	public ArrayList<Racun> vrniVse() {
-		Query query = em.createQuery("SELECT r FROM Racun r");
+		Query query = em.createQuery("SELECT r FROM Racun r AND izbrisan=false");
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
 	}
@@ -71,7 +72,7 @@ public class RacunEJB implements IRacun {
 	
 	@Override
 	public ArrayList<Racun> vrniPlacaneRacune(TransakcijskiRacun trr) {
-		Query query = em.createQuery("SELECT r FROM Racun r WHERE TransakcijskiRacun=? AND placan=true");
+		Query query = em.createQuery("SELECT r FROM Racun r WHERE TransakcijskiRacun=? AND placan=true AND izbrisan=false");
 		query.setParameter(1, trr.getId());
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
@@ -79,7 +80,7 @@ public class RacunEJB implements IRacun {
 	
 	@Override
 	public ArrayList<Racun> vrniNeplacaneRacune(TransakcijskiRacun trr) {
-		Query query = em.createQuery("SELECT r FROM Racun r WHERE TransakcijskiRacun=? AND placan=false");
+		Query query = em.createQuery("SELECT r FROM Racun r WHERE TransakcijskiRacun=? AND placan=false and izbrisan=false");
 		query.setParameter(1, trr.getId());
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;

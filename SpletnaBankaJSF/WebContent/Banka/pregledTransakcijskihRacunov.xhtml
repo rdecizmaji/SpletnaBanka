@@ -56,9 +56,14 @@
 										<h:outputText value="#{trr.stanje}" />
 									</h:column>
 									<h:column>
-										<f:facet name="header">Računi</f:facet>
-										<h:commandButton class="btn" value="Računi"
-											action="#{upravljanjeKomitenta.pregledRacunov(trr)}"></h:commandButton>
+										<f:facet name="header">Izdani računi</f:facet>
+										<h:commandButton class="btn" value="Pregled"
+											action="#{upravljanjeKomitenta.pregledIzdanihRacunov(trr)}" ></h:commandButton>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Prejeti računi</f:facet>
+										<h:commandButton class="btn" value="Pregled"
+											action="#{upravljanjeKomitenta.pregledPrejetihRacunov(trr)}"></h:commandButton>
 									</h:column>
 									<h:column>
 										<f:facet name="header">Transakcije</f:facet>

@@ -124,10 +124,18 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 	}	
 	
 	@Override
-	public ArrayList<Racun> vrniRacuneTrrja(TransakcijskiRacun trr) {
-		Query query = em.createQuery("SELECT r FROM Racun r WHERE idTr_id=?");
+	public ArrayList<Racun> vrniIzdaneRacuneTrrja(TransakcijskiRacun trr) {
+		Query query = em.createQuery("SELECT r FROM Racun r WHERE idTr_id=? AND izbrisan=false");
 		query.setParameter(1, trr.getId());
 		racuni = (ArrayList<Racun>) query.getResultList();
 		return racuni;
-	}	
+	}
+	
+	@Override
+	public ArrayList<Racun> vrniPrejeteRacuneTrrja(TransakcijskiRacun trr) {
+		Query query = em.createQuery("SELECT r FROM Racun r WHERE TRRprejmnika=? AND izbrisan=false");
+		query.setParameter(1, trr.getStevilkaTRR());
+		racuni = (ArrayList<Racun>) query.getResultList();
+		return racuni;
+	}
 }
