@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
-xmlns:ui="http://java.sun.com/jsf/facelets"
-xmlns:p="http://primefaces.org/ui"
-xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
- <h:outputStylesheet library="css" name="bootstrap.min1.css"/>
- <h:outputStylesheet library="css" name="bootstrap.css"/> 
-  <h:outputStylesheet library="css" name="custom-style.css"/>
+<h:outputStylesheet library="css" name="bootstrap.min1.css" />
+<h:outputStylesheet library="css" name="bootstrap.css" />
+<h:outputStylesheet library="css" name="custom-style.css" />
 <head>
-<meta http-equiv="Content-Type" content="text/html"/>
+<meta http-equiv="Content-Type" content="text/html" />
 
 <title>NMB Banka</title>
 </head>
 <h:body>
- <ui:composition template="/resources/templateKomitent.xhtml">
- <ui:define name="content">
-<h1 class="display-1 hidden-xs-down">
-           Armaturna Plošča
-            </h1>
-<div class="row" style="margin-bottom:5px;">
+	<ui:composition template="/resources/templateKomitent.xhtml">
+		<ui:define name="content">
+			<h1 class="display-1 hidden-xs-down">Armaturna Plošča</h1>
+			<div class="row" style="margin-bottom: 5px;">
 
 
-                        <div class="col-md-4">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span><h:outputText value="#{upravljanjeERacuna.vseTransakcije(upravljanjeKomitenta.izbrani)}"/></span>
-                                    Opravljenih Transakcij
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
-                                <div class="sm-st-info">
-                                    <span><h:outputText value="#{upravljanjeERacuna.vsiZneski(upravljanjeKomitenta.izbrani)}"/></span>
-                                    Stanje na računih
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
-                                <div class="sm-st-info">
-                                   <span><h:outputText value="#{upravljanjeERacuna.getStER(upravljanjeKomitenta.izbrani)}"></h:outputText></span>
-                                    Vseh izdanih e-računov
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="row">
+				<div class="col-md-4">
+					<div class="sm-st clearfix">
+						<span class="sm-st-icon st-red"><i
+							class="fa fa-check-square-o"></i></span>
+						<div class="sm-st-info">
+							<span><h:outputText
+									value="#{upravljanjeERacuna.vseTransakcije(upravljanjeKomitenta.izbrani)}" /></span>
+							Opravljenih Transakcij
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="sm-st clearfix">
+						<span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+						<div class="sm-st-info">
+							<span><h:outputText
+									value="#{upravljanjeERacuna.vsiZneski(upravljanjeKomitenta.izbrani)}" /></span>
+							Stanje na računih
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="sm-st clearfix">
+						<span class="sm-st-icon st-green"><i
+							class="fa fa-paperclip"></i></span>
+						<div class="sm-st-info">
+							<span><h:outputText
+									value="#{upravljanjeERacuna.getStER(upravljanjeKomitenta.izbrani)}"></h:outputText></span>
+							Vseh izdanih e-računov
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 
-                        <div class="col-md-12">
-                            <div class="panel">
-                              <div class="panel-heading">
-                                  Graf transakcij
-                            	</div>
-                            <div class="panel-body">
-                            	<p:chart type="line" model="#{upravljanjeKomitenta.getLineModel()}" style="height:300px;"/>
-                        	</div>
-                     </div>
-              	</div>
-           </div>
-                                       
-	</ui:define>
- </ui:composition>
+				<div class="col-md-12">
+					<div class="panel">
+						<div class="panel-heading">Graf transakcij</div>
+						<div class="panel-body">
+							<p:chart type="line"
+								model="#{upravljanjeKomitenta.getLineModel()}"
+								style="height:300px;" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
