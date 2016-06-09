@@ -1,8 +1,11 @@
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -147,7 +150,7 @@ public class UpravljanjeTransakcije {
 		String preoblikovan = oblika.format(c.getTime());
 		return preoblikovan;
 	}
-
+	
 	public int getIdKn() {
 		return idKn;
 	}

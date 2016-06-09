@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,6 +19,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
+import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 
@@ -67,27 +69,15 @@ public class UpravljanjeKomitenta {
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
 	List<List<Transakcija>> listi=new ArrayList<List<Transakcija>>();
-	List<String> datum=new ArrayList<String>();
-	List<Double> stevilo=new ArrayList<Double>();
 	private LineChartModel lineModel;
 	private String potrdigeslo;
 	private String novogeslo;
 	private String starogeslo;
-	private LineChartModel lineModel2;
 
-
-	
-	//GRAF
 	public LineChartModel getLineModel() {
-			narisiGraf();
-			createLineModels(listi);
-		return lineModel;  
-	}
-	
-	public LineChartModel getLineModel2() {
-		narisiGraf2();
-		createLineModels2();
-		return lineModel2;
+		narisiGraf();
+		createLineModels(listi);
+		return lineModel;
 	}
 
     private void createLineModels(List<List<Transakcija>> listi) {
@@ -97,15 +87,6 @@ public class UpravljanjeKomitenta {
         lineModel.setLegendPosition("e");
         lineModel.setShowPointLabels(true);
         lineModel.getAxes().put(AxisType.X, new CategoryAxis("Datum"));
-    }
-    
-    private void createLineModels2() {
-        
-    	lineModel2 = initCategoryModel2();
-        lineModel2.setTitle("Število komitentov");
-        lineModel2.setLegendPosition("e");
-        lineModel2.setShowPointLabels(true);
-        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Datum"));
     }
      
     private LineChartModel initCategoryModel(List<List<Transakcija>> listi) {
@@ -132,18 +113,6 @@ public class UpravljanjeKomitenta {
         return model;
     }
 
-    private LineChartModel initCategoryModel2() {
-        LineChartModel model = new LineChartModel();
-       
-        ChartSeries kom = new ChartSeries();
-	    kom.setLabel("Št. komitentov");
-        	for(int i=0; i<datum.size(); i++){
-        		kom.set(datum.get(i),stevilo.get(i));
-        	}
-	       	
-	    model.addSeries(kom);   
-        return model;
-    }
 	//UPRAVLJANJE KOMITENTA 
 	
 	public String komitentPodrobno(Komitent k){
@@ -211,37 +180,28 @@ public class UpravljanjeKomitenta {
 		return racuni;
 	}
 
-	public String racunPlacaj(Racun racun) {
+	public String placajRacun(Racun racun) {
 		if (!racun.isPlacan()) {
 			racun.setPlacan(true);
 			racun.setDatumPlacila(Calendar.getInstance());
-			//r.edit(racun);
-			
-			TransakcijskiRacun prejemnikRacun = trr.najdi(racun.getTRRprejmnika());
-			TransakcijskiRacun posiljateljRacun = trr.najdi(racun.getIdTr());
-
+			r.edit(racun);
+			/*
+			 * TransakcijskiRacun transakcijskiRacun =
+			TransakcijskiRacun transakcijskiRacun = trr.najdi(izbraniTrr.getId());
 			transakcija.setDatum(Calendar.getInstance());
 			transakcija.setNaziv(racun.getNamen());
-			transakcija.setTrenutnoStanje(prejemnikRacun.getStanje());
-			BigDecimal novoStanje = prejemnikRacun.getStanje().subtract(racun.getZnesek());
-			prejemnikRacun.setStanje(novoStanje);
-			transakcija.setIdTran(prejemnikRacun);
+			transakcija.setTrenutnoStanje(transakcijskiRacun.getStanje().add(transakcija.getZnesek()));
+			 * transakcija.getZnesek())); BigDecimal novoStanje =
+			BigDecimal novoStanje = transakcijskiRacun.getStanje().add(transakcija.getZnesek());
+			transakcijskiRacun.setStanje(novoStanje);
+			transakcija.setIdTran(transakcijskiRacun);
 	
-			BigDecimal stanje = posiljateljRacun.getStanje();
-			posiljateljRacun.setStanje(stanje.add(racun.getZnesek()));
-			
-			System.out.println(prejemnikRacun.getStanje());
-			System.out.println(posiljateljRacun.getStanje());
-			
-			//trr.edit(posiljateljRacun);
-			//trr.edit(prejemnikRacun);
-			
 			tr.shrani(transakcija);
 			transakcija = new Transakcija();
-			
+			*/
 			System.out.println("Racun placan!");
 		}
-		return "pregledPrejetihRacunov";
+		return "pregledKomitenta";
 	}
 
 	public void racunIzbris(Racun racun) {
@@ -520,67 +480,14 @@ public String setGlavni(Komitent glavni) {
 	this.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
 }
-
-public String getCurrentTime() {
-	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	Date date = new Date();
-	return dateFormat.format(date);
-}
-
-
 public void narisiGraf(){
-	if(izbrani!=null){
-		Komitent k=kom.najdi(izbrani);
-		List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
-		listi=new ArrayList<List<Transakcija>>();
-		for(int i=0; i<tran.size(); i++){
-			List<Transakcija> list=tr.vrniVse(tran.get(i)); 
-			listi.add(list);		
-		}
+	Komitent k=kom.najdi(izbrani);
+	List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
+	listi=new ArrayList<List<Transakcija>>();
+	for(int i=0; i<tran.size(); i++){
+		List<Transakcija> list=tr.vrniVse(tran.get(i)); 
+		listi.add(list);		
 	}
-}
-
-public void narisiGraf2(){
-	List<Komitent> komitenti=kom.vrniVse();
-	datum=new ArrayList<String>();
-	stevilo=new ArrayList<Double>();
-	for(int i=0; i<komitenti.size(); i++){
-		if(i<1){
-			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-			String preoblikovan = oblika.format(komitenti.get(i).getDatumVnosa().getTime());
-			datum.add(preoblikovan);
-		}
-		else{
-			boolean zeNot=false;
-			for(int j=0; j<i; j++){
-				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-				String preoblikovan = oblika.format(komitenti.get(j).getDatumVnosa().getTime());
-				String preoblikovan1 = oblika.format(komitenti.get(i).getDatumVnosa().getTime());
-				
-				if(preoblikovan.equals(preoblikovan1)){
-						zeNot=true;
-				}
-			}
-			if(!zeNot){
-				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-				String preoblikovan = oblika.format(komitenti.get(i).getDatumVnosa().getTime());
-				datum.add(preoblikovan);
-			}
-		}
-	}
-	for(int i=0; i<datum.size(); i++){
-		double st=0;
-		for(int j=0; j<komitenti.size(); j++){
-			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-			String preoblikovan = oblika.format(komitenti.get(j).getDatumVnosa().getTime());
-			if((datum.get(i)).equals(preoblikovan)){
-				st++;
-			}
-		}
-		stevilo.add(st);
-	}
-	System.out.println(datum);
-	System.out.println(stevilo);
 }
 
 public String getPotrdigeslo() {
