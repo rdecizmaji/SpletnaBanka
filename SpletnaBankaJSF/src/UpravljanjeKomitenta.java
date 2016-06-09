@@ -523,6 +523,13 @@ public String setGlavni(Komitent glavni) {
 	return glavni.getIme()+" "+glavni.getPriimek();
 }
 
+public String getCurrentTime() {
+	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	Date date = new Date();
+	return dateFormat.format(date);
+}
+
+
 public void narisiGraf(){
 	if(izbrani!=null){
 		Komitent k=kom.najdi(izbrani);
