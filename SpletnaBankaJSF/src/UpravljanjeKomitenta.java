@@ -66,8 +66,9 @@ public class UpravljanjeKomitenta {
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
-	private String currentTime;
 	List<List<Transakcija>> listi=new ArrayList<List<Transakcija>>();
+	List<List<String>> vsiDatumi=new ArrayList<List<String>>();
+	List<List<Double>> vseTransakcije=new ArrayList<List<Double>>();
 	List<String> datum=new ArrayList<String>();
 	List<Double> stevilo=new ArrayList<Double>();
 	private LineChartModel lineModel;
@@ -77,7 +78,7 @@ public class UpravljanjeKomitenta {
 	//GRAF
 	public LineChartModel getLineModel() {
 			narisiGraf();
-			createLineModels(listi);
+			createLineModels();
 		return lineModel;  
 	}
 	
@@ -87,10 +88,10 @@ public class UpravljanjeKomitenta {
 		return lineModel2;
 	}
 
-    private void createLineModels(List<List<Transakcija>> listi) {
+    private void createLineModels() {
          
-    	lineModel = initCategoryModel(listi);
-        lineModel.setTitle("Transakcije");
+    	lineModel = initCategoryModel();
+        lineModel.setTitle("Vsota dnevnih transakcij (€)");
         lineModel.setLegendPosition("e");
         lineModel.setShowPointLabels(true);
         lineModel.getAxes().put(AxisType.X, new CategoryAxis("Datum"));
@@ -106,22 +107,16 @@ public class UpravljanjeKomitenta {
        
     }
      
-    private LineChartModel initCategoryModel(List<List<Transakcija>> listi) {
+    private LineChartModel initCategoryModel() {
         LineChartModel model = new LineChartModel();
         
         
-        for(int i=0; i<listi.size(); i++){
-			List<Transakcija> list=listi.get(i);
+        for(int i=0; i<vsiDatumi.size(); i++){
+			List<String> datum=vsiDatumi.get(i);
 			ChartSeries znes = new ChartSeries();
 	        znes.setLabel("TRR "+i);
-	        	for(int j=0; j<list.size(); j++){
-	        		BigDecimal bd= list.get(j).getZnesek(); // the value you get
-	        		double d = bd.doubleValue();
-	        		
-	        		SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-	    			String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
-	        		
-	        		znes.set(preoblikovan,d);
+	        	for(int j=0; j<datum.size(); j++){
+	        		znes.set(datum.get(j),vseTransakcije.get(i).get(j));
 	        	}
 	        	
 	        model.addSeries(znes);  
@@ -464,12 +459,10 @@ public String getCurrentTime() {
 	return dateFormat.format(date);
 }
 
-public String setCurrentTime(String currentTime) {
-	return this.currentTime = currentTime;
-}
-
 public void narisiGraf(){
 	if(izbrani!=null){
+		vsiDatumi=new ArrayList<List<String>>();
+		vseTransakcije=new ArrayList<List<Double>>();
 		Komitent k=kom.najdi(izbrani);
 		List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
 		listi=new ArrayList<List<Transakcija>>();
@@ -477,7 +470,57 @@ public void narisiGraf(){
 			List<Transakcija> list=tr.vrniVse(tran.get(i)); 
 			listi.add(list);		
 		}
+		
+		
+		for(int i=0; i<listi.size(); i++){
+			List<Transakcija> list=listi.get(i);
+			List<String> dat=new ArrayList<String>();
+	        	for(int j=0; j<list.size(); j++){
+	        		if(j<1){
+	        			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+	        			String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
+	        			dat.add(preoblikovan);
+	        		}
+	        		else{
+	        			boolean zeNot=false;
+	        			for(int l=0; l<j; l++){
+	        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+	        				String preoblikovan = oblika.format(list.get(l).getDatum().getTime());
+	        				String preoblikovan1 = oblika.format(list.get(j).getDatum().getTime());
+	        				
+	        				if(preoblikovan.equals(preoblikovan1)){
+	        						zeNot=true;
+	        				}
+	        			}
+	        			if(!zeNot){
+	        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+	        				String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
+	        				dat.add(preoblikovan);
+	        			}
+	        		}
+	        	}
+	        vsiDatumi.add(dat);
+		}
+		
+		for(int i=0; i<vsiDatumi.size(); i++){
+			List<String> d=vsiDatumi.get(i);
+			List<Double> stev=new ArrayList<Double>();
+			for(int o=0; o<d.size(); o++){
+				double st=0;
+				for(int j=0; j<listi.get(i).size(); j++){
+					SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+					String preoblikovan = oblika.format(listi.get(i).get(j).getDatum().getTime());
+					if((d.get(o)).equals(preoblikovan)){
+						double s = listi.get(i).get(j).getZnesek().doubleValue();
+						st=st+s;
+					}
+				}
+				stev.add(st);
+			}
+			vseTransakcije.add(stev);
+		}
 	}
+	
 }
 
 public void narisiGraf2(){
@@ -519,8 +562,6 @@ public void narisiGraf2(){
 		}
 		stevilo.add(st);
 	}
-	System.out.println(datum);
-	System.out.println(stevilo);
 }
 
 }
