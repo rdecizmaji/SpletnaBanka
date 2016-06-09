@@ -12,8 +12,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
@@ -28,6 +30,7 @@ import ejb.IRacun;
 import ejb.ITipKartice;
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
+import ejb.KomitentEJB;
 import entitete.BancnaKartica;
 import entitete.KodaNamena;
 import entitete.Komitent;
@@ -61,14 +64,15 @@ public class UpravljanjeKomitenta {
 	private TransakcijskiRacun izbraniTrr;
 	private TipKartice tipkartice;
 	private Komitent prejemnik = new Komitent();
-	private Transakcija transakcija = new Transakcija();
 	private TransakcijskiRacun transakcijskiRacun = new TransakcijskiRacun();
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
-	private String currentTime;
 	List<List<Transakcija>> listi=new ArrayList<List<Transakcija>>();
 	private LineChartModel lineModel;
+	private String potrdigeslo;
+	private String novogeslo;
+	private String starogeslo;
 
 	public LineChartModel getLineModel() {
 		narisiGraf();
@@ -223,10 +227,42 @@ public class UpravljanjeKomitenta {
 
 	
 	public String urediKomitenta (){
-		
-
 		kom.shrani(izbrani);
 		return "pregledKomitenta";
+	}
+	public void fatal(int vrstaNapake) {
+		if(vrstaNapake == 0) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Sprememba gesla ni možna!", "Geslo se ne ujema z geslom v bazi."));
+		}
+		if(vrstaNapake == 1) {
+	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Sprememba gesla ni možna!", "Novo geslo in potrditveno geslo se ne ujemata."));
+			}
+		
+	}
+	public void success() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Geslo uspešno spremenjeno!", "Novo geslo je " + novogeslo));
+	}
+	public String spremeniGeslo(){
+		String oldpass;
+		String newpass;
+		if(novogeslo.equals(potrdigeslo)) {
+		oldpass = kodiraj(starogeslo);
+		if(izbrani.getGeslo().equals(oldpass)) {
+			newpass = kodiraj(novogeslo);	
+			izbrani.setGeslo(newpass);
+			kom.shrani(izbrani);
+			success();
+			return "Komitent/nastavitve";
+		}
+		else {
+			fatal(0);
+			return "Komitent/nastavitve";
+		}
+		}
+		else {
+			fatal(1);
+			return "Komitent/nastavitve";
+		}
 	}
 
 	public List<TransakcijskiRacun> vrniTRR(Komitent k) {
@@ -425,17 +461,6 @@ public String setGlavni(Komitent glavni) {
 	this.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
 }
-public String getCurrentTime() {
-	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	Date date = new Date();
-	return dateFormat.format(date);
-}
-
-public String setCurrentTime(String currentTime) {
-	return this.currentTime = currentTime;
-}
-
-
 public void narisiGraf(){
 	Komitent k=kom.najdi(izbrani);
 	List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
@@ -445,5 +470,42 @@ public void narisiGraf(){
 		listi.add(list);		
 	}
 }
+
+public String getPotrdigeslo() {
+	return potrdigeslo;
+}
+
+public void setPotrdigeslo(String potrdigeslo) {
+	this.potrdigeslo = potrdigeslo;
+}
+
+public String getNovogeslo() {
+	return novogeslo;
+}
+
+public void setNovogeslo(String novogeslo) {
+	this.novogeslo = novogeslo;
+}
+
+public String getStarogeslo() {
+	return starogeslo;
+}
+
+public void setStarogeslo(String starogeslo) {
+	this.starogeslo = starogeslo;
+}
+public String kodiraj(String md5) {
+	   try {
+	        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+	        byte[] array = md.digest(md5.getBytes());
+	        StringBuffer sb = new StringBuffer();
+	        for (int i = 0; i < array.length; ++i) {
+	          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+	       }
+	        return sb.toString();
+	    } catch (java.security.NoSuchAlgorithmException e) {
+	    }
+	    return null;
+	}
 
 }

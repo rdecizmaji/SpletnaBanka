@@ -20,6 +20,7 @@
 			<h:form onsubmit="return preveri(this);">
 				<h1 class="display-1 hidden-xs-down">Nastavitve profila</h1>
 				<div class="row" style="margin-bottom: 5px;">
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
 					<div class="col-lg-6">
 						<div class="panel">
 							<div class="panel-heading"></div>
@@ -27,18 +28,18 @@
 								<div class="form-group">
 									<label>Staro geslo:</label>
 									<h:inputText class="form-control" name="starogeslo" id="starogeslo"
-										value="#{upravljanjeKomitenta.izbrani.geslo}" required="true"></h:inputText>
+										value="#{upravljanjeKomitenta.starogeslo}" required="true"></h:inputText>
 								</div>
 								<div class="form-group">
 									<label>Novo geslo:</label>
 									<h:inputText class="form-control" name="novogeslo" id="novogeslo"
-										value="#{upravljanjeKomitenta.izbrani.geslo}"
+										value="#{upravljanjeKomitenta.novogeslo}"
 										required="true"></h:inputText>
 								</div>
 								<div class="form-group">
 									<label>Potrdi novo geslo:</label>
 									<h:inputText class="form-control" name="potrdigeslo" id="potrdigeslo"
-										value="Prazno"></h:inputText>
+										value="#{upravljanjeKomitenta.potrdigeslo}" required="true"></h:inputText>
 								</div>
 							</div>
 						</div>
@@ -46,18 +47,12 @@
 							<div class="col-md-12">
 								<div class="vpisGumb">
 									<h:commandButton class="btn" value="Spremeni" 
-										action="#{upravljanjeKomitenta.urediKomitenta()}"></h:commandButton>
+										action="#{upravljanjeKomitenta.spremeniGeslo()}"></h:commandButton>
 								</div>
 							</div>
 						</div>
 					</div>
 					<script language="javascript">
-			function preveri(forma) {
-			//var staro = document.getElementById("starogeslo");
-			//var novo  = document.getElementById("novogeslo");
-			//var potrdi = document.getElementById("potrdigeslo");
-			alert(forma.starogeslo.value);
-			}
 			</script>
 				</div>
 			</h:form>
