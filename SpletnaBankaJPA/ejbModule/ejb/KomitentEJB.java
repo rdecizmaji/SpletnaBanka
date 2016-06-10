@@ -179,5 +179,11 @@ IBancnaKartica banKar;
 		tra = (ArrayList<TransakcijskiRacun>) query.getResultList();
 		return tra;
 	}
-
+	@Override
+	 public List<String> vrniEmaile(){
+		 List<String> list=new ArrayList<String>();
+			Query query = manager.createQuery("SELECT k.email FROM Komitent k");
+			list = (ArrayList<String>)query.getResultList();
+			return list;
+	 }
 }

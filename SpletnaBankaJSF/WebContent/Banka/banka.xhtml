@@ -27,7 +27,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
                                 <div class="sm-st-info">
-                                    <span>200</span>
+                                    <span><h:outputText value="#{upravljanjeERacuna.vseTransakcije()}"/></span>
                                     Vseh transakcij
                                 </div>
                             </div>
@@ -37,7 +37,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
                                 <div class="sm-st-info">
-                                    <span>2</span>
+                                    <span><h:outputText value="#{upravljanjeERacuna.stKomitentov()}"/></span>
                                     Komitentov
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
                                 <div class="sm-st-info">
-                                    <span>100,320</span>
+                                    <span><h:outputText value="#{upravljanjeERacuna.stTRRracunov()}"/></span>
                                     Transakcijskih računov
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ xmlns:f="http://java.sun.com/jsf/core">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
                                 <div class="sm-st-info">
-                                   <span><h:outputText value="34"></h:outputText></span>
+                                   <span><h:outputText value="#{upravljanjeERacuna.stEracunov()}"/>></span>
                                     Vseh e-računov
                                 </div>
                             </div>

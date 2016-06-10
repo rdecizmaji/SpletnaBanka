@@ -15,4 +15,5 @@ public interface IKomitent {
 	List<Komitent> vrniVse();
 	List<TransakcijskiRacun> vrniTRRje(Komitent izbrani);
 	Komitent getSession(String username, String password);
+	List<String> vrniEmaile();
 }

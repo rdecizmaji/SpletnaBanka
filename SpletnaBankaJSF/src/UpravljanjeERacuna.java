@@ -367,6 +367,7 @@ public class UpravljanjeERacuna {
 		return znesek.toString();
 	}
 
+	//armaturna komitent
 	public int getStER(Komitent kom) {
 		Komitent k=komitent.najdi(kom);
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
@@ -398,5 +399,24 @@ public class UpravljanjeERacuna {
 		return znesek;
 	}
 	
+	//armaturna banka
+	public int vseTransakcije(){
+		List<Transakcija>t=transakcija.vrniVse();
+		return t.size();
+	}
+	
+	public int stKomitentov(){
+		List<Komitent> k=komitent.vrniVse();
+		return k.size();
+	}
+	
+	public int stTRRracunov(){
+		List<TransakcijskiRacun> t=tr.vrniVse();
+		return t.size();
+	}
+	public int stEracunov(){
+		List<ERacun> e=eRac.vrniVse();
+		return e.size();
+	}
 }
  
