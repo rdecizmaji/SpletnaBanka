@@ -81,8 +81,8 @@ public class Racun implements Serializable {
 		return TRRprejmnika;
 	}
 
-	public void setTRRprejmnika(String tRRprejmnika) {
-		TRRprejmnika = tRRprejmnika;
+	public void setTRRprejmnika(String TRRprejmnika) {
+		this.TRRprejmnika = TRRprejmnika;
 	}
 
 	public BigDecimal getZnesek() {
