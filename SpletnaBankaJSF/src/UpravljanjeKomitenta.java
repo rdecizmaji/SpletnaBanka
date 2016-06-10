@@ -1,28 +1,19 @@
 import java.math.BigDecimal;
-
-import java.text.DateFormat;
-
 import java.text.ParseException;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
-
 import dodatniRazredi.TrrGenerator;
 import ejb.IKodaNamena;
 import ejb.IKomitent;
@@ -30,7 +21,6 @@ import ejb.IRacun;
 import ejb.ITipKartice;
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
-import entitete.BancnaKartica;
 import entitete.KodaNamena;
 import entitete.Komitent;
 import entitete.Racun;
@@ -78,6 +68,7 @@ public class UpravljanjeKomitenta {
 	private String novogeslo;
 	private String starogeslo;
 	private LineChartModel lineModel2;
+	private LineChartModel lineModel3;
 	
 	//GRAF
 
@@ -285,15 +276,6 @@ public class UpravljanjeKomitenta {
 		transakcijskiRacun.setKomitent(k1);
 		trr.edit(transakcijskiRacun);
 		return "pregledTransakcijskihRacunov";
-	}
-
-	public String dodajKartico() {
-		BancnaKartica novakartica = new BancnaKartica();
-		return "vseKartice";
-	}
-
-	public List<TipKartice> vrniTipeKartic() {
-		return tipkar.vrniVse();
 	}
 
 	public String urediKomitenta() {
@@ -533,7 +515,7 @@ public class UpravljanjeKomitenta {
 	}
 
 public String setGlavni(Komitent glavni) {
-	this.glavni = glavni;
+	UpravljanjeKomitenta.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
 }
 
@@ -640,7 +622,70 @@ public void narisiGraf(){
 			stevilo.add(st);
 		}
 	}
-
+	
+	public void narisiGraf3() {
+		if(izbrani!=null){
+			vsiDatumi=new ArrayList<List<String>>();
+			vseTransakcije=new ArrayList<List<Double>>();
+			Komitent k=kom.najdi(izbrani);
+			List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
+			listi=new ArrayList<List<Transakcija>>();
+			for(int i=0; i<tran.size(); i++){
+				List<Transakcija> list=tr.vrniVse(tran.get(i)); 
+				listi.add(list);	
+			}
+			
+			for(int i=0; i<listi.size(); i++){
+				List<Transakcija> list=listi.get(i);
+				List<String> dat=new ArrayList<String>();
+		        	for(int j=0; j<list.size(); j++){
+		        		if(j<1){
+		        			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		        			String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
+		        			dat.add(preoblikovan);
+		        		}
+		        		else{
+		        			boolean zeNot=false;
+		        			for(int l=0; l<j; l++){
+		        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		        				String preoblikovan = oblika.format(list.get(l).getDatum().getTime());
+		        				String preoblikovan1 = oblika.format(list.get(j).getDatum().getTime());
+		        				
+		        				if(preoblikovan.equals(preoblikovan1)){
+		        						zeNot=true;
+		        				}
+		        			}
+		        			if(!zeNot){
+		        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+		        				String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
+		        				dat.add(preoblikovan);
+		        			}
+		        		}
+		        	}
+		        vsiDatumi.add(dat);
+			}
+			
+			for(int i=0; i<vsiDatumi.size(); i++){
+				List<String> d=vsiDatumi.get(i);
+				List<Double> stev=new ArrayList<Double>();
+				for(int o=0; o<d.size(); o++){
+					double st=0;
+					for(int j=0; j<listi.get(i).size(); j++){
+						SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
+						String preoblikovan = oblika.format(listi.get(i).get(j).getDatum().getTime());
+						if((d.get(o)).equals(preoblikovan)){
+							double s = listi.get(i).get(j).getZnesek().doubleValue();
+							st=st+s;
+						}
+					}
+					stev.add(st);
+				}
+				vseTransakcije.add(stev);
+			}
+		}
+		
+	}
+	
 	public String getPotrdigeslo() {
 		return potrdigeslo;
 	}
@@ -679,4 +724,13 @@ public void narisiGraf(){
 		return null;
 	}
 
+	public LineChartModel getLineModel3() {
+		narisiGraf3();
+		createLineModels(listi);
+		return lineModel3;
+	}
+
+	public void setLineModel3(LineChartModel lineModel3) {
+		this.lineModel3 = lineModel3;
+	}
 }
