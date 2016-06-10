@@ -205,9 +205,9 @@ public class UpravljanjeKomitenta {
 	// TRRJI IN KARTICE
 
 	// racun
-	public String pregledRacunov(TransakcijskiRacun trr){
+	public String pregledIzdanihRacunov(TransakcijskiRacun trr){
 		izbraniTrr = trr;
-		return "pregledNavadnihRacunov";
+		return "pregledIzdanihRacunov";
 	}
 
 	public String pregledPrejetihRacunov(TransakcijskiRacun trr) {
@@ -309,6 +309,10 @@ public class UpravljanjeKomitenta {
 		if (vrstaNapake == 1) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
 					"Sprememba gesla ni možna!", "Novo geslo in potrditveno geslo se ne ujemata."));
+		}
+		if (vrstaNapake == 2) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
+					"Transakcija ni možna!", "Limita presežena"));
 		}
 
 	}
