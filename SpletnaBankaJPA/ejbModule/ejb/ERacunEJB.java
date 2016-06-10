@@ -71,6 +71,18 @@ public class ERacunEJB implements IERacun{
 		list = (ArrayList<ERacun>)query.getResultList();
 		return list;
 	}
+	public List<ERacun> vrniVseString(String TRR) {
+		ArrayList<ERacun> nova = new ArrayList<ERacun>();
+		List<ERacun> list=new ArrayList<ERacun>();
+		Query query = manager.createQuery("SELECT er FROM ERacun er");
+		list = (ArrayList<ERacun>)query.getResultList();
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTRRprejmnika().equals(TRR)) {
+				nova.add(list.get(i));
+			}
+		}
+		return nova;
+	}
 	@Override
 	public List<ERacun> vrniVsePlacane(long id) {
 		List<ERacun> list=new ArrayList<ERacun>();
@@ -86,6 +98,26 @@ public class ERacunEJB implements IERacun{
 		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=? AND er.idTr=?");
 		query.setParameter(1, false);
 		query.setParameter(2, id);
+		list = (ArrayList<ERacun>)query.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<ERacun> vrniVsePlacane(String trr) {
+		List<ERacun> list=new ArrayList<ERacun>();
+		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=? AND er.TRRprejmnika=?");
+		query.setParameter(1, true);
+		query.setParameter(2, trr);
+		list = (ArrayList<ERacun>)query.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<ERacun> vrniVseNeplacane(String trr) {
+		List<ERacun> list=new ArrayList<ERacun>();
+		Query query = manager.createQuery("SELECT er FROM ERacun er WHERE er.placan=? AND er.TRRprejmnika=?");
+		query.setParameter(1, false);
+		query.setParameter(2, trr);
 		list = (ArrayList<ERacun>)query.getResultList();
 		return list;
 	}

@@ -57,6 +57,7 @@ public class UpravljanjeERacuna {
 	private Date datumZap;
 	private int idTRR;
 	private String trrPRJ;
+	private String trrIZD;
 	private long idRac;
 	private int dolocitelj=0;
 	private int stER;
@@ -357,7 +358,41 @@ public class UpravljanjeERacuna {
 		}
 		return list;
 	}
-	
+	public List<ERacun> vrniVsePrejete(Komitent kom){
+		if(dolocitelj==1){
+			Komitent k=komitent.najdi(kom);
+			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+			List<ERacun> list=new ArrayList<ERacun>();
+			for(int i=0; i<tran.size(); i++){
+				List<ERacun> list2=eRac.vrniVsePlacane(tran.get(i).getStevilkaTRR());
+				list.addAll(list2);
+			}
+			return list;
+		}
+		else if(dolocitelj==2){
+			Komitent k=komitent.najdi(kom);
+			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
+			List<ERacun> list=new ArrayList<ERacun>();
+			for(int i=0; i<tran.size(); i++){
+				List<ERacun> list2=eRac.vrniVseNeplacane(tran.get(i).getStevilkaTRR());
+				list.addAll(list2);
+			}
+			return list;
+		}
+		Komitent k = komitent.najdi(kom);
+		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId()); //101
+		List<ERacun> list=new ArrayList<ERacun>();
+		for(int i=0; i<tran.size(); i++){
+			List<ERacun> list2=eRac.vrniVseString(tran.get(i).getStevilkaTRR());
+			list.addAll(list2);
+		}
+		return list;
+	}
+	public String najdiTRR(int id) {
+		TransakcijskiRacun trac = tr.najdi(id);
+		trrIZD = trac.getStevilkaTRR();
+		return trrIZD;
+	}
 	public String vrniZnesek(int id){ 
 		List<Postavka> list=post.vrniZneske(id);
 		BigDecimal znesek=new BigDecimal("0");
@@ -417,6 +452,14 @@ public class UpravljanjeERacuna {
 	public int stEracunov(){
 		List<ERacun> e=eRac.vrniVse();
 		return e.size();
+	}
+
+	public String getTrrIZD() {
+		return trrIZD;
+	}
+
+	public void setTrrIZD(String trrIZD) {
+		this.trrIZD = trrIZD;
 	}
 }
  

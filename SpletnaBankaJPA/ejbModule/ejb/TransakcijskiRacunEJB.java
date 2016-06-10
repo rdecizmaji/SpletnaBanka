@@ -109,6 +109,10 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 		trr = em.find(TransakcijskiRacun.class , id);
 		return trr;
 	}
+	public TransakcijskiRacun najdi(long id) {
+		trr = em.find(TransakcijskiRacun.class , id);
+		return trr;
+	}
 	
 	@Override
 	public TransakcijskiRacun najdi(String TRR) {

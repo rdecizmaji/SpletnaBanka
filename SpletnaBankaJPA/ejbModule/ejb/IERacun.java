@@ -14,5 +14,8 @@ public interface IERacun {
 	List<ERacun> vrniVse();
 	List<ERacun> vrniVsePlacane(long id);
 	List<ERacun> vrniVseNeplacane(long id);
+	List<ERacun> vrniVsePlacane(String trr);
+	List<ERacun> vrniVseNeplacane(String trr);
 	List<ERacun> vrniVse(long id);
+	List<ERacun> vrniVseString(String trr);
 }

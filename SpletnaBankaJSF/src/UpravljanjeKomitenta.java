@@ -15,14 +15,18 @@ import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import dodatniRazredi.TrrGenerator;
+import ejb.IERacun;
 import ejb.IKodaNamena;
 import ejb.IKomitent;
+import ejb.IPostavka;
 import ejb.IRacun;
 import ejb.ITipKartice;
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
+import entitete.ERacun;
 import entitete.KodaNamena;
 import entitete.Komitent;
+import entitete.Postavka;
 import entitete.Racun;
 import entitete.TipKartice;
 import entitete.Transakcija;
@@ -42,7 +46,11 @@ public class UpravljanjeKomitenta {
 	@EJB
 	IRacun r;
 	@EJB
+	IERacun rac;
+	@EJB
 	ITransakcija tr;
+	@EJB
+	IPostavka p;
 
 	private Komitent komitent = new Komitent();
 	private List<Komitent> komitenti = new ArrayList<Komitent>();
@@ -54,6 +62,7 @@ public class UpravljanjeKomitenta {
 	private TipKartice tipkartice;
 	private Komitent prejemnik = new Komitent();
 	private Transakcija transakcija = new Transakcija();
+	private Transakcija transakcijaPrejemnika = new Transakcija();
 	private TransakcijskiRacun transakcijskiRacun = new TransakcijskiRacun();
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
@@ -216,37 +225,71 @@ public class UpravljanjeKomitenta {
 		return racuni;
 	}
 
-	public String racunPlacaj(Racun racun) {
+	public String racunPlacaj(ERacun racun) {
+		TransakcijskiRacun prejemnikERacun = trr.najdi(racun.getTRRprejmnika());
+		TransakcijskiRacun posiljateljERacun = trr.najdi((int)racun.getIdTr());
+		ArrayList<Postavka> postavke = (ArrayList<Postavka>) p.vrniZneske(racun.getId());
+		BigDecimal znesek = new BigDecimal(0);
+		for(int i = 0; i < postavke.size();i++) {
+			System.out.println(znesek);
+			znesek = znesek.add(postavke.get(i).getVrednostZddv());
+			System.out.println(znesek);
+		}
+		if(racun.isPlacan()) {
+			fatal(7);
+			return "prejetiRacuni";
+		}
+		if(posiljateljERacun.isZaprt() != false || prejemnikERacun.isZaprt() !=false ) {
+			fatal(4);
+			System.out.println("NEKDO IMA ZAPRT RACUN!");
+			return "prejetiRacuni";
+		}
+		if(prejemnikERacun.getStanje().doubleValue() <= -100) {
+			fatal(3);
+			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			return "prejetiRacuni";
+		}
+		if(prejemnikERacun.getStanje().subtract(znesek).doubleValue() <= -100) {
+			fatal(3);
+			System.out.println("NA RAÈUNU NI DOVOLJ DENARJA");
+			return "prejetiRacuni";
+		}
+		
 		if (!racun.isPlacan()) {
-			racun.setPlacan(true);
-			racun.setDatumPlacila(Calendar.getInstance());
-			r.edit(racun);
-
-			TransakcijskiRacun prejemnikRacun = trr.najdi(racun.getTRRprejmnika());
-			TransakcijskiRacun posiljateljRacun = trr.najdi(racun.getIdTr());
-
+			rac.placajRacun(racun);
+			rac.izdajERacun(racun);
+			
+			transakcija.setZnesek(znesek.negate());
+			transakcijaPrejemnika.setZnesek(znesek);
 			transakcija.setDatum(Calendar.getInstance());
-			transakcija.setNaziv(racun.getNamen());
-			transakcija.setTrenutnoStanje(prejemnikRacun.getStanje());
-			BigDecimal novoStanje = prejemnikRacun.getStanje().subtract(racun.getZnesek());
-			prejemnikRacun.setStanje(novoStanje);
-			transakcija.setIdTran(prejemnikRacun);
+			transakcijaPrejemnika.setDatum(Calendar.getInstance());
+			transakcija.setNaziv((String.valueOf(racun.getStevilkaRacuna())));
+			transakcijaPrejemnika.setNaziv((String.valueOf(racun.getStevilkaRacuna())));
+			transakcija.setTrenutnoStanje(prejemnikERacun.getStanje());
+			transakcijaPrejemnika.setTrenutnoStanje(posiljateljERacun.getStanje());
+			BigDecimal novoStanje = prejemnikERacun.getStanje().subtract(znesek);
+			prejemnikERacun.setStanje(novoStanje);
+			transakcija.setIdTran(prejemnikERacun);
+			//transakcija.seteRacun(racun);
+			//transakcijaPrejemnika.seteRacun(racun);
+			transakcijaPrejemnika.setTRRprejemnika(posiljateljERacun);
+			BigDecimal stanje = posiljateljERacun.getStanje().add(znesek);
+			posiljateljERacun.setStanje(stanje);
+			transakcijaPrejemnika.setTrenutnoStanje(stanje);
+			transakcija.setTrenutnoStanje(novoStanje);
+			System.out.println("Prejemnik stanje: " + prejemnikERacun.getStanje());
+			System.out.println("Posiljatelj stanje: " + posiljateljERacun.getStanje());
 
-			BigDecimal stanje = posiljateljRacun.getStanje();
-			posiljateljRacun.setStanje(stanje.add(racun.getZnesek()));
-
-			System.out.println("Prejemnik stanje: " + prejemnikRacun.getStanje());
-			System.out.println("Posiljatelj stanje: " + posiljateljRacun.getStanje());
-
-			trr.edit(posiljateljRacun);
-			trr.edit(prejemnikRacun);
-
+			trr.edit(posiljateljERacun);
+			trr.edit(prejemnikERacun);
+			tr.shrani(transakcijaPrejemnika);
 			tr.shrani(transakcija);
 			transakcija = new Transakcija();
-
+			transakcijaPrejemnika = new Transakcija();
 			System.out.println("Racun placan!");
-		}
-		return "pregledKomitenta";
+			success(1);
+		}	
+		return "prejetiRacuni";
 	}
 
 	public void racunIzbris(Racun racun) {
@@ -292,16 +335,37 @@ public class UpravljanjeKomitenta {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
 					"Sprememba gesla ni možna!", "Novo geslo in potrditveno geslo se ne ujemata."));
 		}
-		if (vrstaNapake == 2) {
+		if(vrstaNapake == 2) {
+		        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Prosimo poskusite ponovno kasneje."));
+				}
+		if(vrstaNapake == 3) {
+		        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Transakcija ni možna!", "Na raèunu ni dovolj denarja."));
+				}
+		if(vrstaNapake == 5) {
+		        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Polog ni možen!", "Transakcijski raèun je zaprt/blokiran."));
+		}
+		if (vrstaNapake == 6) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
 					"Transakcija ni možna!", "Limita presežena"));
+		}
+		if (vrstaNapake == 4) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
+					"Transakcija ni možna!", "Raèun zaprt/blokiran"));
+		}
+		if (vrstaNapake == 7) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,
+					"Plaèilo ni mogoèe!", "Raèun je že bil plaèan"));
 		}
 
 	}
 
-	public void success() {
+	public void success(int st) {
+		if(st == 0)
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 				"Geslo uspešno spremenjeno!", "Novo geslo je " + novogeslo));
+		if(st == 1)
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+					"Raèun uspešno plaèan!", "Preverite plaèilo pod transakcijami"));
 	}
 
 	public String spremeniGeslo() {
@@ -313,7 +377,7 @@ public class UpravljanjeKomitenta {
 				newpass = kodiraj(novogeslo);
 				izbrani.setGeslo(newpass);
 				kom.shrani(izbrani);
-				success();
+				success(0);
 				novogeslo = "";
 				starogeslo = "";
 				potrdigeslo = "";
@@ -627,7 +691,7 @@ public void narisiGraf(){
 		}
 	}
 	
-	public void narisiGraf3() {
+	/*public void narisiGraf3() {
 		if(izbrani!=null){
 			vsiDatumi=new ArrayList<List<String>>();
 			vseTransakcije=new ArrayList<List<Double>>();
@@ -688,7 +752,7 @@ public void narisiGraf(){
 			}
 		}
 		
-	}
+	}*/
 	
 	public String getPotrdigeslo() {
 		return potrdigeslo;
@@ -728,13 +792,21 @@ public void narisiGraf(){
 		return null;
 	}
 
-	public LineChartModel getLineModel3() {
+	/*public LineChartModel getLineModel3() {
 		narisiGraf3();
 		createLineModels(listi);
 		return lineModel3;
-	}
+	}*/
 
 	public void setLineModel3(LineChartModel lineModel3) {
 		this.lineModel3 = lineModel3;
+	}
+
+	public Transakcija getTransakcijaPrejemnika() {
+		return transakcijaPrejemnika;
+	}
+
+	public void setTransakcijaPrejemnika(Transakcija transakcijaPrejemnika) {
+		this.transakcijaPrejemnika = transakcijaPrejemnika;
 	}
 }

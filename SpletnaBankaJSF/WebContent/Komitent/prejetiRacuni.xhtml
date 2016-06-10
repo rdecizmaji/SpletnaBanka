@@ -12,10 +12,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html" />
 
-<title>Pregled izdanih</title>
+<title>Pregled prejetih e-Računov</title>
 </head>
 <h:body>
-	<ui:composition template="/resources/templateBanka.xhtml">
+	<ui:composition template="/resources/templateKomitent.xhtml">
 		<ui:define name="content">
 			<h:form>
 				<h1 class="display-1 hidden-xs-down">Pregled izdanih e-Računov</h1>
@@ -23,13 +23,15 @@
 					<div class="col-lg-12">
 						<div class="panel">
                             <div class="panel-body table-responsive">
+                            <div class="gubmi">
                             <h:commandButton class="btn" value="Vsi" action="#{upravljanjeERacuna.setDolocitelj(0)}"/> 
                             <h:commandButton class="btn" value="Plačani" action="#{upravljanjeERacuna.setDolocitelj(1)}"/> 
                             <h:commandButton class="btn" value="Neplačani" action="#{upravljanjeERacuna.setDolocitelj(2)}"/> 
-				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVse()}" var="r">
+                            </div>
+				               <h:dataTable class="table table-hover" value="#{upravljanjeERacuna.vrniVsePrejete(upravljanjeKomitenta.izbrani)}" var="r">
 								   <h:column>
-								      <f:facet name="header">TRR Prejemnika</f:facet>
-								      <h:outputText value="#{r.TRRprejmnika}" />  
+								      <f:facet name="header">TRR izdajalca</f:facet>
+								      <h:outputText value="#{upravljanjeERacuna.najdiTRR(r.idTr)}" />  
 								   </h:column>
 								   <h:column>
 								      <f:facet name="header">Datum izdaje</f:facet>
@@ -54,6 +56,12 @@
 								   <h:column>
 								      <f:facet name="header">Podrobno</f:facet>
 			                              <h:commandButton class="btn" value="Podrobno" action="#{upravljanjeERacuna.dolociRacun(r.id)}"/>
+								   </h:column>
+								   <h:column>
+								      <f:facet name="header">Plačaj</f:facet>
+								      <h:form>
+			                              <h:commandButton class="btn" value="Plačaj" action="#{upravljanjeKomitenta.racunPlacaj(r)}"/>
+			                          </h:form>  
 								   </h:column>
 							   </h:dataTable>
                   			</div>
