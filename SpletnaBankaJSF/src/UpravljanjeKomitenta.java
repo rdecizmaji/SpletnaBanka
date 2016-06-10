@@ -5,12 +5,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
@@ -77,7 +82,6 @@ public class UpravljanjeKomitenta {
 	private String novogeslo;
 	private String starogeslo;
 	private LineChartModel lineModel2;
-	private LineChartModel lineModel3;
 	
 	//GRAF
 
@@ -691,69 +695,6 @@ public void narisiGraf(){
 		}
 	}
 	
-	/*public void narisiGraf3() {
-		if(izbrani!=null){
-			vsiDatumi=new ArrayList<List<String>>();
-			vseTransakcije=new ArrayList<List<Double>>();
-			Komitent k=kom.najdi(izbrani);
-			List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
-			listi=new ArrayList<List<Transakcija>>();
-			for(int i=0; i<tran.size(); i++){
-				List<Transakcija> list=tr.vrniVse(tran.get(i)); 
-				listi.add(list);	
-			}
-			
-			for(int i=0; i<listi.size(); i++){
-				List<Transakcija> list=listi.get(i);
-				List<String> dat=new ArrayList<String>();
-		        	for(int j=0; j<list.size(); j++){
-		        		if(j<1){
-		        			SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-		        			String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
-		        			dat.add(preoblikovan);
-		        		}
-		        		else{
-		        			boolean zeNot=false;
-		        			for(int l=0; l<j; l++){
-		        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-		        				String preoblikovan = oblika.format(list.get(l).getDatum().getTime());
-		        				String preoblikovan1 = oblika.format(list.get(j).getDatum().getTime());
-		        				
-		        				if(preoblikovan.equals(preoblikovan1)){
-		        						zeNot=true;
-		        				}
-		        			}
-		        			if(!zeNot){
-		        				SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-		        				String preoblikovan = oblika.format(list.get(j).getDatum().getTime());
-		        				dat.add(preoblikovan);
-		        			}
-		        		}
-		        	}
-		        vsiDatumi.add(dat);
-			}
-			
-			for(int i=0; i<vsiDatumi.size(); i++){
-				List<String> d=vsiDatumi.get(i);
-				List<Double> stev=new ArrayList<Double>();
-				for(int o=0; o<d.size(); o++){
-					double st=0;
-					for(int j=0; j<listi.get(i).size(); j++){
-						SimpleDateFormat oblika = new SimpleDateFormat("dd.MM.yyyy");
-						String preoblikovan = oblika.format(listi.get(i).get(j).getDatum().getTime());
-						if((d.get(o)).equals(preoblikovan)){
-							double s = listi.get(i).get(j).getZnesek().doubleValue();
-							st=st+s;
-						}
-					}
-					stev.add(st);
-				}
-				vseTransakcije.add(stev);
-			}
-		}
-		
-	}*/
-	
 	public String getPotrdigeslo() {
 		return potrdigeslo;
 	}
@@ -791,17 +732,6 @@ public void narisiGraf(){
 		}
 		return null;
 	}
-
-	/*public LineChartModel getLineModel3() {
-		narisiGraf3();
-		createLineModels(listi);
-		return lineModel3;
-	}*/
-
-	public void setLineModel3(LineChartModel lineModel3) {
-		this.lineModel3 = lineModel3;
-	}
-
 	public Transakcija getTransakcijaPrejemnika() {
 		return transakcijaPrejemnika;
 	}
@@ -809,4 +739,37 @@ public void narisiGraf(){
 	public void setTransakcijaPrejemnika(Transakcija transakcijaPrejemnika) {
 		this.transakcijaPrejemnika = transakcijaPrejemnika;
 	}
+	private BarChartModel barModel;
+ 
+    public BarChartModel getBarModel() {
+    	createBarModel();
+        return barModel;
+    }
+ 
+    private BarChartModel initBarModel() {
+        BarChartModel model = new BarChartModel();
+        ChartSeries boys = new ChartSeries();
+        boys.setLabel("Transakcije");
+        int st = 1;
+        for(int i = 0; i < transakcije.size(); i++) {
+        	boys.set(st, transakcije.get(i).getTrenutnoStanje());
+        	st++;
+        }  
+        model.addSeries(boys);
+         
+        return model;
+    }
+     
+    private void createBarModel() {
+        barModel = initBarModel();
+         
+        barModel.setTitle("Transakcije");
+        barModel.setLegendPosition("ne");
+         
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Spremembe stanja");
+         
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Znesek");
+    }
 }
