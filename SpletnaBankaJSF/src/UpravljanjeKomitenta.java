@@ -66,13 +66,12 @@ public class UpravljanjeKomitenta {
 	private List<TransakcijskiRacun> trrji = new ArrayList<TransakcijskiRacun>();
 	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 	private List<Racun> racuni = new ArrayList<Racun>();
-	private String currentTime;
 	List<List<Transakcija>> listi=new ArrayList<List<Transakcija>>();
 	List<String> datum=new ArrayList<String>();
 	List<Double> stevilo=new ArrayList<Double>();
 	private LineChartModel lineModel;
 	private LineChartModel lineModel2;
-
+	private LineChartModel lineModel3;
 	
 	//GRAF
 	public LineChartModel getLineModel() {
@@ -458,15 +457,6 @@ public String setGlavni(Komitent glavni) {
 	this.glavni = glavni;
 	return glavni.getIme()+" "+glavni.getPriimek();
 }
-public String getCurrentTime() {
-	DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	Date date = new Date();
-	return dateFormat.format(date);
-}
-
-public String setCurrentTime(String currentTime) {
-	return this.currentTime = currentTime;
-}
 
 public void narisiGraf(){
 	if(izbrani!=null){
@@ -521,6 +511,14 @@ public void narisiGraf2(){
 	}
 	System.out.println(datum);
 	System.out.println(stevilo);
+}
+
+public LineChartModel getLineModel3() {
+	return lineModel3;
+}
+
+public void setLineModel3(LineChartModel lineModel3) {
+	this.lineModel3 = lineModel3;
 }
 
 }
