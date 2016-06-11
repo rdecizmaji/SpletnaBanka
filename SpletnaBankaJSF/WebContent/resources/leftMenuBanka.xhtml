@@ -20,25 +20,30 @@
 			<br />
 			<li id="cas"><p:clock pattern="dd.MM.yyyy" /></li>
 			<hr />
-			 <li><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov"></h:commandLink></li>
-			<li><h:commandLink value="Pregled komitenta"
-					action="/Banka/pregledKomitenta"></h:commandLink></li>
-			<li><h:commandLink value="Uredi komitenta"
-					action="/Banka/urediKomitenta"></h:commandLink></li>
+			 <li class="z-ikono"><span><i class="fa fa-users ikona"></i><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov"></h:commandLink></span></li>
+
+			<li class="z-ikono"><span><i class="fa fa-user ikona"></i><h:commandLink value="Pregled komitenta"
+					action="/Banka/pregledKomitenta"></h:commandLink></span></li>
+
+			<li class="z-ikono"><span><i class="fa fa-pencil ikona"></i><h:commandLink value="Uredi komitenta"
+					action="/Banka/urediKomitenta"></h:commandLink></span></li>
+					<hr/>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li><h:commandLink value="Transakcijski računi"
-					action="/Banka/pregledTransakcijskihRacunov"></h:commandLink></li>
-			<li><h:commandLink value="Polog" action="/Banka/polog"></h:commandLink></li>
-			<li><h:commandLink value="Nakazi" action="/Banka/nakazi"></h:commandLink></li>
+			<li class="z-ikono"><span><i class="fa fa-line-chart ikona"></i><h:commandLink value="Transakcijski računi"
+					action="/Banka/pregledTransakcijskihRacunov"></h:commandLink></span></li>
+			<li class="z-ikono"><span><i class="fa fa-plus ikona"></i><h:commandLink value="Polog" action="/Banka/polog"></h:commandLink></span></li>
+			<li class="z-ikono"><span><i class="fa fa-mail-forward ikona"></i><h:commandLink value="Nakazi" action="/Banka/nakazi"></h:commandLink></span></li>
+			<hr/>
 		</ul>
 		<ul class="nav nav-sidebar">
-			<li><h:commandLink value="Ustvari eRačun"
-					action="#{upravljanjeKomitenta.vnesi(user)}"></h:commandLink></li>
-			<li><h:commandLink value="Izdani eRačuni"
-					action="/Banka/pregledRacunov"></h:commandLink></li>
-			<li><h:commandLink value="Prejeti eRačuni"
-					action="/Banka/prejetiRacuni"></h:commandLink></li>		
+			<li class="z-ikono"><span><i class="fa fa-file-o ikona"></i><h:commandLink value="Ustvari eRačun"
+					action="#{upravljanjeKomitenta.vnesi(user)}"></h:commandLink></span></li>
+			<li class="z-ikono"><span><i class="fa fa-arrow-left ikona"></i><h:commandLink value="Izdani eRačuni"
+					action="/Banka/pregledRacunov"></h:commandLink></span></li>
+			<li class="z-ikono"><span><i class="fa fa-arrow-right ikona"></i><h:commandLink value="Prejeti eRačuni"
+					action="/Banka/prejetiRacuni"></h:commandLink></span></li>	
+					<hr/>	
 		</ul>
 
 	</h:form>

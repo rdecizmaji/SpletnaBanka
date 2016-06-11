@@ -6,6 +6,11 @@ xmlns:p="http://primefaces.org/ui">
     <ui:composition>
     
     <h:form>
+    <ul class="nav nav-sidebar">
+    <li style="display:flex">
+    <span class="sm-st-icon st-dark" style="margin:auto"><i class="fa fa-cog fa-spin"></i></span>
+    </li>
+    </ul>
         <ul class="nav nav-sidebar">
         <li id="ime">
         	<h3><h:outputText value="#{upravljanjeKomitenta.setGlavni(user)}" /></h3>
@@ -20,10 +25,11 @@ xmlns:p="http://primefaces.org/ui">
                      <p:clock pattern="dd.MM.yyyy"/>
          </li>
          <hr/>
-            <li><h:commandLink value="Armaturna plošča" action="banka"></h:commandLink></li>
-            
-            <li><h:commandLink value="Registracija komitenta" action="/Banka/dodajKomitenta"></h:commandLink></li>
-            <li><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov"></h:commandLink></li>
+            <li class="z-ikono"><span><i class="fa fa-cog ikona"></i><h:commandLink value="Armaturna plošča" action="banka"></h:commandLink></span></li>
+            <hr/>
+            <li class="z-ikono"><span><i class="fa fa-pencil ikona"></i><h:commandLink value="Registracija komitenta" action="/Banka/dodajKomitenta"></h:commandLink></span></li>
+            <hr/>
+            <li class="z-ikono"><span><i class="fa fa-users ikona"></i><h:commandLink value="Lista komitentov" action="/Banka/listaKomitentov"></h:commandLink></span></li>
         </ul>
         </h:form>    
        

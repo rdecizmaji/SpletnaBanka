@@ -176,6 +176,12 @@ body {
 .st-blue {
   background-color: #23b7e5;
 }
+.st-dark-blue {
+  background-color: #337ab7;
+}
+.st-dark {
+  background-color: #333333;
+}
 .panel .panel-heading {
 padding: 10px 15px;
 text-transform: uppercase;
@@ -278,5 +284,14 @@ text-transform: uppercase;
 	font-weight:bold;
 }
 .izbrani {
+	padding-left:15px;
+}
+.ikona {
+	padding-right:10px;
+}
+.z-ikono {
+	font-size:15px;
+	margin-top:10px;
+	margin-bottom:10px;
 	padding-left:15px;
 }

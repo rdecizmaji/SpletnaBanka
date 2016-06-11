@@ -39,8 +39,8 @@
 									</h:column>
 									<h:column>
 										<f:facet name="header">Stanje</f:facet>
-										<span class="label label-success">
-										<h:outputText value="#{tr.trenutnoStanje }" />
+										<span class="label label-success"> <h:outputText
+												value="#{tr.trenutnoStanje }" />
 										</span>
 									</h:column>
 								</h:dataTable>
@@ -49,16 +49,16 @@
 					</div>
 				</div>
 				<div class="row">
-				<div class="col-md-12">
-					<div class="panel">
-						<div class="panel-heading">Graf transakcij</div>
-						<div class="panel-body">
-<p:chart type="bar" model="#{upravljanjeKomitenta.barModel}" style="height:300px"/>
-						
+					<div class="col-md-12">
+						<div class="panel">
+							<div class="panel-heading">Graf transakcij</div>
+							<div class="panel-body">
+								<p:chart type="bar" model="#{upravljanjeKomitenta.barModel}"
+									style="height:300px" />
+							</div>
 						</div>
 					</div>
 				</div>
-				</div>	
 			</h:form>
 		</ui:define>
 	</ui:composition>
