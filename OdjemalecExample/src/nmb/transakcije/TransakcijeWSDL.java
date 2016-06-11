@@ -27,6 +27,7 @@ public interface TransakcijeWSDL {
 
     /**
      * 
+     * @param arg0
      * @return
      *     returns java.lang.String
      */
@@ -34,7 +35,9 @@ public interface TransakcijeWSDL {
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "testirajPovezavo", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.TestirajPovezavo")
     @ResponseWrapper(localName = "testirajPovezavoResponse", targetNamespace = "http://transakcije.nmb/", className = "nmb.transakcije.TestirajPovezavoResponse")
-    public String testirajPovezavo();
+    public String testirajPovezavo(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
     /**
      * 

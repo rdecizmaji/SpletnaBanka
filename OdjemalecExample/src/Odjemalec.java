@@ -28,11 +28,11 @@ public class Odjemalec {
         req_ctx.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, WS_URL);
 
         Map<String, List<String>> headers = new HashMap<String, List<String>>();
-        headers.put("Username", Collections.singletonList("floro"));
-        headers.put("Password", Collections.singletonList("flores"));
+        headers.put("Username", Collections.singletonList("admincek"));
+        headers.put("Password", Collections.singletonList("mimica"));
         req_ctx.put(MessageContext.HTTP_REQUEST_HEADERS, headers);
         /**********************************************************************/
-		System.out.println(hello.testirajPovezavo());
+		System.out.println(hello.testirajPovezavo("SI56 3258 0847 4294 470"));
         
         //System.out.println(hello.izvrsiNalog(null, null, null));
 	}
