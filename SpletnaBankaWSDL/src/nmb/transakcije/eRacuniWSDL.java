@@ -22,21 +22,25 @@ import entitete.Postavka;
 @WebService
 public class eRacuniWSDL {
 	@Resource
-	WebServiceContext wsctx;
+	private WebServiceContext wsctx;
 	
 	@EJB
-	ITransakcijskiRacun itrr;
+	private ITransakcijskiRacun itrr;
 	
 	@EJB
-	IERacun ier;
+	private IERacun ier;
 	
 	@EJB
-	IPostavka ipo;
+	private IPostavka ipo;
 	
 	@EJB
-	IKomitent ikom;
+	private IKomitent ikom;
 	
 	public String izdajERacun(String izd,String pre,int stRacuna,String krajizdaje,String nacinplacila,int kodanamena, String referenca,Calendar datumod,Calendar datumdo,Calendar datumzap, List<Postavka> postavke){
+		Komitent komitent=itrr.vrniKomitenta(izd);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,izd)==false)
+			return null;
+		
 		ERacun er=new ERacun();
 		
 		//Datum
@@ -72,59 +76,34 @@ public class eRacuniWSDL {
 		return "Racun izdan";
 	}
 	
-//	prejeti-placani
-//	prejeti-neplacani
-	
-	
-	public List <ERacun> vrniIzdanePlacane(String trr){
-				long id=itrr.najdi(trr).getId();
-				
-				return ier.vrniVsePlacane(id);
-	}
-	
-	public List <ERacun> vrniIzdaneNeplacane(String trr){
+	public List <ERacun> vrniRacune(String trr, int option){
+		Komitent komitent=itrr.vrniKomitenta(trr);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
+			return null;
+		
 		long id=itrr.najdi(trr).getId();
 		
-		return ier.vrniVseNeplacane(id);
-}
+		if (option==1){
+			return ier.vrniVsePlacane(id);
+		}
+		if (option==2){
+			return ier.vrniVseNeplacane(id);
+		}
+		if (option==3){
+			return ier.vrniVse(id);
+		}
+		
+		return null;
+		
+	}
 
-	public String testirajPovezavo() {
-		if (doAuthentication() == false)
+	public String testirajPovezavo(String trr) {
+		Komitent komitent=itrr.vrniKomitenta(trr);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return "Napaka v avtorizaciji!";
 
 		return "Povezava je uspešna!";
 
-	}
-
-	private boolean doAuthentication() {
-
-		MessageContext mctx = wsctx.getMessageContext();
-
-		// get detail from request headers
-		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
-		List userList = (List) http_headers.get("Username");
-		List passList = (List) http_headers.get("Password");
-
-		String username = "";
-		String password = "";
-
-		if (userList != null) {
-			// get username
-			username = userList.get(0).toString();
-		}
-
-		if (passList != null) {
-			// get password
-			password = passList.get(0).toString();
-		}
-
-		// Should validate username and password with database
-		if (username.equals("floro") && password.equals("flores")) {
-			return true;
-
-		} else {
-			return false;
-		}
 	}
 	
 }
