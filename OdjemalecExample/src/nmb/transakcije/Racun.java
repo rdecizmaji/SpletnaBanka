@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="idKn" type="{http://transakcije.nmb/}kodaNamena" minOccurs="0"/>
  *         &lt;element name="idTr" type="{http://transakcije.nmb/}transakcijskiRacun" minOccurs="0"/>
+ *         &lt;element name="izbrisan" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="namen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="placan" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="sifraRacuna" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -45,6 +46,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "id",
     "idKn",
     "idTr",
+    "izbrisan",
     "namen",
     "placan",
     "sifraRacuna",
@@ -60,6 +62,7 @@ public class Racun {
     protected int id;
     protected KodaNamena idKn;
     protected TransakcijskiRacun idTr;
+    protected boolean izbrisan;
     protected String namen;
     protected boolean placan;
     protected String sifraRacuna;
@@ -177,6 +180,22 @@ public class Racun {
      */
     public void setIdTr(TransakcijskiRacun value) {
         this.idTr = value;
+    }
+
+    /**
+     * Gets the value of the izbrisan property.
+     * 
+     */
+    public boolean isIzbrisan() {
+        return izbrisan;
+    }
+
+    /**
+     * Sets the value of the izbrisan property.
+     * 
+     */
+    public void setIzbrisan(boolean value) {
+        this.izbrisan = value;
     }
 
     /**

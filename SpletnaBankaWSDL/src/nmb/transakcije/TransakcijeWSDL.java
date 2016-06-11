@@ -15,6 +15,7 @@ import javax.xml.ws.handler.MessageContext;
 
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
+import entitete.Komitent;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
 
@@ -22,14 +23,15 @@ import entitete.TransakcijskiRacun;
 @WebService
 public class TransakcijeWSDL {
 	@Resource
-	WebServiceContext wsctx;
+	private WebServiceContext wsctx;
 	@EJB
-	ITransakcija itran;
+	private ITransakcija itran;
 	@EJB
-	ITransakcijskiRacun itrr;
+	private ITransakcijskiRacun itrr;
 	
 	public String izvrsiNalog(String trr, String trrp, String namen,BigDecimal znesek ){
-		if (doAuthentication()==false)
+		Komitent komitent=itrr.vrniKomitenta(trr);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return null;
 		
 		TransakcijskiRacun transakcijskiRacunPlacnika = itrr.najdi(trr);
@@ -61,7 +63,8 @@ public class TransakcijeWSDL {
 	}
 	
 	public List <Transakcija> vrniTransakcije(String trr){
-		if (doAuthentication()==false)
+		Komitent komitent=itrr.vrniKomitenta(trr);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return null;
 		
 		TransakcijskiRacun transakcijskiRacun = itrr.najdi(trr);
@@ -69,43 +72,13 @@ public class TransakcijeWSDL {
 		return itrr.vrniTransakcije(transakcijskiRacun);
 	}
 	
-	public String testirajPovezavo(){
-		if (doAuthentication()==false)
+	public String testirajPovezavo(String trr) {
+		Komitent komitent=itrr.vrniKomitenta(trr);
+		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return "Napaka v avtorizaciji!";
-		
-		return "Povezava je uspešna!";
-		
-	}
-	
-	private boolean doAuthentication(){
-		
-		MessageContext mctx = wsctx.getMessageContext();
-		
-		//get detail from request headers
-	        Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
-	        List userList = (List) http_headers.get("Username");
-	        List passList = (List) http_headers.get("Password");
 
-	        String username = "";
-	        String password = "";
-	        
-	        if(userList!=null){
-	        	//get username
-	        	username = userList.get(0).toString();
-	        }
-	        	
-	        if(passList!=null){
-	        	//get password
-	        	password = passList.get(0).toString();
-	        }
-	        	
-	        //Should validate username and password with database
-	        if (username.equals("floro") && password.equals("flores")){
-	        	return true;
-	        	
-	        }else{
-	        	return false;
-	        }    
+		return "Povezava je uspešna!";
+
 	}
 
 }

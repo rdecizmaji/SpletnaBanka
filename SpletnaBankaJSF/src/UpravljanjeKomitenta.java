@@ -209,6 +209,15 @@ public class UpravljanjeKomitenta {
 	// TRRJI IN KARTICE
 
 	// racun
+	
+	public String switchStatus(TransakcijskiRacun t) {
+		if (t.isZaprt())
+			t.setZaprt(false);
+		else
+			t.setZaprt(true);
+		trr.edit(t);
+		return "pregledTransakcijskihRacunov";
+	}
 	public String pregledIzdanihRacunov(TransakcijskiRacun trr){
 		izbraniTrr = trr;
 		return "pregledIzdanihRacunov";
