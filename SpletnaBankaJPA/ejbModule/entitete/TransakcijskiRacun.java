@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,8 +16,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import dodatniRazredi.TrrGenerator;
 
 @Entity
 public class TransakcijskiRacun implements Serializable{
@@ -28,10 +28,10 @@ public class TransakcijskiRacun implements Serializable{
 	private boolean zaprt;
 	private BigDecimal stanje;
 	private Komitent komitent;
-	private List<Racun> racuni = new ArrayList<Racun>();
+	private Set<Racun> racuni = new HashSet<Racun>();
 	//private List<ERacun> eracuni = new ArrayList<ERacun>();
-	private List<Transakcija> transakcije = new ArrayList<Transakcija>();
-	private List<BancnaKartica> bancneKartice = new ArrayList<BancnaKartica>();
+	private Set<Transakcija> transakcije = new HashSet<Transakcija>();
+	private Set<BancnaKartica> bancneKartice = new HashSet<BancnaKartica>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -84,29 +84,29 @@ public class TransakcijskiRacun implements Serializable{
 	}
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	public List<Racun> getRacuni() {
+	public Set<Racun> getRacuni() {
 		return racuni;
 	}
 
-	public void setRacuni(List<Racun> racuni) {
+	public void setRacuni(Set<Racun> racuni) {
 		this.racuni = racuni;
 	}
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	public List<Transakcija> getTransakcije() {
+	public Set<Transakcija> getTransakcije() {
 		return transakcije;
 	}
 
-	public void setTransakcije(List<Transakcija> transakcije) {
+	public void setTransakcije(Set<Transakcija> transakcije) {
 		this.transakcije = transakcije;
 	}
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	public List<BancnaKartica> getBancneKartice() {
+	public Set<BancnaKartica> getBancneKartice() {
 		return bancneKartice;
 	}
 
-	public void setBancneKartice(List<BancnaKartica> bancneKartice) {
+	public void setBancneKartice(Set<BancnaKartica> bancneKartice) {
 		this.bancneKartice = bancneKartice;
 	}
 	

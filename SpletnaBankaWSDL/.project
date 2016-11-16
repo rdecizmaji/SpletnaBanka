@@ -3,7 +3,6 @@
 	<name>SpletnaBankaWSDL</name>
 	<comment></comment>
 	<projects>
-		<project>SpletnaBankaJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

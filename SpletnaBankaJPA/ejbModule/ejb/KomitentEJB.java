@@ -3,7 +3,9 @@ package ejb;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -75,7 +77,7 @@ IBancnaKartica banKar;
 				t.setDatumOdprtja(Calendar.getInstance());
 				
 					//kreiranje kartice
-					List<BancnaKartica> bancneKartice=new ArrayList<BancnaKartica>();
+					Set<BancnaKartica> bancneKartice=new HashSet<BancnaKartica>();
 						BancnaKartica bk=new BancnaKartica();
 						bk.setStKartice(123456);
 						bk.setPinKoda(2707);

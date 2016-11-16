@@ -5,13 +5,11 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 
 import ejb.ITransakcija;
 import ejb.ITransakcijskiRacun;
@@ -22,10 +20,13 @@ import entitete.TransakcijskiRacun;
 
 @WebService
 public class TransakcijeWSDL {
+	
 	@Resource
 	private WebServiceContext wsctx;
+	
 	@EJB
 	private ITransakcija itran;
+	
 	@EJB
 	private ITransakcijskiRacun itrr;
 	
@@ -77,8 +78,7 @@ public class TransakcijeWSDL {
 		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return "Napaka v avtorizaciji!";
 
-		return "Povezava je uspešna!";
-
+		return "Napaka v avtentikaciji";
 	}
 
 }

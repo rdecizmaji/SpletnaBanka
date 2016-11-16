@@ -3,8 +3,9 @@
 	<name>SpletnaBankaEar</name>
 	<comment></comment>
 	<projects>
-		<project>SpletnaBankaJSF</project>
 		<project>SpletnaBankaJPA</project>
+		<project>SpletnaBankaJSF</project>
+		<project>SpletnaBankaWSDL</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,0 +1,30 @@
+MySql JNDI:
+java:/Banka
+
+//kopirati pod <security-domains>
+<security-domain name="varnostnaDomenaBanka" cache-type="default">
+                    <authentication>
+                        <login-module code="Database" flag="required">
+                            <module-option name="dsJndiName" value="java:/Banka"/>
+                            <module-option name="rolesQuery" value="SELECT vloga, 'Roles' FROM Komitent WHERE uporabniskoime=?"/>
+                            <module-option name="hashAlgorithm" value="MD5"/>
+                            <module-option name="hashEncoding" value="hex"/>
+                            <module-option name="principalsQuery" value="SELECT geslo from Komitent WHERE uporabniskoime=?"/>
+                        </login-module>
+                    </authentication>
+                    <authorization>
+                        <policy-module code="Database" flag="required">
+                            <module-option name="dsJndiName" value="java:/Banka"/>
+                            <module-option name="rolesQuery" value="SELECT vloga, 'Roles' FROM Komitent WHERE uporabniskoime=?"/>
+                            <module-option name="hashAlgorithm" value="MD5"/>
+                            <module-option name="hashEncoding" value="hex"/>
+                            <module-option name="principalsQuery" value="SELECT geslo from Komitent WHERE uporabniskoime=?"/>
+                        </policy-module>
+                    </authorization>
+                </security-domain>
+				
+ //dodajanje administratorja
+
+INSERT INTO `komitent` (`id`, `drzava`, `email`, `geslo`, `idKomitent`, `ime`, `izbrisan`, `priimek`, `uporabniskoIme`, `vloga`) VALUES ('1', 'Slovenija', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 'Uslužbenec', true, '3450', 'admin', 'admin');
+
+admin, admin

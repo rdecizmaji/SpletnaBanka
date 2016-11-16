@@ -2,7 +2,9 @@ package entitete;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class TipKartice implements Serializable{
 	private String nazivTipa;
 	private boolean kreditna;
 	private boolean debetna;
-	private List<BancnaKartica> kartice=new ArrayList<BancnaKartica>();
+	private Set<BancnaKartica> kartice=new HashSet<BancnaKartica>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,10 +50,10 @@ public class TipKartice implements Serializable{
 		this.debetna = debetna;
 	}
 	@OneToMany
-	public List<BancnaKartica> getKartice() {
+	public Set<BancnaKartica> getKartice() {
 		return kartice;
 	}
-	public void setKartice(List<BancnaKartica> kartice) {
+	public void setKartice(Set<BancnaKartica> kartice) {
 		this.kartice = kartice;
 	}
 	@Override

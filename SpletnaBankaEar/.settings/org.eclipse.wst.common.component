@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="SpletnaBankaEar">
         <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SpletnaBankaJPA.jar" deploy-path="/" handle="module:/resource/SpletnaBankaJPA/SpletnaBankaJPA">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="SpletnaBankaJSF.war" deploy-path="/" handle="module:/resource/SpletnaBankaJSF/SpletnaBankaJSF">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SpletnaBankaJPA.jar" deploy-path="/" handle="module:/resource/SpletnaBankaJPA/SpletnaBankaJPA">
+        <dependent-module archiveName="SpletnaBankaWSDL.war" deploy-path="/" handle="module:/resource/SpletnaBankaWSDL/SpletnaBankaWSDL">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>

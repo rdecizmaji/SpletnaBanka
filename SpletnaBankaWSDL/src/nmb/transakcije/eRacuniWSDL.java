@@ -102,8 +102,7 @@ public class eRacuniWSDL {
 		if (new Avtentikator().doAuthentication(wsctx, komitent,trr)==false)
 			return "Napaka v avtorizaciji!";
 
-		return "Povezava je uspešna!";
-
+		return "Napaka v avtentikaciji";
 	}
 	
 }
