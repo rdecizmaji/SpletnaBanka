@@ -8,11 +8,15 @@ import entitete.ERacun;
 public interface IERacun {
 	void izdajERacun(ERacun r);
 	void izbrisi(ERacun r);
+	void placajRacun(int idRacuna);
 	void placajRacun(ERacun r);
-	ERacun najdi(ERacun r);
+	ERacun najdi(int id);
+	
+	void placajERacunCelotno(int idRacuna);
 	
 	List<ERacun> vrniVse();
 	List<ERacun> vrniVsePlacane(long id);
+	List<ERacun> vrniVsePrejete(String trr);
 	List<ERacun> vrniVseNeplacane(long id);
 	List<ERacun> vrniVsePlacane(String trr);
 	List<ERacun> vrniVseNeplacane(String trr);

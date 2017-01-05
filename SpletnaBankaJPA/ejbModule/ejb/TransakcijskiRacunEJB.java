@@ -1,19 +1,13 @@
 package ejb;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import entitete.BancnaKartica;
 import entitete.Komitent;
-
-import entitete.Postavka;
-
 import entitete.Racun;
 import entitete.Transakcija;
 import entitete.TransakcijskiRacun;
@@ -24,7 +18,7 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 	@PersistenceContext
 	EntityManager em;
 	
-	TransakcijskiRacun trr;
+	
 	ArrayList<TransakcijskiRacun> transakcijskiRacuni = new ArrayList<TransakcijskiRacun>();
 	ArrayList<Racun> racuni = new ArrayList<Racun>();
 	ArrayList<Transakcija> transakcije = new ArrayList<Transakcija>();
@@ -106,16 +100,14 @@ public class TransakcijskiRacunEJB implements ITransakcijskiRacun {
 
 	@Override
 	public TransakcijskiRacun najdi(int id) {
-		trr = em.find(TransakcijskiRacun.class , id);
-		return trr;
-	}
-	public TransakcijskiRacun najdi(long id) {
+		TransakcijskiRacun trr;
 		trr = em.find(TransakcijskiRacun.class , id);
 		return trr;
 	}
 	
 	@Override
 	public TransakcijskiRacun najdi(String TRR) {
+		TransakcijskiRacun trr=null;
 	Query query = em.createQuery("SELECT trr FROM TransakcijskiRacun trr");
 	@SuppressWarnings("unchecked")
 	ArrayList<TransakcijskiRacun> trrList = (ArrayList<TransakcijskiRacun>) query.getResultList();

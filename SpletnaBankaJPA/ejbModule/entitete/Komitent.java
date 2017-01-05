@@ -13,9 +13,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Komitent implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int idKomitent;
 	private String ime;
@@ -184,5 +181,32 @@ public class Komitent implements Serializable{
 
 	public void setVloga(String vloga) {
 		this.vloga = vloga;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuffer sb=new StringBuffer();
+		sb.append("ime:"+ime+"|\n");
+		sb.append("priimek:"+priimek+"|\n");
+		sb.append("idKomitent:"+idKomitent+"|\n");
+		sb.append("naslov:"+naslov+"|\n");
+		sb.append("posta:"+posta+"|\n");
+		sb.append("postnaSt:"+postnaSt+"|\n");
+		sb.append("drzava:"+drzava+"|\n");
+		sb.append("emso:"+emso+"|\n");
+		sb.append("davcnaSt:"+davcnaSt+"|\n");
+		sb.append("email:"+email+"|\n");
+		sb.append("datum:"+datum+"|\n");
+		sb.append("datumVnosa:"+datumVnosa+"|\n");
+		sb.append("uporabniskoIme:"+uporabniskoIme+"|\n");
+		sb.append("geslo:"+geslo+"|\n");
+		sb.append("izbrisan:"+izbrisan+"|\n");
+		sb.append("vloga:"+vloga+"|\n");
+		for (TransakcijskiRacun trr :getTransakcijskiRacuni())
+			sb.append("trr:"+trr+"|\n");
+		
+		sb.append("----------------------------------");
+		
+		return sb.toString();
 	}
 }

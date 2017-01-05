@@ -50,7 +50,7 @@ public class Auth {
 
         try {
             request.login(username, password);
-            this.user = kom.getSession(username, password);
+            this.user = kom.prijaviKomitenta(username, password);
             externalContext.getSessionMap().put("user", user);
             externalContext.redirect(originalURL);
         } catch (ServletException e) {

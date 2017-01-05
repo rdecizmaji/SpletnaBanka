@@ -173,7 +173,7 @@ public class UpravljanjeERacuna {
 			eRacun.setIdTr(tRac.getId());	
 			eRac.izdajERacun(eRacun);
 			
-			ERacun e=eRac.najdi(eRacun);
+			ERacun e=eRac.najdi(eRacun.getId());
 			for(int i=0; i<postavke.size(); i++){
 					Postavka p=postavke.get(i);
 					p.setIdER(e.getId());
@@ -330,7 +330,7 @@ public class UpravljanjeERacuna {
 	
 	public List<ERacun> vrniVse(Komitent kom){
 		if(dolocitelj==1){
-			Komitent k=komitent.najdi(kom);
+			Komitent k=komitent.najdi(kom.getId());
 			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 			List<ERacun> list=new ArrayList<ERacun>();
 			for(int i=0; i<tran.size(); i++){
@@ -340,7 +340,7 @@ public class UpravljanjeERacuna {
 			return list;
 		}
 		else if(dolocitelj==2){
-			Komitent k=komitent.najdi(kom);
+			Komitent k=komitent.najdi(kom.getId());
 			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 			List<ERacun> list=new ArrayList<ERacun>();
 			for(int i=0; i<tran.size(); i++){
@@ -349,7 +349,7 @@ public class UpravljanjeERacuna {
 			}
 			return list;
 		}
-		Komitent k=komitent.najdi(kom);
+		Komitent k=komitent.najdi(kom.getId());
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 		List<ERacun> list=new ArrayList<ERacun>();
 		for(int i=0; i<tran.size(); i++){
@@ -360,7 +360,7 @@ public class UpravljanjeERacuna {
 	}
 	public List<ERacun> vrniVsePrejete(Komitent kom){
 		if(dolocitelj==1){
-			Komitent k=komitent.najdi(kom);
+			Komitent k=komitent.najdi(kom.getId());
 			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 			List<ERacun> list=new ArrayList<ERacun>();
 			for(int i=0; i<tran.size(); i++){
@@ -370,7 +370,7 @@ public class UpravljanjeERacuna {
 			return list;
 		}
 		else if(dolocitelj==2){
-			Komitent k=komitent.najdi(kom);
+			Komitent k=komitent.najdi(kom.getId());
 			List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 			List<ERacun> list=new ArrayList<ERacun>();
 			for(int i=0; i<tran.size(); i++){
@@ -379,7 +379,7 @@ public class UpravljanjeERacuna {
 			}
 			return list;
 		}
-		Komitent k = komitent.najdi(kom);
+		Komitent k = komitent.najdi(kom.getId());
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId()); //101
 		List<ERacun> list=new ArrayList<ERacun>();
 		for(int i=0; i<tran.size(); i++){
@@ -404,7 +404,7 @@ public class UpravljanjeERacuna {
 
 	//armaturna komitent
 	public int getStER(Komitent kom) {
-		Komitent k=komitent.najdi(kom);
+		Komitent k=komitent.najdi(kom.getId());
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 		stER=0;
 		for(int i=0; i<tran.size(); i++){
@@ -415,7 +415,7 @@ public class UpravljanjeERacuna {
 	}
 	
 	public int vseTransakcije(Komitent kom) {
-		Komitent k=komitent.najdi(kom);
+		Komitent k=komitent.najdi(kom.getId());
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 		int stTransakcij=0;
 		for(int i=0; i<tran.size(); i++){
@@ -425,7 +425,7 @@ public class UpravljanjeERacuna {
 		return stTransakcij;
 	}
 	public BigDecimal vsiZneski(Komitent kom) {
-		Komitent k=komitent.najdi(kom);
+		Komitent k=komitent.najdi(kom.getId());
 		List<TransakcijskiRacun> tran=tr.vrniTRR(k.getId());
 		BigDecimal znesek=new BigDecimal("0");
 		for(int i=0; i<tran.size(); i++){

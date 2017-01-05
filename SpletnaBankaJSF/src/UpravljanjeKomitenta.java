@@ -193,7 +193,7 @@ public class UpravljanjeKomitenta {
 			komitent.setVloga("user");
 			// klicana metoda za vnos
 			kom.shrani(komitent);
-			izbrani = kom.najdi(komitent);
+			izbrani = kom.najdi(komitent.getId());
 			// ustvari nova insatnca
 			komitent = izbrani;
 			komitent = new Komitent();
@@ -319,7 +319,7 @@ public class UpravljanjeKomitenta {
 		System.out.println("Dodaj trr...");
 		transakcijskiRacun = new TransakcijskiRacun();
 		TrrGenerator tg = new TrrGenerator();
-		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(izbrani.getDrzava()));
+		transakcijskiRacun.setStevilkaTRR(tg.generirajIBAN(/*izbrani.getDrzava()*/));
 		transakcijskiRacun.setDatumOdprtja(Calendar.getInstance());
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.YEAR, 10);
@@ -328,7 +328,7 @@ public class UpravljanjeKomitenta {
 		BigDecimal bd = new BigDecimal(0);
 		transakcijskiRacun.setStanje(bd);
 		trr.shrani(transakcijskiRacun);
-		Komitent k1 = kom.najdi(izbrani);
+		Komitent k1 = kom.najdi(izbrani.getId());
 		transakcijskiRacun.setKomitent(k1);
 		trr.edit(transakcijskiRacun);
 		return "pregledTransakcijskihRacunov";
@@ -407,7 +407,7 @@ public class UpravljanjeKomitenta {
 
 	public List<TransakcijskiRacun> vrniTRR(Komitent k) {
 		List<TransakcijskiRacun> tr = new ArrayList<TransakcijskiRacun>();
-		tr = kom.vrniTRRje(k);
+		tr = kom.vrniTRRje(k.getId());
 		return tr;
 	}
 	/*
@@ -489,7 +489,7 @@ public class UpravljanjeKomitenta {
 	}
 
 	public List<TransakcijskiRacun> getTrrji() {
-		trrji = kom.vrniTRRje(izbrani);
+		trrji = kom.vrniTRRje(izbrani.getId());
 		return trrji;
 	}
 
@@ -604,7 +604,7 @@ public void narisiGraf(){
 	if(izbrani!=null){
 		vsiDatumi=new ArrayList<List<String>>();
 		vseTransakcije=new ArrayList<List<Double>>();
-		Komitent k=kom.najdi(izbrani);
+		Komitent k=kom.najdi(izbrani.getId());
 		List<TransakcijskiRacun> tran=trr.vrniTRR(k.getId());
 		listi=new ArrayList<List<Transakcija>>();
 		for(int i=0; i<tran.size(); i++){

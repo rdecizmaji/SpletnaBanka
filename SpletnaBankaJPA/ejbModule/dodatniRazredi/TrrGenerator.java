@@ -5,7 +5,7 @@ public class TrrGenerator {
 	
 	static Random r=new Random();
 	
-	public String generirajIBAN(String drzava) {
+	public static String generirajIBAN(/*String drzava*/) {
 		//SI56 6022 6533 1007 129
 		//SI56 1520 8294 6423 596
 		long i=System.nanoTime();
@@ -17,7 +17,7 @@ public class TrrGenerator {
 		  
 		String iban="SI56 "+b+" "+c+" "+d+" "+a;
 		       
-		//TODO preveri, da še ni duplikata v bazi!
+		//TODO preveri, da še ni duplikata v bazi - pred shranjevanjem
 		
 		
 //		String iban = new String();

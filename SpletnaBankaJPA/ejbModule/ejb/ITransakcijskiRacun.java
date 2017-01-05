@@ -19,7 +19,6 @@ public interface ITransakcijskiRacun {
 	void edit(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(TransakcijskiRacun trr);
 	TransakcijskiRacun najdi(int id);
-	TransakcijskiRacun najdi(long id);
 	TransakcijskiRacun najdi(String stevilkaTRR);
 	
 	ArrayList<TransakcijskiRacun> vrniVse();

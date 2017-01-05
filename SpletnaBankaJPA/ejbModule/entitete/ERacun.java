@@ -1,12 +1,15 @@
 package entitete;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ERacun implements Serializable {
@@ -25,7 +28,7 @@ public class ERacun implements Serializable {
 	//private TransakcijskiRacun idTr;
 	//private KodaNamena idKn;
 	private String TRRprejmnika;
-	//private List<Postavka> postavke;
+	private List<Postavka> postavke=new ArrayList<>();
 	private boolean izbrisan=false;
 	private boolean placan=false;
 	@Id
@@ -116,13 +119,15 @@ public class ERacun implements Serializable {
 	public void setTRRprejmnika(String tRRprejmnika) {
 		TRRprejmnika = tRRprejmnika;
 	}
-	/*@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	
+	@OneToMany
 	public List<Postavka> getPostavke() {
 		return postavke;
 	}
 	public void setPostavke(List<Postavka> postavke) {
 		this.postavke = postavke;
-	}*/
+	}
+	
 	public long getIdTr() {
 		return idTr;
 	}

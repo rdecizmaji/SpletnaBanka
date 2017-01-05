@@ -13,4 +13,9 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	</persistence-unit>
 </persistence>
 
-
+<!-- 
+create database spletnabanka;
+use spletnabanka;
+INSERT INTO `spletnabanka`.`komitent` (`id`, `drzava`, `email`, `geslo`, `idKomitent`, `ime`, `izbrisan`, `priimek`, `uporabniskoIme`, `vloga`) VALUES ('1', 'Slovenija', 'admin', '12d4228ed9d5da59315d870a37fb3b92', '1', 'Uslužbenec', true, '3450', 'admin', 'admin');
+admin, Smart.Road
+ -->

@@ -127,4 +127,9 @@ public class TransakcijskiRacun implements Serializable{
 		this.eracuni = eracuni;
 	}
 	*/
+	
+	@Override
+	public String toString() {
+		return getId()+":"+getStevilkaTRR()+"("+getStanje()+" eur)";
+	}
 }

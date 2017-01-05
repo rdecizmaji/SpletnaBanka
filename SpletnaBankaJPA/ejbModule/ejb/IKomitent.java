@@ -11,9 +11,13 @@ import entitete.TransakcijskiRacun;
 public interface IKomitent {
 	void shrani(Komitent k);
 	void izbrisi(Komitent k);
-	Komitent najdi(Komitent k);
+	Komitent najdi(int id);
+	Komitent najdi(String trr);
+	
 	List<Komitent> vrniVse();
-	List<TransakcijskiRacun> vrniTRRje(Komitent izbrani);
-	Komitent getSession(String username, String password);
+	List<Komitent> vrniVse(boolean loadTrrs);
+	List<TransakcijskiRacun> vrniTRRje(int izbraniId);
 	List<String> vrniEmaile();
+	
+	Komitent prijaviKomitenta(String username, String password);
 }
